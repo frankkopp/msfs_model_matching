@@ -1,0 +1,8 @@
+# mapping of available base types and ICAO plane codes which use the base type
+
+Asobo_A320_NEO:     A20N:A19N:A21N:A318:A319:A320:A321:B732:B733:B734:B735:B736:B737:B738:B739:B73X
+Asobo_B747_8i:      B748:B741:B742:B743:B744:B74F
+Asobo_B787_10:      B78X:B788:B789
+Asobo_CJ4:          C25C:C25B:C25A:C500:C501:C510:C525:C526
+Asobo_Longitude:    C700:C750
+Aerosoft_CRJ_700:   CRJ7:CRJX:CRJ5:CRJ9

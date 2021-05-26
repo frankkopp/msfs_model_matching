@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelMatchRuleSet>
+
+<ModelMatchRule CallsignPrefix="FBWSIM" TypeCode="A20N" ModelName="Airbus A320neo FlyByWire" />
+<ModelMatchRule CallsignPrefix="FBWSIM" TypeCode="A32NX" ModelName="Airbus A320neo FlyByWire" />
+
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B736" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B737" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B738" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A319" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A320" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A321" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A20N" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A21N" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A32NX" ModelName="Airbus A320 Neo DLH Racoon" />
+
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B737" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B738" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A319" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A320" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A321" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A20N" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A21N" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A321" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A32NX" ModelName="Airbus A320 Neo DLH Racoon" />
+
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="B737" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="B738" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="A319" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="A320" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="A321" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="A20N" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="A21N" ModelName="Airbus A320 Neo DLH Racoon" />
+<ModelMatchRule CallsignPrefix="CLH" TypeCode="A32NX" ModelName="Airbus A320 Neo DLH Racoon" />
+
+</ModelMatchRuleSet>

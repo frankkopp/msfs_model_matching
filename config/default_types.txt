@@ -1,0 +1,12 @@
+# List of available planes in the sim as ICAO codes and their default model name
+# If empty it uses the default MSFS AI
+
+# Base Container : Default Livery name
+Asobo_A320_NEO:    Airbus A320 Neo Asobo
+Asobo_B747_8i:     Boeing 747-8i Asobo
+Asobo_B787_10:     Boeing 787-10 Asobo
+Aerosoft_CRJ_700:
+Asobo_CJ4:
+Asobo_Longitude:
+
+

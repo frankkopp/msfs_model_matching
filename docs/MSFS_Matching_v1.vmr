@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelMatchRuleSet>
+
+<!-- DEFAULTS -->
+<ModelMatchRule TypeCode="A19N" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="A20N" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="A21N" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="A318" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="A319" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="A320" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="A321" ModelName="Airbus A320 Neo Asobo" />
+
+<ModelMatchRule TypeCode="A300" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A332" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A333" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A346" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A350" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A358" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A359" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A35K" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="A35X" ModelName="Boeing 787-10 Asobo" />
+
+<ModelMatchRule TypeCode="B733" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B734" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B735" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B736" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B737" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B738" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B739" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B73X" ModelName="Airbus A320 Neo Asobo" />
+
+<ModelMatchRule TypeCode="B743" ModelName="Boeing 747-8i Asobo"/>
+<ModelMatchRule TypeCode="B744" ModelName="Boeing 747-8i Asobo"/>
+<ModelMatchRule TypeCode="B748" ModelName="Boeing 747-8i Asobo"/>
+<ModelMatchRule TypeCode="B74F" ModelName="Boeing 747-8i Asobo"/>
+
+<ModelMatchRule TypeCode="B752" ModelName="Airbus A320 Neo Asobo" />
+<ModelMatchRule TypeCode="B753" ModelName="Airbus A320 Neo Asobo" />
+
+<ModelMatchRule TypeCode="B762" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B763" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B772" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B773" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B779" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B77F" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B77L" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B77W" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B77X" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B788" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B789" ModelName="Boeing 787-10 Asobo" />
+<ModelMatchRule TypeCode="B78X" ModelName="Boeing 787-10 Asobo" />
+
+<!-- LUFTHANSA -->
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A19N" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A20N" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A21N" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A319" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A320" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A321" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B736" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B736" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B736" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B737" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B738" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B738" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B738" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A306" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A330" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A332" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A350" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A359" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A35K" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A35X" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A388" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B744" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B748" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B74F" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B772" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B773" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B77L" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B77W" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B788" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B789" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B78X" ModelName="Boeing 747-8i Lufthansa//Boeing 787-10 Lufthansa" />
+
+<!-- Lufthansa wrong Callsign LHA -->
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A19N" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A20N" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A21N" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A319" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A320" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A321" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B736" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B736" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B736" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B737" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B738" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B738" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B738" ModelName="Airbus A320 Neo Lufthansa-D-AIJA" />
+
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A350" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A350" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A359" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A359" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A35K" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A35K" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A35X" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="A388" ModelName="Boeing 747-8i Lufthansa" />
+
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B744" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B744" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B748" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B748" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B74F" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B772" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B772" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B773" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B773" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B77F" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B77L" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B77L" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B77W" ModelName="Boeing 747-8i Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B77W" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B788" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B789" ModelName="Boeing 787-10 Lufthansa" />
+<ModelMatchRule CallsignPrefix="LHA" TypeCode="B78X" ModelName="Boeing 787-10 Lufthansa" />
+
+<!-- SWISS -->
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A19N" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A20N" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A21N" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A319" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A320" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A321" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A350" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A359" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A35K" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="A35X" ModelName="Boeing 787-10 SWISS" />
+
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B737" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B738" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B772" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B773" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B788" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B789" ModelName="Boeing 787-10 SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="B78X" ModelName="Boeing 787-10 SWISS" />
+
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E170" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E170" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E175" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E175" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E190" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E190" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E195" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+<ModelMatchRule CallsignPrefix="SWR" TypeCode="E195" ModelName="Airbus A320 Neo SWISS AI//Airbus A320 Neo SWISS" />
+
+<!-- Austrian -->
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A319" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A19N" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A320" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A20N" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A321" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A21N" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="B738" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="B737" ModelName="Airbus A320 Neo Austrian New AI//Airbus A320 Neo Austrian Airlines" />
+
+<!-- Eurowings -->
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="A319" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="A320" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="A20N" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="A321" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="A21N" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="B738" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+<ModelMatchRule CallsignPrefix="EWG" TypeCode="B737" ModelName="Airbus A320 Neo Eurowings//Airbus A320 Eurowings AI" />
+
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="B737" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="B738" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="A319" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="A19N" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="A320" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="A20N" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="A321" ModelName="Airbus A320 Neo Germanwings" />
+<ModelMatchRule CallsignPrefix="GWI" TypeCode="A21N" ModelName="Airbus A320 Neo Germanwings" />
+
+<!-- Brussels -->
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="B737" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="B738" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="A319" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="A19N" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="A320" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="A20N" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="A321" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+<ModelMatchRule CallsignPrefix="BEL" TypeCode="A21N" ModelName="Airbus A320 Neo Brussels Airlines AI" />
+
+<!-- SAS -->
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A19N" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A20N" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A21N" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A319" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A320" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A321" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A332" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A333" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A339" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A350" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A359" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A35K" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A35X" ModelName="Boeing 787-10 SAS" />
+
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B734" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B735" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B736" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B737" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B738" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B739" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B752" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B753" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B762" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B763" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B772" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B773" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B788" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B789" ModelName="Boeing 787-10 SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B78X" ModelName="Boeing 787-10 SAS" />
+
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="MD82" ModelName="Airbus A320 Neo Scandinavian Airlines New" />
+
+<!-- British Airways -->
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A20N" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A21N" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A319" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A320" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A321" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A32N" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A350" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A350" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A359" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A359" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A35K" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A35K" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A35X" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A380" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A380" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A388" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="A388" ModelName="Boeing 787-10 British Airways" />
+
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B737" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B738" ModelName="Airbus A320 Neo British Airways AI//Airbus A320 Neo British Airways" />
+
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B744" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B744" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B748" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B772" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B772" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B773" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B773" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B77L" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B77L" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B77W" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B77W" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B788" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B788" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B789" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B789" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B78X" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="B78X" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BA" TypeCode="CONC" ModelName="Boeing 787-10 British Airways//Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A20N" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A21N" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A319" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A320" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A321" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A32N" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A350" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A350" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A359" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A359" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A35K" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A35K" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A35X" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A380" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A380" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A388" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A388" ModelName="Boeing 787-10 British Airways" />
+
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B37M" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B38M" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B39M" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B3XM" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B738" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B744" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B744" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B748" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B772" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B772" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B773" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B773" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B77L" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B77L" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B77W" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B77W" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B788" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B788" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B789" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B789" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B78X" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B78X" ModelName="Boeing 787-10 British Airways" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="CONC" ModelName="Boeing 747-8i British Airways Left//Boeing 747-8i British Airways Right" />
+
+<ModelMatchRule CallsignPrefix="SHT" TypeCode="A20N" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="SHT" TypeCode="A21N" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="SHT" TypeCode="A319" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="SHT" TypeCode="A320" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="SHT" TypeCode="A321" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+<ModelMatchRule CallsignPrefix="SHT" TypeCode="A32N" ModelName="Airbus A320 Neo British Airways//Airbus A320 Neo British Airways AI" />
+
+<!-- KLM -->
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A19N" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A20N" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A21N" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A319" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A320" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A321" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A359" ModelName="Boeing 787-10 KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="A35K" ModelName="Boeing 787-10 KLM" />
+
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B734" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B735" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B736" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B738" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B739" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B772" ModelName="Boeing 787-10 KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B773" ModelName="Boeing 787-10 KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B788" ModelName="Boeing 787-10 KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B789" ModelName="Boeing 787-10 KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B78X" ModelName="Boeing 787-10 KLM" />
+
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="E170" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="E175" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="E190" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="E195" ModelName="Airbus A320 Neo KLM AI//Airbus A320 Neo KLM" />
+
+<!-- Air France -->
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A319" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A320" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A321" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A19N" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A20N" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A21N" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B734" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B735" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B736" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B737" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B738" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B739" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="E170" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="E175" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="E190" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="E195" ModelName="Airbus A320 Neo Air France AI//Airbus A320 Neo Air France" />
+
+<!-- Air Lingus -->
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A319" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A320" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A321" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A20N" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A32N" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A21N" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A19N" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="B738" ModelName="Airbus A320 Aer Lingus AI" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="B737" ModelName="Airbus A320 Aer Lingus AI" />
+
+<!-- Easyjet -->
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A319" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A320" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A320" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A321" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A20N" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A21N" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A32N" ModelName="Airbus A320 Neo EasyJet" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="B738" ModelName="Airbus A320 Neo EasyJet" />
+
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A319" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A320" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A320" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A20N" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A32N" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A321" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="A21N" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EJU" TypeCode="B738" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A319" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A320" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A320" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A20N" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A32N" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A321" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="A21N" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+<ModelMatchRule CallsignPrefix="EZS" TypeCode="B738" ModelName="Airbus A320 Neo EasyJet NEO AI//Airbus A320 Easyjet Europcars//Airbus A320 Neo EasyJet//Airbus A320 Neo EasyJet G-UZHN" />
+
+<!-- Ryanair -->
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="A319" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="A20N" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="A21N" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="A320" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="B738" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="B737" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="B739" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="B73X" ModelName="Airbus A320 Neo Ryanair AI//Airbus A320 Neo Ryanair" />
+
+<!-- TUI -->
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A19N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A19N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A20N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A20N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A21N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A21N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A319" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A319" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A320" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A320" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A321" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A321" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A32N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A32N" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A350" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A359" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A35K" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B737" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B737" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B738" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B738" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B739" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B739" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B73X" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B73X" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B752" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B752" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B753" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B753" ModelName="Airbus A320 Neo TUI AI//Airbus A320 Neo TUI//Airbus A320 Neo TUI Blue" />
+
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B762" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B763" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B772" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B773" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B77L" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B77W" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B787" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B788" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B789" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B78X" ModelName="Boeing 787-10 TUI UK//Boeing 787-10 TUI Airways" />
+
+<!-- Iceland Air -->
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A319" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A19N" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A320" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A20N" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A321" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A21N" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B757" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B752" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B753" ModelName="Airbus A320 Iceland Air AI//Airbus A320 Neo Iceland Air" />
+
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B752" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B753" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B762" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B763" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B764" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B78X" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B788" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B789" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B772" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="B773" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A359" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A35K" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A35X" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A350" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A332" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A333" ModelName="Boeing 787-10 Icelandair" />
+<ModelMatchRule CallsignPrefix="ICE" TypeCode="A339" ModelName="Boeing 787-10 Icelandair" />
+
+<!-- Finnair -->
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A319" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A320" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A321" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B738" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A20N" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A21N" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A19N" ModelName="Airbus A320 Neo Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A21X" ModelName="Airbus A320 Neo Finnair" />
+
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B78X" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B789" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B788" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B772" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B773" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="B763" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A380" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A388" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A359" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A35K" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A35X" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A333" ModelName="Boeing 787-10 Finnair" />
+<ModelMatchRule CallsignPrefix="FIN" TypeCode="A332" ModelName="Boeing 787-10 Finnair" />
+
+<!-- Condor / Thomas Cook -->
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A319" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A19N" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A320" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A20N" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A321" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A21N" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="B757" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="B752" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="B753" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="B763" ModelName="Airbus A320 Neo Condor" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A333" ModelName="Airbus A320 Neo Condor" />
+
+<!-- WIZZ AIR -->
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A319" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A320" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A321" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A19N" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A20N" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A32N" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A21N" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B738" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B739" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B737" ModelName="Airbus A320 Neo Wizz Air AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A319" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A320" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A321" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A19N" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A20N" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A32N" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A21N" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B738" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B739" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B737" ModelName="Airbus A320 Neo Wizz Air 2 AI//WizzAir A320 NEO" />
+
+<!-- DELTA -->
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B737" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B738" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A319" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A20N" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A32N" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A320" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A321" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A21N" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="E195" ModelName="Airbus A320 Neo Delta AI//Airbus A320 Neo Delta" />
+
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B78X" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B789" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B788" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A332" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A333" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B772" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B773" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B77W" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B77L" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B764" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B763" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A359" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A35K" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B744" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B748" ModelName="Boeing 787-10 Delta Airlines" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B747" ModelName="Boeing 787-10 Delta Airlines" />
+
+<!-- DHL -->
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A300" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A306" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A30F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B75F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A320" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A32F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A20N" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A21N" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A321" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B737" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B738" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B739" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B76F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A33F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B73F" ModelName="Airbus A320 Neo DHL" />
+
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A300" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A306" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A30F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B75F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A320" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A32F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A20N" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A21N" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A321" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B737" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B738" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B739" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B76F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A33F" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A333" ModelName="Airbus A320 Neo DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B73F" ModelName="Airbus A320 Neo DHL" />
+
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B77F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B74F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B78F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B748" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B744" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A300" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A30F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A33F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="A34F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="BCS" TypeCode="B76F" ModelName="Boeing 747-8i DHL" />
+
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B77F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B773" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B74F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B78F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B748" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B744" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A300" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A30F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A33F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="A34F" ModelName="Boeing 747-8i DHL" />
+<ModelMatchRule CallsignPrefix="DHL" TypeCode="B76F" ModelName="Boeing 747-8i DHL" />
+
+<!-- IBERIA -->
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A319" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A320" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A321" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B738" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A20N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A32N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A21N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A19N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="A21X" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="A320" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="A20N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="A32N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="A21N" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="A321" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+<ModelMatchRule CallsignPrefix="IBS" TypeCode="B738" ModelName="Airbus A320 Neo Iberia AI//Airbus A320 Neo Iberia oneworld EC-NFZ//Airbus A320 Neo Iberia EC-NER" />
+
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B788" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B789" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B78X" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A35K" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A359" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A350" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B772" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B773" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B77W" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B77L" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B744" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B744" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="B748" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A380" ModelName="Boeing 787-10 Iberia" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A388" ModelName="Boeing 787-10 Iberia" />
+
+<!-- Aegean Airlines -->
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A319" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A19N" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A320" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A20N" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A321" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A21N" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="B738" ModelName="Airbus A320 Neo Aegean Airlines AI" />
+
+<!-- Edelweiss -->
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="B737" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="B738" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="A319" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="A19N" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="A320" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="A20N" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="A321" ModelName="Airbus A320 Neo Edelweiss AI" />
+<ModelMatchRule CallsignPrefix="EDW" TypeCode="A21N" ModelName="Airbus A320 Neo Edelweiss AI" />
+
+<!-- United -->
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A319" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A320" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A32N" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A321" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A20N" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A19N" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A21N" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="MD80" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="E195" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B737" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B738" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B739" ModelName="Airbus A320 Neo United Airlines Blue//Airbus A320 Neo United Airlines Blue AI" />
+
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B78X" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B789" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B788" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A332" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A333" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B772" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B773" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B77W" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B77L" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A359" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A35K" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B763" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B764" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B762" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B744" ModelName="Boeing 787-10 United Airlines" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B748" ModelName="Boeing 787-10 United Airlines" />
+
+<!-- Turkish -->
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A319" ModelName="Airbus A320 Neo Turkish AI" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A320" ModelName="Airbus A320 Neo Turkish AI" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A321" ModelName="Airbus A320 Neo Turkish AI" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A20N" ModelName="Airbus A320 Neo Turkish AI" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A21N" ModelName="Airbus A320 Neo Turkish AI" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B738" ModelName="Airbus A320 Neo Turkish AI" />
+
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B78X" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B789" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B788" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B772" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B773" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A35K" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A35X" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A350" ModelName="Boeing 787-10 Turkish Airlines" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A359" ModelName="Boeing 787-10 Turkish Airlines" />
+
+<!-- FEDEX -->
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B77F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B752" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B74F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B78F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B748" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B744" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="A306" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="A30F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="A33F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="A333" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="A34F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B76F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B75F" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B762" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B763" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B772" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B773" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B77W" ModelName="Boeing 747-8i FedEx" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B77L" ModelName="Boeing 747-8i FedEx" />
+
+<!-- UPS -->
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A300" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A30F" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A320" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A20N" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A32F" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A321" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A21N" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B737" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B738" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B739" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B75F" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B76F" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A33F" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B73F" ModelName="Airbus A320 UPS AI//Airbus A320 UPS" />
+
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B77F" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B74F" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B78F" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B748" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B744" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A306" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="A30F" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B76F" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B762" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B763" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B772" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B773" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B77W" ModelName="Boeing 747-8i Asobo UPS" />
+<ModelMatchRule CallsignPrefix="UPS" TypeCode="B77L" ModelName="Boeing 747-8i Asobo UPS" />
+
+<!-- Cargolux -->
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B77F" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B74F" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B78F" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B748" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B744" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="A306" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="A30F" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B76F" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B762" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B763" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B772" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B773" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B77W" ModelName="Boeing 747-8i Cargolux" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B77L" ModelName="Boeing 747-8i Cargolux" />
+
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B77F" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B74F" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B78F" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B748" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B744" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="A306" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="A30F" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B76F" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B762" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B763" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B772" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B773" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B77W" ModelName="Boeing 747-8i CARGOLUX MASK" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B77L" ModelName="Boeing 747-8i CARGOLUX MASK" />
+
+<!-- Virgin Atlantic -->
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A319" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A320" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A321" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A20N" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A21N" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B738" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B739" ModelName="Airbus A320 Neo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B737" ModelName="Airbus A320 Neo Virgin Atlantic" />
+
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B78X" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B789" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B788" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A359" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A35K" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A35X" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A332" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A333" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B744" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B748" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="A339" ModelName="Boeing 787-10 Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B744" ModelName="Boeing 747-8i Asobo Virgin Atlantic" />
+<ModelMatchRule CallsignPrefix="VIR" TypeCode="B748" ModelName="Boeing 747-8i Asobo Virgin Atlantic" />
+
+<!-- Alitlaia -->
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A319" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A320" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A321" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A20N" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A21N" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="B738" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="B737" ModelName="Airbus A320 Neo Alitalia 8K IA" />
+
+<!-- Singapore Airlines -->
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A319" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A320" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A321" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A20N" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A32N" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A21N" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B738" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B739" ModelName="Airbus A320 Neo SQ AI" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B737" ModelName="Airbus A320 Neo SQ AI" />
+
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B78X" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B789" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B788" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B772" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B773" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B77W" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B77L" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B763" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A380" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A388" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A359" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A35K" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A35X" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A333" ModelName="Boeing 787-10 Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A332" ModelName="Boeing 787-10 Singapore Airlines" />
+
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B742" ModelName="Boeing 747-8i Asobo Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B743" ModelName="Boeing 747-8i Asobo Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B744" ModelName="Boeing 747-8i Asobo Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="B748" ModelName="Boeing 747-8i Asobo Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A380" ModelName="Boeing 747-8i Asobo Singapore Airlines" />
+<ModelMatchRule CallsignPrefix="SIA" TypeCode="A388" ModelName="Boeing 747-8i Asobo Singapore Airlines" />
+
+<!-- Ukraine -->
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="A319" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="A320" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="A321" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="A20N" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="A32N" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="A21N" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="B738" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="B739" ModelName="Airbus A320 Neo Ukraine International" />
+<ModelMatchRule CallsignPrefix="AUI" TypeCode="B737" ModelName="Airbus A320 Neo Ukraine International" />
+
+<!-- Etihad -->
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A319" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A320" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A321" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A20N" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A21N" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B738" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B739" ModelName="Airbus A320 Neo Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B737" ModelName="Airbus A320 Neo Etihad Airways" />
+
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B78X" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B789" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B788" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B772" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B773" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B77W" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B77L" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="B763" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A380" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A388" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A359" ModelName="Boeing 787-10 Etihad Airways" />
+<ModelMatchRule CallsignPrefix="ETD" TypeCode="A35K" ModelName="Boeing 787-10 Etihad Airways" />
+
+<!-- Air Canada -->
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A319" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A320" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A321" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A20N" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A21N" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B738" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B739" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B737" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B736" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="MD80" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="E195" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="E190" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="E175" ModelName="Airbus A320 Neo Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="E170" ModelName="Airbus A320 Neo Air Canada" />
+
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B78X" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B789" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B788" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B772" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B773" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B763" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B764" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B762" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A359" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A35K" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A332" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A333" ModelName="Boeing 787-10 Air Canada" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A339" ModelName="Boeing 787-10 Air Canada" />
+
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B78X" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B789" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B788" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B772" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B773" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B763" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B764" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="B762" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A359" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A35K" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A332" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A333" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+<ModelMatchRule CallsignPrefix="ACA" TypeCode="A339" ModelName="Boeing 787-10 Air Canada Ice Blue" />
+
+<!-- American Airlines -->
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A319" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A320" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A321" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A20N" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A21N" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B738" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B739" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B737" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B736" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="MD80" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="E195" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="E190" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="E175" ModelName="Airbus A320 Neo American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="E170" ModelName="Airbus A320 Neo American Airlines" />
+
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B78X" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B789" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B788" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A332" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A333" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B772" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B773" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B77W" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B77L" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A359" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A35K" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B763" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B764" ModelName="Boeing 787-10 American Airlines" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B762" ModelName="Boeing 787-10 American Airlines" />
+
+<!-- Emirates -->
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B78X" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B789" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B788" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B772" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B773" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77W" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77L" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B763" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A380" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A388" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A359" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A35K" ModelName="Airbus A320 Neo Emirates//Airbus A320 Neo Emirates AI" />
+
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B78X" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B789" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B788" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B772" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B773" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77W" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77L" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B763" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A380" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A388" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A359" ModelName="Boeing 787-10 Emirates" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A35K" ModelName="Boeing 787-10 Emirates" />
+
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B78X" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B789" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B788" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B772" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B773" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77W" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77L" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B763" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A380" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A388" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A359" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A35K" ModelName="Boeing 747-8i Emirates Cargo" />
+
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B744" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B748" ModelName="Boeing 747-8i Emirates Cargo" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B74F" ModelName="Boeing 747-8i Emirates Cargo" />
+
+<!-- Air Europa -->
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A319" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A320" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A321" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A19N" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A20N" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A21N" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A220" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="BCS1" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="BCS3" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A221" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A223" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B736" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B737" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B738" ModelName="Airbus A320 Neo Air Europa AI" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B739" ModelName="Airbus A320 Neo Air Europa AI" />
+
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B78X" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B789" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B788" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A35X" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A332" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="A333" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B752" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B753" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B762" ModelName="Boeing 787-10 AEA" />
+<ModelMatchRule CallsignPrefix="AEA" TypeCode="B763" ModelName="Boeing 787-10 AEA" />
+
+<!-- Jet2 -->
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="B736" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="B752" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="B737" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="B739" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="B738" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="A20N" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+<ModelMatchRule CallsignPrefix="EXS" TypeCode="A320" ModelName="Airbus A320 Neo Jet2//Airbus A320 Neo Jet2 AI" />
+
+
+</ModelMatchRuleSet>

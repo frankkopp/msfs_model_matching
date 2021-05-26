@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelMatchRuleSet>
+
+<!-- Cargo -->
+<ModelMatchRule CallsignPrefix="GEC" TypeCode="B77L" ModelName="B77LGEC//B77LGEC2//B77LGEC3" />
+<ModelMatchRule CallsignPrefix="FDX" TypeCode="B77L" ModelName="B77LFDX2//B77LFDX" />
+<ModelMatchRule CallsignPrefix="CLX" TypeCode="B744" ModelName="B744CLX" />
+
+<!-- Passenger -->
+
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A319" ModelName="A319AAL//A319AAL2" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A320" ModelName="A320AAL//A320AAL2" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A321" ModelName="A321AAL" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="A332" ModelName="A332AAL" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B738" ModelName="B738WAALWL2" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B77W" ModelName="B77WAAL" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B788" ModelName="B788AAL" />
+<ModelMatchRule CallsignPrefix="AAL" TypeCode="B78X" ModelName="B788AAL" />
+
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A319" ModelName="A319AEE" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A320" ModelName="A320AEE//A320AEE2//A320AEE4//A320AEE5" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A20N" ModelName="Airbus A320 Neo Aegean Airlines AI//A320WAEEWL2" />
+<ModelMatchRule CallsignPrefix="AEE" TypeCode="A321" ModelName="A321AEE" />
+
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A319" ModelName="A319AUA//A319AUA2//A319AUA3" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A320" ModelName="A320AUA//A320AUA3//A320AUA4//A320AUA5//A320AUA6" />
+<ModelMatchRule CallsignPrefix="AUA" TypeCode="A321" ModelName="A321AUA//A321AUA2//A321AUA3" />
+
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A319" ModelName="A319AFR//A319AFR2" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A320" ModelName="A320AFR//A320AFR3" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A321" ModelName="A321AFR" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="A388" ModelName="A388AFR" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B744" ModelName="B744AFR" />
+<ModelMatchRule CallsignPrefix="AFR" TypeCode="B77W" ModelName="B77WAFR" />
+
+<ModelMatchRule CallsignPrefix="AFL" TypeCode="A319" ModelName="A319AFL" />
+<ModelMatchRule CallsignPrefix="AFL" TypeCode="A320" ModelName="A320AFL" />
+<ModelMatchRule CallsignPrefix="AFL" TypeCode="A321" ModelName="A321AFL" />
+<ModelMatchRule CallsignPrefix="AFL" TypeCode="A332" ModelName="A332AFL" />
+<ModelMatchRule CallsignPrefix="AFL" TypeCode="B77W" ModelName="B77WAFL" />
+
+<ModelMatchRule CallsignPrefix="ASA" TypeCode="A319" ModelName="A319ASA" />
+<ModelMatchRule CallsignPrefix="ASA" TypeCode="A320" ModelName="A320WASAWL" />
+<ModelMatchRule CallsignPrefix="ASA" TypeCode="B738" ModelName="B738ASAS" />
+<ModelMatchRule CallsignPrefix="ASA" TypeCode="B739" ModelName="B739ASA" />
+
+<ModelMatchRule CallsignPrefix="ASL" TypeCode="A319" ModelName="A319ASL//A319ASL2" />
+<ModelMatchRule CallsignPrefix="ASL" TypeCode="A320" ModelName="A320ASL" />
+<ModelMatchRule CallsignPrefix="ASL" TypeCode="A332" ModelName="A332ASL" />
+
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A319" ModelName="A319AZA//A319AZA2" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A320" ModelName="A320AZA//A320AZA2" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A321" ModelName="A321AZA" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="A332" ModelName="A332AZA2" />
+<ModelMatchRule CallsignPrefix="AZA" TypeCode="B77W" ModelName="B77WAZA" />
+
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A319" ModelName="A319BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A320" ModelName="A320BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A20N" ModelName="A320BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A321" ModelName="A321BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A21N" ModelName="A319BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="A388" ModelName="A388BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B738" ModelName="A320BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B744" ModelName="B744BAW2" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B77W" ModelName="B77WBAW//B77WBAW2" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B788" ModelName="B788BAW" />
+<ModelMatchRule CallsignPrefix="BAW" TypeCode="B78X" ModelName="B788BAW" />
+
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A320" ModelName="A320CFG//A320CFG3" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A20N" ModelName="A320CFG//A320CFG3" />
+<ModelMatchRule CallsignPrefix="CFG" TypeCode="A321" ModelName="A321CFG" />
+
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A319" ModelName="A319DAL" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A320" ModelName="A320DAL" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A332" ModelName="A332DAL" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="A359" ModelName="A359DAL" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B739" ModelName="B739WDALWL//B739WDALWL2" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B744" ModelName="B744DAL" />
+<ModelMatchRule CallsignPrefix="DAL" TypeCode="B77L" ModelName="B77LDAL" />
+
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A319" ModelName="A319DLH3" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A320" ModelName="A320DLH3" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A321" ModelName="A321DLH3//A321DLH6" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A346" ModelName="A346DLH2" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A359" ModelName="A359DLH" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="A388" ModelName="A388DLH2" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B744" ModelName="B744DLH//B744DLH2" />
+<ModelMatchRule CallsignPrefix="DLH" TypeCode="B748" ModelName="B748DLH2" />
+
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A319" ModelName="A319EIN" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A320" ModelName="A320EIN" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A321" ModelName="A321EIN" />
+<ModelMatchRule CallsignPrefix="EIN" TypeCode="A332" ModelName="A332EIN" />
+
+<ModelMatchRule CallsignPrefix="ELB" TypeCode="A319" ModelName="A319ELB" />
+
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A319" ModelName="A319EZY//A319EZY2//A319EZY3//A319EZY4//A319EZY5//A319EZY8//A319EZY9" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A320" ModelName="A320EZY//A320EZY2//A320EZY4" />
+<ModelMatchRule CallsignPrefix="EZY" TypeCode="A321" ModelName="A320EZY//A320EZY2//A320EZY4" />
+
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A319" ModelName="A319IBE" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A320" ModelName="A320IBE" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A321" ModelName="A321IBE" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A332" ModelName="A332IBE" />
+<ModelMatchRule CallsignPrefix="IBE" TypeCode="A346" ModelName="A346IBE" />
+
+<ModelMatchRule CallsignPrefix="JBU" TypeCode="A320" ModelName="A320JBU3//A320JBU4//A320JBU5//A320JBU6//A320JBU7//A320JBU8//A320JBU9" />
+
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B738" ModelName="B738WKLMWL//B738WKLMWL3" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B739" ModelName="B739WKLMWL//B739WKLMWL3" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B744" ModelName="B744KLM2//B744KLM" />
+<ModelMatchRule CallsignPrefix="KLM" TypeCode="B77W" ModelName="B77WKLM//B77WKLM2//B77WKLM3//B77WKLM4" />
+
+<ModelMatchRule CallsignPrefix="LLM" TypeCode="A321" ModelName="A321LLM" />
+
+<!-- Norwegian -->
+<ModelMatchRule CallsignPrefix="NAX" TypeCode="B738" ModelName="B738WNAXWL//B738WNAXWL0//B738WNAXWL1//B738WNAXWL2//B738WNAXWL3//B738WNAXWL4//B738WNAXWL5//B738WNAXWL6//B738WNAXWL7//B738WNAXWL8//B738WNAXWL9" />
+<ModelMatchRule CallsignPrefix="IBK" TypeCode="B738" ModelName="B738WIBKWL//B738WIBKWL0//B738WIBKWL1//B738WIBKWL2//B738WIBKWL3//B738WIBKWL4//B738WIBKWL5//B738WIBKWL6//B738WIBKWL7//B738WIBKWL8//B738WIBKWL9" />
+
+<ModelMatchRule CallsignPrefix="OAL" TypeCode="A320" ModelName="Airbus A320 Neo Olympic Air" />
+<ModelMatchRule CallsignPrefix="OAL" TypeCode="A319" ModelName="Airbus A320 Neo Olympic Air" />
+
+<ModelMatchRule CallsignPrefix="PBD" TypeCode="B738" ModelName="B738PBDS" />
+
+<ModelMatchRule CallsignPrefix="RYR" TypeCode="B738" ModelName="B738WRYRWL//B738WRYRWL2//B738WRYRWL3//B738WRYRWL4//B738WRYRWL5//B738WRYRWL6//B738WRYRWL7//B738WRYRWL9" />
+
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A319" ModelName="A319SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A320" ModelName="A320SAS//A320SAS2" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A321" ModelName="A321SAS//A321SAS2" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="A359" ModelName="A359SAS" />
+<ModelMatchRule CallsignPrefix="SAS" TypeCode="B738" ModelName="B738SAS" />
+
+<ModelMatchRule CallsignPrefix="SBI" TypeCode="A319" ModelName="A319SBI" />
+<ModelMatchRule CallsignPrefix="SBI" TypeCode="A320" ModelName="A320SBI" />
+<ModelMatchRule CallsignPrefix="SBI" TypeCode="A321" ModelName="A321SBI" />
+<ModelMatchRule CallsignPrefix="SBI" TypeCode="B738" ModelName="B738WSBIWL" />
+
+<ModelMatchRule CallsignPrefix="SVR" TypeCode="A319" ModelName="A319SVR" />
+<ModelMatchRule CallsignPrefix="SVR" TypeCode="A320" ModelName="A320SVR" />
+<ModelMatchRule CallsignPrefix="SVR" TypeCode="A321" ModelName="A321SVR" />
+
+<ModelMatchRule CallsignPrefix="SWA" TypeCode="B738" ModelName="B738SWAS3//B738SWAS4" />
+
+<ModelMatchRule CallsignPrefix="SYL" TypeCode="B738" ModelName="B738SYLS" />
+
+<ModelMatchRule CallsignPrefix="TAP" TypeCode="A319" ModelName="A319TAP" />
+<ModelMatchRule CallsignPrefix="TAP" TypeCode="A320" ModelName="A320TAP" />
+<ModelMatchRule CallsignPrefix="TAP" TypeCode="A321" ModelName="A321TAP" />
+<ModelMatchRule CallsignPrefix="TAP" TypeCode="A332" ModelName="A332TAP" />
+
+<!-- TUI Airlines -->
+<ModelMatchRule CallsignPrefix="TFL" TypeCode="B738" ModelName="B738TFLS2" />
+<ModelMatchRule CallsignPrefix="TFL" TypeCode="B788" ModelName="B788TFL" />
+<ModelMatchRule CallsignPrefix="TOM" TypeCode="B738" ModelName="B738TOMS" />
+<ModelMatchRule CallsignPrefix="TOM" TypeCode="B788" ModelName="B788TOM" />
+<ModelMatchRule CallsignPrefix="BLX" TypeCode="B738" ModelName="B738BLXS" />
+<ModelMatchRule CallsignPrefix="JAF" TypeCode="A320" ModelName="A320JAF" />
+<ModelMatchRule CallsignPrefix="JAF" TypeCode="B738" ModelName="B738WJAFWL" />
+<ModelMatchRule CallsignPrefix="JAF" TypeCode="B788" ModelName="B788JAF" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="A321" ModelName="A321TUI" />
+<ModelMatchRule CallsignPrefix="TUI" TypeCode="B738" ModelName="B738WTUIWL" />
+
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A319" ModelName="A319THY" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A320" ModelName="A320THY" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A321" ModelName="A321THY" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="A332" ModelName="A332THY//A332THY2//A332THY5" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B738" ModelName="B738WTHYWL" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B739" ModelName="B739WTHYWL" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B77L" ModelName="B77LTHYCRG" />
+<ModelMatchRule CallsignPrefix="THY" TypeCode="B77W" ModelName="B77WTHY" />
+
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="A388" ModelName="A388UAE" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77W" ModelName="B77WUAE" />
+<ModelMatchRule CallsignPrefix="UAE" TypeCode="B77L" ModelName="B77LUAE" />
+
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A319" ModelName="A319UAL2" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="A320" ModelName="A320UAL3//A320UAL4" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B738" ModelName="B738UALS//B738UALS3" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B739" ModelName="B739SUALS" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B744" ModelName="B744UAL" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B77W" ModelName="B77WUAL" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B788" ModelName="B788UAL" />
+<ModelMatchRule CallsignPrefix="UAL" TypeCode="B78X" ModelName="B788UAL" />
+
+<ModelMatchRule CallsignPrefix="QFA" TypeCode="A332" ModelName="A332QFA2" />
+<ModelMatchRule CallsignPrefix="QFA" TypeCode="A388" ModelName="A388QFA2" />
+<ModelMatchRule CallsignPrefix="QFA" TypeCode="B738" ModelName="B738WQFAWL2" />
+<ModelMatchRule CallsignPrefix="QFA" TypeCode="B744" ModelName="B744QFA2" />
+
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A319" ModelName="A319QTR" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A320" ModelName="A320QTR//A320QTR3" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A321" ModelName="A321QTR//A321QTR2" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A332" ModelName="A332QTR" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A346" ModelName="A346QTR" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A359" ModelName="A359QTR" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="A388" ModelName="A388QTR" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="B77L" ModelName="B77LQTR//B77LQTR2//B77LQTR3//B77LQTRCRG" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="B77W" ModelName="B77WQTR" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="B788" ModelName="B788QTR//B788QTR2" />
+<ModelMatchRule CallsignPrefix="QTR" TypeCode="B78X" ModelName="B788QTR//B788QTR2" />
+
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="A320" ModelName="A320WZZ2" />
+<ModelMatchRule CallsignPrefix="WZZ" TypeCode="B738" ModelName="B738WZZZWL" />
+
+
+<!--
+Missing:
+Cargo: UPS, DHL
+Passenger: 
+-->
+
+</ModelMatchRuleSet>
