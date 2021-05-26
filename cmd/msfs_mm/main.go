@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -12,5 +11,5 @@ var (
 
 func main() {
 	out.Println("Hello World")
-	
+
 }
