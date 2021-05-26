@@ -1,4 +1,4 @@
-# List of alternative ICAO codes for airline to use the same livery
+# Lists of alternative ICAO codes for airline to use the same livery
 
 DLH:LHA:CLH
 BAW:BA:SHT:CFE

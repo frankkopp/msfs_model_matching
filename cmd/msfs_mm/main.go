@@ -15,7 +15,6 @@ var (
 	// TODO: make this commandline args or base config
 	dirname = "D:\\Games\\MSFS2020\\Community"
 	// dirname = "D:\\Games\\MSFS2020\\ADD_ONS\\Liveries"
-
 	defaultTypesFile   = "D:\\_DEV\\msfs_model_matching\\config\\default_types.txt"
 	typeVariationsFile = "D:\\_DEV\\msfs_model_matching\\config\\typeVariations.txt"
 	icaoVariationsFile = "D:\\_DEV\\msfs_model_matching\\config\\icaoVariations.txt"
@@ -95,6 +94,7 @@ func main() {
 
 	output.WriteString("\n</ModelMatchRuleSet>\n")
 
+	// TODO: Write configurable file
 	fmt.Println(output.String())
 
 }
