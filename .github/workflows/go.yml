@@ -32,9 +32,16 @@ jobs:
             config/*
             matchmaker.exe
 
+      - name: Zipping
+        uses: papeloto/action-zip@v1
+        with:
+          files: config/ matchmaker.exe README.md
+          recursive: false
+          dest: matchmaker.zip
+
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: matchmaker.exe config/* README.md
+          files: matchmaker.zip
 
