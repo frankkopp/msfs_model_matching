@@ -1,4 +1,4 @@
-module github.com/frankkopp/FrankyGo
+module github.com/frankkopp/MatchMaker
 
 go 1.14
 
