@@ -18,8 +18,8 @@ jobs:
       with:
         go-version: 1.15
 
-    - name: Build
-      run: go build -v -o bin/matchmaker.exe ./...
-
-    - name: Test
-      run: go test -v ./...
+    - uses: wangyoucao577/go-release-action@v1.18
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        goos: windows
+        goarch: amd64
