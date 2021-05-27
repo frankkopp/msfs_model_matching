@@ -32,11 +32,9 @@ jobs:
             config/*
             matchmaker.exe
 
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        name: Release
-        uses: ridedott/release-me-action@master
+      - name: Update release
+        uses: johnwbyrd/update-release@v1
         with:
-          release-assets: |
-            matchmaker.exe
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: matchmaker.exe config/* README.md
 
