@@ -1,64 +1,131 @@
+//
+// FrankyGo - UCI chess engine in GO for learning purposes
+//
+// MIT License
+//
+// Copyright (c) 2021 Frank Kopp
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+// Package main
 package main
 
 import (
 	"encoding/xml"
+	"flag"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"regexp"
+	"runtime"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/karrick/godirwalk"
 )
 
-var (
-	// TODO: make this commandline args or base config
-	dirname = "D:\\Games\\MSFS2020\\Community"
-	// dirname = "D:\\Games\\MSFS2020\\ADD_ONS\\Liveries"
-	defaultTypesFile   = "D:\\_DEV\\msfs_model_matching\\config\\default_types.txt"
-	typeVariationsFile = "D:\\_DEV\\msfs_model_matching\\config\\typeVariations.txt"
-	icaoVariationsFile = "D:\\_DEV\\msfs_model_matching\\config\\icaoVariations.txt"
+const (
+	fileName = "aircraft.cfg"
+)
 
+var (
+	version   = "0.1"
 	coreRules = map[string]map[string][]string{}
 )
 
 func main() {
 
-	// build config data structure
-	defaultTypes := readDefaultTypes(defaultTypesFile)
-	typeVariations := readTypeVariations(typeVariationsFile)
-	icaoVariations := readIcaoVariations(icaoVariationsFile)
+	// take care of command line argument
+	versionInfo := flag.Bool("version", false, "prints version and exits")
+	liveryDirectory := flag.String("dir", ".", "path where "+fileName+" are searched recursively")
+	defaultTypesFile := flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
+	typeVariationsFile := flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
+	icaoVariationsFile := flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
+	outPutFile := flag.String("outPutFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
+	flag.Parse()
+
+	// print version info and exit
+	if *versionInfo {
+		printVersionInfo()
+		return
+	}
+
+	startReading := time.Now()
+
+	// build config data structures
+	fmt.Printf("Reading configuration\n")
+	defaultTypes := readConfig(*defaultTypesFile)
+	typeVariations := readConfig(*typeVariationsFile)
+	icaoVariations := readConfig(*icaoVariationsFile)
 
 	// find all aircraft.cfg files
-	aircraftCfgPaths := findAllAircraftCfg(dirname)
-	fmt.Printf("%d entries\n", len(aircraftCfgPaths))
+	fmt.Printf("Searching for %s in %s\n", fileName, *liveryDirectory)
+	aircraftCfgPaths := findAllAircraftCfg(*liveryDirectory)
+	fmt.Printf("Found %d %s files in %d ms\n", len(aircraftCfgPaths), fileName, time.Since(startReading).Milliseconds())
 
 	// process all found aircraft.cfg file and fill the coreRules data structure
+	fmt.Printf("Processing all %s\n", fileName)
 	for _, item := range aircraftCfgPaths {
 		processAircraftCfg(item, icaoVariations)
 	}
 
-	// output of the XML rules
+	// create output of the XML rules
+	fmt.Printf("Creating XML rules\n")
+	output := createXMLRules(defaultTypes, typeVariations)
+
+	// Save output inti vmr file
+	fmt.Printf("Saving VMR file to %s\n", *outPutFile)
+	saveToFile(outPutFile, output)
+
+	elapsedReading := time.Since(startReading)
+	fmt.Printf("Finished in %d ms\n", elapsedReading.Milliseconds())
+}
+
+// use the data structures to create the XML output and rules
+func createXMLRules(defaultTypes map[string][]string, typeVariations map[string][]string) strings.Builder {
 	var output strings.Builder
 	output.Grow(100_000)
 
+	// Header
 	output.WriteString(xml.Header)
-	output.WriteString("<ModelMatchRuleSet>\n")
+	output.WriteString("<ModelMatchRuleSet>\n\n")
 
-	// DEFAULTS
-	fmt.Fprintf(&output, "\n")
+	// Default rules
 	fmt.Fprintf(&output, "<!-- DEFAULTS -->\n")
-	// MODEL
+
+	// Create a section for each base plane model we have available
 	sortedBaseKeys := sortBaseKeys(defaultTypes)
 	for _, baseKey := range sortedBaseKeys {
 		fmt.Fprintf(&output, "<!-- BASE TYPE: %s -->\n", baseKey)
+
+		// only continue if a default is defined in config
 		if len(defaultTypes[baseKey]) == 0 || defaultTypes[baseKey][0] == "" {
 			fmt.Fprintf(&output, "<!-- NO DEFAULTS -->\n")
 			continue
 		}
+
+		// create a rule for each plane type variation
 		for _, typeKey := range typeVariations[baseKey] {
 			fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
-			// VARIATIONS
+			// define default liveries for this plane type - might be multiple liveries - vPilot will choose randomly
 			for i, n := range defaultTypes[baseKey] {
 				if i != 0 {
 					fmt.Fprint(&output, "//")
@@ -69,18 +136,19 @@ func main() {
 		}
 	}
 
-	// ICAO
+	// Create a section for each airline  ICAO we have found in the aircraft.cfg files
 	sortedIcaoKeys := sortIcaoKeys(coreRules)
 	for _, icaoKey := range sortedIcaoKeys {
 		fmt.Fprintf(&output, "\n")
 		fmt.Fprintf(&output, "<!-- AIRLINE ICAO: %s -->\n", icaoKey)
-		// MODEL
+		// Create a section for each base plane model we have available
 		sortedBaseKeys := sortBaseKeys(coreRules[icaoKey])
 		for _, baseKey := range sortedBaseKeys {
 			fmt.Fprintf(&output, "<!-- BASE TYPE: %s -->\n", baseKey)
+			// create a rule for each plane type variation
 			for _, typeKey := range typeVariations[baseKey] {
 				fmt.Fprintf(&output, "<ModelMatchRule CallsignPrefix=\"%s\" TypeCode=\"%s\" ModelName=\"", icaoKey, typeKey)
-				// VARIATIONS
+				// define liveries for this airline and plane type - might be multiple liveries - vPilot will choose randomly
 				for i, n := range coreRules[icaoKey][baseKey] {
 					if i != 0 {
 						fmt.Fprint(&output, "//")
@@ -92,16 +160,17 @@ func main() {
 		}
 	}
 
+	// Footer
 	output.WriteString("\n</ModelMatchRuleSet>\n")
 
-	// TODO: Write configurable file
-	fmt.Println(output.String())
-
+	return output
 }
 
-// TODO clean redundant code
-func readIcaoVariations(file string) map[string][]string {
-	icaoVariations := map[string][]string{}
+// Reads a config file with the format:
+// lines of strings seperated by":"
+// each line will be mapped in a map with the first entry as map key and the rest entries as list of strings
+func readConfig(file string) map[string][]string {
+	data := map[string][]string{}
 	lines, _ := readFile(file)
 	for _, line := range *lines {
 		line = strings.TrimSpace(line)
@@ -112,51 +181,14 @@ func readIcaoVariations(file string) map[string][]string {
 		modelType := strings.TrimSpace(tokens[0])
 		for _, t := range tokens[1:] {
 			t = strings.TrimSpace(t)
-			icaoVariations[modelType] = append(icaoVariations[modelType], t)
+			data[modelType] = append(data[modelType], t)
 		}
 	}
-	return icaoVariations
-}
-
-// TODO clean redundant code
-func readDefaultTypes(file string) map[string][]string {
-	defaultTypes := map[string][]string{}
-	lines, _ := readFile(file)
-	for _, line := range *lines {
-		line = strings.TrimSpace(line)
-		if len(line) == 0 || line[0] == '#' {
-			continue
-		}
-		tokens := strings.Split(line, ":")
-		modelType := strings.TrimSpace(tokens[0])
-		for _, t := range tokens[1:] {
-			t = strings.TrimSpace(t)
-			defaultTypes[modelType] = append(defaultTypes[modelType], t)
-		}
-	}
-	return defaultTypes
-}
-
-// TODO clean redundant code
-func readTypeVariations(file string) map[string][]string {
-	typeVariations := map[string][]string{}
-	lines, _ := readFile(file)
-	for _, line := range *lines {
-		line = strings.TrimSpace(line)
-		if len(line) == 0 || line[0] == '#' {
-			continue
-		}
-		tokens := strings.Split(line, ":")
-		modelType := strings.TrimSpace(tokens[0])
-		for _, t := range tokens[1:] {
-			t = strings.TrimSpace(t)
-			typeVariations[modelType] = append(typeVariations[modelType], t)
-		}
-	}
-	return typeVariations
+	return data
 }
 
 // as go does not support a sorted map iteration we use a slice of all keys and sort it
+// Could probably be done with generics
 func sortBaseKeys(m map[string][]string) []string {
 	keys := make([]string, len(m))
 	i := 0
@@ -169,6 +201,7 @@ func sortBaseKeys(m map[string][]string) []string {
 }
 
 // as go does not support a sorted map iteration we use a slice of all keys and sort it
+// Could probably be done with generics
 func sortIcaoKeys(m map[string]map[string][]string) []string {
 	keys := make([]string, len(m))
 	i := 0
@@ -180,24 +213,25 @@ func sortIcaoKeys(m map[string]map[string][]string) []string {
 	return keys
 }
 
-// get all aircraft.cfg files with in the start directory
+// find all aircraft.cfg files as paths with in the start directory
 func findAllAircraftCfg(filePath string) []string {
 	var aircraftCfgPaths []string
 	err := godirwalk.Walk(filePath, &godirwalk.Options{
 		Callback: func(osPathname string, de *godirwalk.Dirent) error {
 			if de.IsRegular() {
-				if de.Name() != "aircraft.cfg" {
+
+				if de.Name() != fileName {
 					return godirwalk.SkipThis
 				}
 				aircraftCfgPaths = append(aircraftCfgPaths, osPathname)
 			}
 			return nil
 		},
-		Unsorted:            false, // (optional) set true for faster yet non-deterministic enumeration (see godoc)
+		Unsorted:            true,
 		FollowSymbolicLinks: true,
 	})
 	if err != nil {
-		fmt.Printf("ERROR: %v\n", err)
+		fmt.Printf("Error during search for %s files: %v\n", fileName, err)
 	}
 	return aircraftCfgPaths
 }
@@ -221,6 +255,8 @@ func processAircraftCfg(path string, icaoVariations map[string][]string) {
 			continue
 		}
 		// only take the first title - ignore the rest
+		// TODO: could be optimized to look for AI variations as they are most likely less resource hungry
+		//  for model matching
 		if name == "" && strings.Contains(line, "title") {
 			name = getValue(line)
 			continue
@@ -268,6 +304,21 @@ func getValue(line string) string {
 	return match[1]
 }
 
+func saveToFile(outPutFile *string, output strings.Builder) {
+	outFile, err := os.Create(*outPutFile)
+	if err != nil {
+		fmt.Println("Error while creating VMR file to %S\n", *outPutFile)
+	}
+	_, err = outFile.WriteString(output.String())
+	if err != nil {
+		fmt.Println("Error while saving to VMR file to %S\n", *outPutFile)
+	}
+	err = outFile.Close()
+	if err != nil {
+		fmt.Println("Error while closing VMR file to %S\n", *outPutFile)
+	}
+}
+
 // reads a complete file into a slice of strings
 func readFile(path string) (*[]string, error) {
 	bytes, err := ioutil.ReadFile(path)
@@ -277,4 +328,15 @@ func readFile(path string) (*[]string, error) {
 	}
 	lines := strings.Split(string(bytes), "\n")
 	return &lines, nil
+}
+
+func printVersionInfo() {
+	fmt.Printf("MatchMaker %s\n", version)
+	fmt.Println("Environment:")
+	fmt.Printf("  Using GO version %s\n", runtime.Version())
+	fmt.Printf("  Running %s using %s as a compiler\n", runtime.GOARCH, runtime.Compiler)
+	fmt.Printf("  Number of CPU: %d\n", runtime.NumCPU())
+	fmt.Printf("  Number of Goroutines: %d\n", runtime.NumGoroutine())
+	cwd, _ := os.Getwd()
+	fmt.Printf("  Working directory: %s\n", cwd)
 }
