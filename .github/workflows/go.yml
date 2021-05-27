@@ -28,11 +28,11 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           files: config/ matchmaker.exe
-          recursive: true
+          recursive: false
           dest: matchmaker.zip
 
       - name: Uploading files
         uses: actions/upload-artifact@v2
         with:
-          name: matchmaker.zip
+          name: matchmaker
           path: matchmaker.zip
