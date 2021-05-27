@@ -1,5 +1,5 @@
 //
-// FrankyGo - UCI chess engine in GO for learning purposes
+// VATSIM vPilot MatchMaker
 //
 // MIT License
 //
@@ -296,6 +296,7 @@ func processAircraftCfg(path string, icaoVariations map[string][]string) {
 // extract the value from the aircraft.cfg line
 var regexValue = regexp.MustCompile(`"\.?\.?\\?(.*)"`)
 
+// extract the value from the aircraft.cfg line
 func getValue(line string) string {
 	match := regexValue.FindStringSubmatch(line)
 	if len(match) <= 1 {
@@ -304,6 +305,7 @@ func getValue(line string) string {
 	return match[1]
 }
 
+// save a strings.Builder instance to a file
 func saveToFile(outPutFile *string, output strings.Builder) {
 	outFile, err := os.Create(*outPutFile)
 	if err != nil {
