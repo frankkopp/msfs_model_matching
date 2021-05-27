@@ -32,8 +32,8 @@ jobs:
             config/*
             matchmaker.exe
 
-      - name: Update release
-        uses: johnwbyrd/update-release@v1
+      - name: Update Release
+        uses: johnwbyrd/update-release@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: matchmaker.exe config/* README.md
