@@ -32,10 +32,11 @@ jobs:
             config/*
             matchmaker.exe
 
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: Release
+        uses: ridedott/release-me-action@master
         with:
-          args: Latest Mastern Release
+          release-assets: |
+            ./generated/my-asset.tar.gz
 
