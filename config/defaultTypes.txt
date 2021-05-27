@@ -1,13 +1,13 @@
 # List of available planes in the sim which should be used for matching rules and their default livery name
 
-# Base Container :  Default Livery name
-Asobo_A320_NEO:     Airbus A320 Neo Asobo
-Asobo_B747_8i:      Boeing 747-8i Asobo
-Asobo_B787_10:      Boeing 787-10 Asobo
-Aerosoft_CRJ_700:   CRJ550ER Privat D-ALKI
-Asobo_CJ4:          Cessna CJ4 Citation Asobo
-Asobo_Longitude:    Cessna Citation Longitude Asobo
-Asobo_TBM930:       TBM 930 Asobo:TBM 930 Asobo Air Traffic 00:TBM 930 Asobo Air Traffic 01:TBM 930 Asobo Air Traffic 02:
+# Base Container ;  Default Livery name
+Asobo_A320_NEO;     Airbus A320 Neo Asobo
+Asobo_B747_8i;      Boeing 747-8i Asobo
+Asobo_B787_10;      Boeing 787-10 Asobo
+Aerosoft_CRJ_700;   CRJ550ER Privat D-ALKI
+Asobo_CJ4;          Cessna CJ4 Citation Asobo
+Asobo_Longitude;    Cessna Citation Longitude Asobo
+Asobo_TBM930;       TBM 930 Asobo;TBM 930 Asobo Air Traffic 00;TBM 930 Asobo Air Traffic 01;TBM 930 Asobo Air Traffic 02;
 
 
 

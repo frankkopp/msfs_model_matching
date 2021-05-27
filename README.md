@@ -1,4 +1,6 @@
 # MSFS VATSIM vPilot MatchMaker
+[![Go](https://github.com/frankkopp/msfs_model_matching/actions/workflows/go.yml/badge.svg)](https://github.com/frankkopp/msfs_model_matching/actions/workflows/go.yml)
+
 Automatically generates a vPilot match making file (VMR) for all liveries in the given folder.
 It allows to configure the base sim plane models to be used, the default liveries to be used 
 and also a list of alternative ICAO codes for airline which should use the same livery.

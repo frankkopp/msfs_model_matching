@@ -1,9 +1,10 @@
 # Lists of alternative ICAO codes for airlines which should use the same livery
 
-DLH:LHA:CLH
-BAW:BA:SHT:CFE
-EZY:EJU:EZS
-TUI:TOM:TFL:THOM
-EWG:EWE
-RYR:RUK
-DHK:BCS:DHL:DAE
+DLH;LHA;CLH
+BAW;BA;SHT;CFE
+EZY;EJU;EZS
+TUI;TOM;TFL;THOM
+EWG;EWE
+RYR;RUK
+DHK;BCS;DHL;DAE
+FDX;FEDEX
