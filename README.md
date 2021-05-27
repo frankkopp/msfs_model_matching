@@ -20,13 +20,13 @@ default livery.
 As the sim will never have all real life plane models this is a way to still 
 show other planes in nice default livery if there is no livery available. 
 ````
-Asobo_A320_NEO:     Airbus A320 Neo Asobo
-Asobo_B747_8i:      Boeing 747-8i Asobo
-Asobo_B787_10:      Boeing 787-10 Asobo
-Aerosoft_CRJ_700:   CRJ550ER Privat D-ALKI
-Asobo_CJ4:          Cessna CJ4 Citation Asobo
-Asobo_Longitude:    Cessna Citation Longitude Asobo
-Asobo_TBM930:       TBM 930 Asobo
+Asobo_A320_NEO;     Airbus A320 Neo Asobo
+Asobo_B747_8i;      Boeing 747-8i Asobo
+Asobo_B787_10;      Boeing 787-10 Asobo
+Aerosoft_CRJ_700;   CRJ550ER Privat D-ALKI
+Asobo_CJ4;          Cessna CJ4 Citation Asobo
+Asobo_Longitude;    Cessna Citation Longitude Asobo
+Asobo_TBM930;       TBM 930 Asobo
 ````
 
 ### typeVariations.txt
@@ -35,13 +35,13 @@ which should use this livery.
 As the sim will never have all real life plane models this is a way to still match
 planes used in VATSIM by other pilots. 
 ````
-Asobo_A320_NEO:     A19N:A20N:A21N:A318:A319:A320:A321:B732:B733:B734:B735:B736:B737:B738:B739:B73X
-Asobo_B747_8i:      B741:B742:B743:B744:B748:B74F
-Asobo_B787_10:      B78X:B788:B789
-Asobo_CJ4:          C25C:C25B:C25A:C500:C501:C510:C525:C526
-Asobo_Longitude:    C700:C750
-Aerosoft_CRJ_700:   CRJ7:CRJX:CRJ5:CRJ9
-Asobo_TBM930:       TBM9
+Asobo_A320_NEO;     A19N;A20N;A21N;A318;A319;A320;A321;B732;B733;B734;B735;B736;B737;B738;B739;B73X
+Asobo_B747_8i;      B741;B742;B743;B744;B748;B74F
+Asobo_B787_10;      B78X;B788;B789
+Asobo_CJ4;          C25C;C25B;C25A;C500;C501;C510;C525;C526
+Asobo_Longitude;    C700;C750
+Aerosoft_CRJ_700;   CRJ7;CRJX;CRJ5;CRJ9
+Asobo_TBM930;       TBM9
 ````
 
 ### icaoVariations.txt
@@ -53,13 +53,32 @@ own livery for each of the variations.
 E.g. British Airways has an ICAO code of "BAW". But sometimes pilots also use
 BA, SHT or CFE (etc.) - all these planes will use the BAW livery if so configured. 
 ````
-DLH:LHA:CLH
-BAW:BA:SHT:CFE
-EZY:EJU:EZS
-TUI:TOM:TFL:THOM
-EWG:EWE
-RYR:RUK
-DHK:BCS:DHL:DAE
+DLH;LHA;CLH
+BAW;BA;SHT;CFE
+EZY;EJU;EZS
+TUI;TOM;TFL;THOM
+EWG;EWE
+RYR;RUK
+DHK;BCS;DHL;DAE
+````
+
+### customData.txt
+TThis file can be used to configure custom data for a livery (aircraft.cfg).
+The required format is path;name;base;icao
+For skipped files this can easily be copy from the output of the program and 
+pasted into the file. Remove SKIPPED at the beginning and enter the name, base and icao manually.
+Also liveries can be explicitely skipped by using "skip" as name. 
+
+````
+# Format: path;name;base;icao
+# overwrite with custom
+D:\Games\MSFS2020\Community\Asobo_B747_8i_FedEx\SimObjects\Airplanes\Asobo_B747_8i-FedEx\aircraft.cfg;Boeing 747-8i FedEx;Asobo_B747_8i;FDX
+# fix missing data
+D:\Games\MSFS2020\Community\Aerosoft_CRJ_ACJazz\SimObjects\AirPlanes\Aerosoft_CRJ_700_JAZZ\aircraft.cfg;CRJ700ER Jazz Lowercase;Aerosoft_CRJ_700;JZA
+D:\Games\MSFS2020\Community\Asobo_A320_NEO_AirCaraibes\SimObjects\Airplanes\Asobo_A320_NEO-AirCaraibes\aircraft.cfg;Airbus A320 Neo Air Caraibes;Asobo_A320_NEO;FWI
+# skip these
+D:\Games\MSFS2020\Community\aircraft-longitudeFDEfix\SimObjects\AirPlanes\Asobo_Longitude\aircraft.cfg;skip;;
+D:\Games\MSFS2020\Community\aircraft-tbm930x\SimObjects\Airplanes\Asobo_TBM930\aircraft.cfg;skip;;
 ````
 
 ## Usage
@@ -84,25 +103,29 @@ Use this file within vPilot as Model matching rules file.
 
 ````
 Usage of matchmaker.exe:
--defaultTypesFile string 
-    path and filename to default types config file (default "..\\config\\defaultTypes.txt")
--dir string 
-    path where aircraft.cfg are searched recursively (default ".")
--icaoVariationsFile string
-    path and filename to icao variations config file (default "..\\config\\icaoVariations.txt")
--outPutFile string
-    path and filename to output file (default ".\\MatchMakingRules.vmr")
--typeVariationsFile string
-    path and filename to type variations config file (default "..\\config\\typeVariations.txt")
--version
-    prints version and exits
-````
+  -defaultTypesFile string
+        path and filename to default types config file (default "..\\config\\defaultTypes.txt")
+  -dir string
+        path where aircraft.cfg are searched recursively (default ".")
+  -fixLiveriesFile string
+        path and filename to fix liveries config file (default "..\\config\\fixLiveries.txt")
+  -icaoVariationsFile string
+        path and filename to icao variations config file (default "..\\config\\icaoVariations.txt")
+  -outPutFile string
+        path and filename to output file (default ".\\MatchMakingRules.vmr")
+  -showCustom
+        shows liveries which are custom by configuration
+  -typeVariationsFile string
+        path and filename to type variations config file (default "..\\config\\typeVariations.txt")
+  -version
+        prints version and exits
 
+````
 
 ## How it works:
 
-Searches recursively for aircraft.cfg file
-- aircraft.cfg must contain these three data points otherwise it will be ignored:
+When started MatchMaker.exe searches recursively for aircraft.cfg file
+- aircraft.cfg must contain these three data points otherwise it will be skipped:
     - base_container
     - icao_airline
     - title
@@ -111,6 +134,8 @@ For each found aircraft.cfg (aka Livery) rules will be created based on the ICAO
 base_container is a model which is configured and has at least one mapping to a plane type code.
 If there are several liveries for an ICAO code, and a type code the liveries will be concatenated, so vPilot can
 choose randomly which to use.
+If metadata is missing, or a custom values are required the aircraft.cfg file can be added to the customData.txt 
+config file. 
 
 Example:
 - Livery for A320Neo for Lufthansa (DLH)
