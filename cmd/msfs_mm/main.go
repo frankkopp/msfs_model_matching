@@ -62,7 +62,7 @@ func main() {
 	defaultTypesFile := flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
 	typeVariationsFile := flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
 	icaoVariationsFile := flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
-	fixLiveriesFile := flag.String("fixLiveriesFile", "..\\config\\fixLiveries.txt", "path and filename to fix liveries config file")
+	fixLiveriesFile := flag.String("fixLiveriesFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
 	outPutFile := flag.String("outPutFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
 
 	flag.Parse()
