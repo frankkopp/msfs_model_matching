@@ -21,8 +21,8 @@ jobs:
       - name: Build
         run: go build -v -o matchmaker.exe ./...
 
-      - name: Test
-        run: go test -v ./...
+#     - name: Test
+#       run: go test -v ./...
 
       - name: Uploading files
         uses: actions/upload-artifact@v2
@@ -32,4 +32,10 @@ jobs:
             config/*
             matchmaker.exe
 
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          args: Latest Mastern Release
 
