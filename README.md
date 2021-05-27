@@ -4,9 +4,8 @@ It allows to configure the base sim plane models to be used, the default liverie
 and also a list of alternative ICAO codes for airline which should use the same livery.
 
 ## Installation
-- Create a folder for the executable file and place the executable in this folder
-- Create a folder "config" in this same folder
-- Download the three config files from github and place them in this folder
+- Download the latest release or the most current master build (https://github.com/frankkopp/msfs_model_matching/releases/tag/latest_build)
+- Extract this to a folder (I use the vPilot files folder in my Documents folder)
 
 ## Configuration
 There are currently three configuration files required.

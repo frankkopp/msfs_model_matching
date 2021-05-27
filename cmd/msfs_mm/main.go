@@ -264,8 +264,9 @@ func processAircraftCfg(path string, icaoVariations map[string][]string) {
 	}
 
 	// if we have all value in the file we save into data structure - otherwise this file will be ignored
-	if base != "" && icao != "" && name != "" {
-
+	if !(base != "" && icao != "" && name != "") {
+		fmt.Printf("SKIPPED: file: %s ==> name: %s  base: %s  icao: %s\n", path, name, base, icao)
+	} else {
 		// check if the ICAO has alternative ICAOs which should use the same livery
 		icaoList := []string{icao}
 		for k := range icaoVariations {
