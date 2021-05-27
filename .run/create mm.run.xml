@@ -2,7 +2,7 @@
   <configuration default="false" name="matchmaker" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="msfs_model_matching" />
     <working_directory value="$PROJECT_DIR$/bin" />
-    <parameters value="-dir=&quot;D:\Games\MSFS2020\Community&quot;" />
+    <parameters value="-dir=&quot;D:\Games\MSFS2020\Community&quot; -showCustom" />
     <kind value="FILE" />
     <directory value="$PROJECT_DIR$" />
     <filePath value="$PROJECT_DIR$/cmd/msfs_mm/main.go" />

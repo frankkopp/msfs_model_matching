@@ -47,20 +47,27 @@ const (
 )
 
 var (
-	version   = "0.1"
-	coreRules = map[string]map[string][]string{}
+	version    = "0.2a"
+	coreRules  = map[string]map[string][]string{}
+	showCustom = false
+	counter    = 0
 )
 
 func main() {
 
 	// take care of command line argument
 	versionInfo := flag.Bool("version", false, "prints version and exits")
+	showCustomFlag := flag.Bool("showCustom", false, "shows liveries which are custom by configuration")
 	liveryDirectory := flag.String("dir", ".", "path where "+fileName+" are searched recursively")
 	defaultTypesFile := flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
 	typeVariationsFile := flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
 	icaoVariationsFile := flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
+	fixLiveriesFile := flag.String("fixLiveriesFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
 	outPutFile := flag.String("outPutFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
+
 	flag.Parse()
+
+	showCustom = *showCustomFlag
 
 	// print version info and exit
 	if *versionInfo {
@@ -75,6 +82,7 @@ func main() {
 	defaultTypes := readConfig(*defaultTypesFile)
 	typeVariations := readConfig(*typeVariationsFile)
 	icaoVariations := readConfig(*icaoVariationsFile)
+	fixLiveries := readConfig(*fixLiveriesFile)
 
 	// find all aircraft.cfg files
 	fmt.Printf("Searching for %s in %s\n", fileName, *liveryDirectory)
@@ -84,7 +92,7 @@ func main() {
 	// process all found aircraft.cfg file and fill the coreRules data structure
 	fmt.Printf("Processing all %s\n", fileName)
 	for _, item := range aircraftCfgPaths {
-		processAircraftCfg(item, icaoVariations)
+		processAircraftCfg(item, icaoVariations, fixLiveries)
 	}
 
 	// create output of the XML rules
@@ -96,7 +104,7 @@ func main() {
 	saveToFile(outPutFile, output)
 
 	elapsedReading := time.Since(startReading)
-	fmt.Printf("Finished in %d ms\n", elapsedReading.Milliseconds())
+	fmt.Printf("Created %d rules in %d ms\n", counter, elapsedReading.Milliseconds())
 }
 
 // use the data structures to create the XML output and rules
@@ -133,10 +141,11 @@ func createXMLRules(defaultTypes map[string][]string, typeVariations map[string]
 				fmt.Fprintf(&output, "%s", n)
 			}
 			fmt.Fprintf(&output, "\" />\n")
+			counter++
 		}
 	}
 
-	// Create a section for each airline  ICAO we have found in the aircraft.cfg files
+	// Create a section for each airline ICAO we have found in the aircraft.cfg files
 	sortedIcaoKeys := sortIcaoKeys(coreRules)
 	for _, icaoKey := range sortedIcaoKeys {
 		fmt.Fprintf(&output, "\n")
@@ -156,6 +165,7 @@ func createXMLRules(defaultTypes map[string][]string, typeVariations map[string]
 					fmt.Fprintf(&output, "%s", n)
 				}
 				fmt.Fprintf(&output, "\" />\n")
+				counter++
 			}
 		}
 	}
@@ -171,13 +181,20 @@ func createXMLRules(defaultTypes map[string][]string, typeVariations map[string]
 // each line will be mapped in a map with the first entry as map key and the rest entries as list of strings
 func readConfig(file string) map[string][]string {
 	data := map[string][]string{}
-	lines, _ := readFile(file)
+	lines, err := readFile(file)
+
+	if err != nil {
+		fmt.Printf("Could not read config file %s\n", file)
+		fmt.Println("Exiting")
+		os.Exit(1)
+	}
+
 	for _, line := range *lines {
 		line = strings.TrimSpace(line)
 		if len(line) == 0 || line[0] == '#' {
 			continue
 		}
-		tokens := strings.Split(line, ":")
+		tokens := strings.Split(line, ";")
 		modelType := strings.TrimSpace(tokens[0])
 		for _, t := range tokens[1:] {
 			t = strings.TrimSpace(t)
@@ -240,7 +257,7 @@ func findAllAircraftCfg(filePath string) []string {
 // ICAO = airline code
 // base = base plane model
 // name = title of the variation
-func processAircraftCfg(path string, icaoVariations map[string][]string) {
+func processAircraftCfg(path string, icaoVariations map[string][]string, customLiveries map[string][]string) {
 
 	lines, _ := readFile(path)
 
@@ -263,9 +280,22 @@ func processAircraftCfg(path string, icaoVariations map[string][]string) {
 		}
 	}
 
-	// if we have all value in the file we save into data structure - otherwise this file will be ignored
+	// handle custom and faulty liveries
+	if _, ok := customLiveries[path]; ok {
+		name = customLiveries[path][0]
+		base = customLiveries[path][1]
+		icao = customLiveries[path][2]
+		if showCustom {
+			fmt.Printf("CUSTOM : %s;%s;%s;%s\n", path, name, base, icao)
+		}
+		if name == "skip" {
+			return
+		}
+	}
+
+	// if we have all value in the file we save into data structure - otherwise this file will be skipped
 	if !(base != "" && icao != "" && name != "") {
-		fmt.Printf("SKIPPED: file: %s ==> name: %s  base: %s  icao: %s\n", path, name, base, icao)
+		fmt.Printf("SKIPPED: %s;%s;%s;%s\n", path, name, base, icao)
 	} else {
 		// check if the ICAO has alternative ICAOs which should use the same livery
 		icaoList := []string{icao}
@@ -295,7 +325,7 @@ func processAircraftCfg(path string, icaoVariations map[string][]string) {
 }
 
 // extract the value from the aircraft.cfg line
-var regexValue = regexp.MustCompile(`"\.?\.?\\?(.*)"`)
+var regexValue = regexp.MustCompile(`^.*\s*=\s*"?\.*\\*(.*?)"?\s*(;.*)?$`)
 
 // extract the value from the aircraft.cfg line
 func getValue(line string) string {
@@ -326,7 +356,7 @@ func saveToFile(outPutFile *string, output strings.Builder) {
 func readFile(path string) (*[]string, error) {
 	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Printf("File \"%s\" could not be read; %s\n", path, err)
+		fmt.Printf("%s\n", err)
 		return nil, err
 	}
 	lines := strings.Split(string(bytes), "\n")
