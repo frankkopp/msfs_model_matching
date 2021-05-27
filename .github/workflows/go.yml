@@ -38,6 +38,5 @@ jobs:
         uses: ridedott/release-me-action@master
         with:
           release-assets: |
-            config/*
             matchmaker.exe
 
