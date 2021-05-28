@@ -62,7 +62,7 @@ func main() {
 	defaultTypesFile := flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
 	typeVariationsFile := flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
 	icaoVariationsFile := flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
-	fixLiveriesFile := flag.String("fixLiveriesFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
+	customDataFile := flag.String("customDataFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
 	outPutFile := flag.String("outPutFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
 
 	flag.Parse()
@@ -82,7 +82,7 @@ func main() {
 	defaultTypes := readConfig(*defaultTypesFile)
 	typeVariations := readConfig(*typeVariationsFile)
 	icaoVariations := readConfig(*icaoVariationsFile)
-	fixLiveries := readConfig(*fixLiveriesFile)
+	fixLiveries := readConfig(*customDataFile)
 
 	// find all aircraft.cfg files
 	fmt.Printf("Searching for %s in %s\n", fileName, *liveryDirectory)
@@ -108,6 +108,7 @@ func main() {
 }
 
 // use the data structures to create the XML output and rules
+// TODO: separate creation of rule data structure from XML output
 func createXMLRules(defaultTypes map[string][]string, typeVariations map[string][]string) strings.Builder {
 	var output strings.Builder
 	output.Grow(100_000)
@@ -293,22 +294,23 @@ func processAircraftCfg(path string, icaoVariations map[string][]string, customL
 		}
 	}
 
-	// if we have all value in the file we save into data structure - otherwise this file will be skipped
+	// if we have all values in the file we save into data structure - otherwise this file will be skipped
 	if !(base != "" && icao != "" && name != "") {
 		fmt.Printf("SKIPPED: %s;%s;%s;%s\n", path, name, base, icao)
 	} else {
 		// check if the ICAO has alternative ICAOs which should use the same livery
 		icaoList := []string{icao}
 		for k := range icaoVariations {
-			// do we match the main ICAO?
 			if k == icao {
-				icaoList = append(icaoList, icaoVariations[icao]...)
+				icaoList[0] = k
+				icaoList = append(icaoList, icaoVariations[k]...)
 				break
 			}
 			// is this ICAO part of the variations?
-			for _, v := range icaoVariations[icao] {
+			for _, v := range icaoVariations[k] {
 				if v == icao {
-					icaoList = append(icaoList, icaoVariations[icao]...)
+					icaoList[0] = k
+					icaoList = append(icaoList, icaoVariations[k]...)
 					break
 				}
 			}

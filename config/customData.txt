@@ -3,6 +3,10 @@
 
 # custom data
 D:\Games\MSFS2020\Community\Asobo_B747_8i_FedEx\SimObjects\Airplanes\Asobo_B747_8i-FedEx\aircraft.cfg;Boeing 747-8i FedEx;Asobo_B747_8i;FDX
+D:\Games\MSFS2020\Community\Asobo_B747-8i DLHCARGO\SimObjects\Airplanes\Asobo_B747_8i-LUFTHANSACARGO\aircraft.cfg;Boeing 747-8i Asobo LUFTHANSA CARGO;Asobo_B747_8i;GEC
+D:\Games\MSFS2020\Community\Asobo_B747-8i_VIR\SimObjects\Airplanes\Asobo_B747_8i-virgin\aircraft.cfg;Boeing 747-8i Asobo Virgin Atlantic;Asobo_B747_8i;VIR
+D:\Games\MSFS2020\Community\Asobo_B787_FEDEX\SimObjects\Airplanes\Asobo_B787_10-N109FE\aircraft.cfg;Boeing 787-10 FedEx;Asobo_B787_10;FDX
+D:\Games\MSFS2020\Community\Asobo_A320_NEO_RYANAIR\SimObjects\Airplanes\Asobo_A320_NEO-RYANAIR\aircraft.cfg;Airbus A320 Neo Ryanair;Asobo_A320_NEO;RYR
 
 # fixed liveries
 D:\Games\MSFS2020\Community\Aerosoft_CRJ_ACJazz\SimObjects\AirPlanes\Aerosoft_CRJ_700_JAZZ\aircraft.cfg;CRJ700ER Jazz Lowercase;Aerosoft_CRJ_700;JZA
@@ -34,7 +38,7 @@ D:\Games\MSFS2020\Community\_A320NEO Liveries\SimObjects\AirPlanes\FBW_A320_NEO_
 D:\Games\MSFS2020\Community\_A320NEO Liveries\SimObjects\AirPlanes\FBW_A320_NEO_SWISS\aircraft.cfg;FWB Swiss HB-JDA;FlyByWire_A320_NEO;SWR
 D:\Games\MSFS2020\Community\_A320NEO Liveries\SimObjects\AirPlanes\FBW_A320_NEO_United\aircraft.cfg;Airbus A320 Neo United Airlines 2019 8K;FlyByWire_A320_NEO;UAL
 
-# known non livery files
+# skip these
 D:\Games\MSFS2020\Community\aircraft-longitudeFDEfix\SimObjects\AirPlanes\Asobo_Longitude\aircraft.cfg;skip;;
 D:\Games\MSFS2020\Community\aircraft-tbm930x\SimObjects\Airplanes\Asobo_TBM930\aircraft.cfg;skip;;
 D:\Games\MSFS2020\Community\Asobo_A320_MantaClassic\SimObjects\AirPlanes\Asobo_A320_NEO-MantaClassic\aircraft.cfg;skip;;
