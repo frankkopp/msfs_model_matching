@@ -62,7 +62,7 @@ func main() {
 	defaultTypesFile := flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
 	typeVariationsFile := flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
 	icaoVariationsFile := flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
-	fixLiveriesFile := flag.String("fixLiveriesFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
+	customDataFile := flag.String("customDataFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
 	outPutFile := flag.String("outPutFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
 
 	flag.Parse()
@@ -82,7 +82,7 @@ func main() {
 	defaultTypes := readConfig(*defaultTypesFile)
 	typeVariations := readConfig(*typeVariationsFile)
 	icaoVariations := readConfig(*icaoVariationsFile)
-	fixLiveries := readConfig(*fixLiveriesFile)
+	fixLiveries := readConfig(*customDataFile)
 
 	// find all aircraft.cfg files
 	fmt.Printf("Searching for %s in %s\n", fileName, *liveryDirectory)
