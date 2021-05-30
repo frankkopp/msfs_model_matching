@@ -1,5 +1,5 @@
 v0.2
-- changed config format - seperator : to ; (to be able to include drive letters)
+- changed config format - separator : to ; (to be able to include drive letters)
 - added configuration and handling for custom liveries (override or fixing of meta data)
 - added cod line option to show when a livery is custom (-showCustom)
 
