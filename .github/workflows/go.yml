@@ -38,8 +38,8 @@ jobs:
           dest: matchmaker.zip
 
       - name: Copy ZIP
-          run: Copy matchmaker.zip '${{ github.workspace }}/Realeases'
-          shell: powershell
+        run: Copy matchmaker.zip '${{ github.workspace }}/Realeases'
+        shell: powershell
 
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
