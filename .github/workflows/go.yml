@@ -38,8 +38,14 @@ jobs:
           dest: matchmaker.zip
 
       - name: Copy ZIP
-        run: Copy matchmaker.zip '${{ github.workspace }}/Realeases'
+        run: Copy matchmaker.zip '${{ github.workspace }}/Releases'
         shell: powershell
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}/Releases
+          name: ${{ github.run_number }}
 
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
