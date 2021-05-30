@@ -1,7 +1,7 @@
 v0.2
 - changed config format - separator : to ; (to be able to include drive letters)
 - added configuration and handling for custom liveries (override or fixing of meta data)
-- added cod line option to show when a livery is custom (-showCustom)
+- added cmd line option to show when a livery is custom (-showCustom)
 
 v0.1
 - initial beta release
