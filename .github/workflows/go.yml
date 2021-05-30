@@ -37,6 +37,10 @@ jobs:
           recursive: false
           dest: matchmaker.zip
 
+      - name: Create Artifact Folder
+        run: New-Item -Path '${{ github.workspace }}' -Name "Releases" -ItemType "directory"
+        shell: powershell
+
       - name: Copy ZIP
         run: Copy matchmaker.zip '${{ github.workspace }}/Releases'
         shell: powershell
