@@ -37,20 +37,6 @@ jobs:
           recursive: false
           dest: matchmaker.zip
 
-      - name: Create Artifact Folder
-        run: New-Item -Path '${{ github.workspace }}' -Name "Releases" -ItemType "directory"
-        shell: powershell
-
-      - name: Copy ZIP
-        run: Copy matchmaker.zip '${{ github.workspace }}/Releases'
-        shell: powershell
-
-      - name: Publish Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          path: ${{ github.workspace }}/Releases
-          name: ${{ github.run_number }}
-
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
         with:
