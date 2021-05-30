@@ -47,7 +47,7 @@ const (
 )
 
 var (
-	version    = "0.2a"
+	version    = "0.2"
 	coreRules  = map[string]map[string][]string{}
 	showCustom = false
 	counter    = 0
@@ -101,14 +101,13 @@ func main() {
 
 	// Save output inti vmr file
 	fmt.Printf("Saving VMR file to %s\n", *outPutFile)
-	saveToFile(outPutFile, output)
+	_ = saveToFile(*outPutFile, output)
 
 	elapsedReading := time.Since(startReading)
 	fmt.Printf("Created %d rules in %d ms\n", counter, elapsedReading.Milliseconds())
 }
 
 // use the data structures to create the XML output and rules
-// TODO: separate creation of rule data structure from XML output
 func createXMLRules(defaultTypes map[string][]string, typeVariations map[string][]string) strings.Builder {
 	var output strings.Builder
 	output.Grow(100_000)
@@ -119,18 +118,15 @@ func createXMLRules(defaultTypes map[string][]string, typeVariations map[string]
 
 	// Default rules
 	fmt.Fprintf(&output, "<!-- DEFAULTS -->\n")
-
 	// Create a section for each base plane model we have available
 	sortedBaseKeys := sortBaseKeys(defaultTypes)
 	for _, baseKey := range sortedBaseKeys {
 		fmt.Fprintf(&output, "<!-- BASE TYPE: %s -->\n", baseKey)
-
-		// only continue if a default is defined in config
+		// skip if no default is defined in config
 		if len(defaultTypes[baseKey]) == 0 || defaultTypes[baseKey][0] == "" {
 			fmt.Fprintf(&output, "<!-- NO DEFAULTS -->\n")
 			continue
 		}
-
 		// create a rule for each plane type variation
 		for _, typeKey := range typeVariations[baseKey] {
 			fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
@@ -146,6 +142,7 @@ func createXMLRules(defaultTypes map[string][]string, typeVariations map[string]
 		}
 	}
 
+	// Airline specific matching rules
 	// Create a section for each airline ICAO we have found in the aircraft.cfg files
 	sortedIcaoKeys := sortIcaoKeys(coreRules)
 	for _, icaoKey := range sortedIcaoKeys {
@@ -178,12 +175,12 @@ func createXMLRules(defaultTypes map[string][]string, typeVariations map[string]
 }
 
 // Reads a config file with the format:
-// lines of strings seperated by":"
+// lines of strings separated by";"
 // each line will be mapped in a map with the first entry as map key and the rest entries as list of strings
 func readConfig(file string) map[string][]string {
 	data := map[string][]string{}
-	lines, err := readFile(file)
 
+	lines, err := readFile(file)
 	if err != nil {
 		fmt.Printf("Could not read config file %s\n", file)
 		fmt.Println("Exiting")
@@ -237,7 +234,6 @@ func findAllAircraftCfg(filePath string) []string {
 	err := godirwalk.Walk(filePath, &godirwalk.Options{
 		Callback: func(osPathname string, de *godirwalk.Dirent) error {
 			if de.IsRegular() {
-
 				if de.Name() != fileName {
 					return godirwalk.SkipThis
 				}
@@ -284,7 +280,7 @@ func processAircraftCfg(path string, icaoVariations map[string][]string, customL
 	// handle custom and faulty liveries
 	if _, ok := customLiveries[path]; ok {
 		name = customLiveries[path][0]
-		base = customLiveries[path][1]
+		base = customLiveries[path][1] // TODO: base can't change - maybe better to take this out
 		icao = customLiveries[path][2]
 		if showCustom {
 			fmt.Printf("CUSTOM : %s;%s;%s;%s\n", path, name, base, icao)
@@ -339,19 +335,23 @@ func getValue(line string) string {
 }
 
 // save a strings.Builder instance to a file
-func saveToFile(outPutFile *string, output strings.Builder) {
-	outFile, err := os.Create(*outPutFile)
+func saveToFile(outPutFile string, output strings.Builder) error {
+	outFile, err := os.Create(outPutFile)
 	if err != nil {
-		fmt.Println("Error while creating VMR file to %S\n", *outPutFile)
+		fmt.Println("Error while creating VMR file to %S\n", outPutFile)
+		return err
 	}
 	_, err = outFile.WriteString(output.String())
 	if err != nil {
-		fmt.Println("Error while saving to VMR file to %S\n", *outPutFile)
+		fmt.Println("Error while saving to VMR file to %S\n", outPutFile)
+		return err
 	}
 	err = outFile.Close()
 	if err != nil {
-		fmt.Println("Error while closing VMR file to %S\n", *outPutFile)
+		fmt.Println("Error while closing VMR file to %S\n", outPutFile)
+		return err
 	}
+	return nil
 }
 
 // reads a complete file into a slice of strings
