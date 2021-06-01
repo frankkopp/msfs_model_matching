@@ -47,7 +47,7 @@ const (
 )
 
 var (
-	version    = "0.2"
+	version    = "0.2.1"
 	coreRules  = map[string]map[string][]string{}
 	showCustom = false
 	counter    = 0
