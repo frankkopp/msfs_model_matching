@@ -1,5 +1,6 @@
 # This file contains a list of aircraft.cfg where not all three required data points (title, icao_airline, base_container) could be found.
 # Format: path;name;base;icao
+# Attention: the base can't really be changed - it needs to be the same as defined in the livery.
 
 # custom data
 D:\Games\MSFS2020\Community\Asobo_B747_8i_FedEx\SimObjects\Airplanes\Asobo_B747_8i-FedEx\aircraft.cfg;Boeing 747-8i FedEx;Asobo_B747_8i;FDX
