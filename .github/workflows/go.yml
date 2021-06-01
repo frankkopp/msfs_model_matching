@@ -56,4 +56,4 @@ jobs:
           asset_name: matchmaker-${{ steps.time.outputs.time }}.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
           asset_content_type: application/zip # required by GitHub API
           max_releases: 3 # optional, if there are more releases than this matching the asset_name, the oldest ones are going to be deleted
-          # test 3
+          # test 4
