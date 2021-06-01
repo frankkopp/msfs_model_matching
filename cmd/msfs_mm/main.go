@@ -63,7 +63,7 @@ func main() {
 	typeVariationsFile := flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
 	icaoVariationsFile := flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
 	customDataFile := flag.String("customDataFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
-	outPutFile := flag.String("outPutFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
+	outputFile := flag.String("outputFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
 
 	flag.Parse()
 
@@ -100,8 +100,8 @@ func main() {
 	output := createXMLRules(defaultTypes, typeVariations)
 
 	// Save output inti vmr file
-	fmt.Printf("Saving VMR file to %s\n", *outPutFile)
-	_ = saveToFile(*outPutFile, output)
+	fmt.Printf("Saving VMR file to %s\n", *outputFile)
+	_ = saveToFile(*outputFile, output)
 
 	elapsedReading := time.Since(startReading)
 	fmt.Printf("Created %d rules in %d ms\n", counter, elapsedReading.Milliseconds())
