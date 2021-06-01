@@ -12,15 +12,16 @@ and also a list of alternative ICAO codes for airline which should use the same 
 - Extract this to a folder (I use the vPilot files folder in my Documents folder)
 
 ## Configuration
-There are currently three configuration files required.
-(these might be consolidated to 2 in the future)
+There are currently four configuration files required.
+(these might be consolidated to less in the future)
 
 ### defaultTypes.txt
 
-This maps the sims base container the livery has to point to and their respective 
+This maps the sims base container each livery has to reference to and their respective 
 default livery.
 As the sim will never have all real life plane models this is a way to still 
-show other planes in nice default livery if there is no livery available. 
+show other planes with a default livery if there is otherwise no matching livery available. 
+It is possible to configure several default liveries and vPilot will choose randomly.
 ````
 Asobo_A320_NEO;     Airbus A320 Neo Asobo
 Asobo_B747_8i;      Boeing 747-8i Asobo
@@ -28,31 +29,42 @@ Asobo_B787_10;      Boeing 787-10 Asobo
 Aerosoft_CRJ_700;   CRJ550ER Privat D-ALKI
 Asobo_CJ4;          Cessna CJ4 Citation Asobo
 Asobo_Longitude;    Cessna Citation Longitude Asobo
-Asobo_TBM930;       TBM 930 Asobo
+Asobo_TBM930;       TBM 930 Asobo;TBM 930 Asobo Air Traffic 00;TBM 930 Asobo Air Traffic 01;TBM 930 Asobo Air Traffic 02;
 ````
 
 ### typeVariations.txt
-This maps the base container the livery has to point to and all plane type codes 
-which should use this livery.
+This maps the sims base container each livery has to reference and all plane type codes 
+which should use the same liveries.
 As the sim will never have all real life plane models this is a way to still match
 planes used in VATSIM by other pilots. 
 ````
-Asobo_A320_NEO;     A19N;A20N;A21N;A318;A319;A320;A321;B732;B733;B734;B735;B736;B737;B738;B739;B73X
-Asobo_B747_8i;      B741;B742;B743;B744;B748;B74F
-Asobo_B787_10;      B78X;B788;B789
+# Narrow/Medium Jet 2 Engines
+Asobo_A320_NEO;     A19N;A20N;A21N;A318;A319;A320;A321;B732;B733;B734;B735;B736;B737;B738;B739;B73X;B37M;B38M;B39M
+
+# Wide/Heavy Jet 2 Engines
+Asobo_B787_10;      B78X;B788;B789;B762;B763;B764;B772;B773;B778;B779;B77L;B77W;A306;A30B;A310;A332;A333;A337;A338;A339
+
+# Wide/Heavy Jet 4 Engines
+Asobo_B747_8i;      B741;B742;B743;B744;B748;B74F;A380;A388
+
+# Small/Light Jet 2 Tail Engines
+Aerosoft_CRJ_700;   CRJ7;CRJX;CRJ5;CRJ9
+
+# Business Jet 2 Tail Engines
 Asobo_CJ4;          C25C;C25B;C25A;C500;C501;C510;C525;C526
 Asobo_Longitude;    C700;C750
-Aerosoft_CRJ_700;   CRJ7;CRJX;CRJ5;CRJ9
+
+# Turbo Prop
 Asobo_TBM930;       TBM9
 ````
 
 ### icaoVariations.txt
 ICAO airline codes typically have variations which still belong to the 
-same airline. Mapping them as equivalent here allows rule to be generated.
-which will map these ICAO codes to the same livery then the ICAO code which
-was part of the livery definition. Therefore, it is not necessary to have an 
-own livery for each of the variations. 
-E.g. British Airways has an ICAO code of "BAW". But sometimes pilots also use
+same airline. Mapping them as equivalent here allows rules to be generated
+which will map these ICAO codes to the same livery as the ICAO code which
+was part of the livery definition. Therefore, it is not necessary to have a 
+livery for each of the variations. 
+E.g. British Airways has an ICAO code of "BAW". But, sometimes pilots also use
 BA, SHT or CFE (etc.) - all these planes will use the BAW livery if so configured. 
 ````
 DLH;LHA;CLH
@@ -65,11 +77,11 @@ DHK;BCS;DHL;DAE
 ````
 
 ### customData.txt
-TThis file can be used to configure custom data for a livery (aircraft.cfg).
+This file can be used to configure custom data for a livery (aircraft.cfg).
 The required format is path;name;base;icao
-For skipped files this can easily be copy from the output of the program and 
+For skipped files this can easily be copied from the output of the program and 
 pasted into the file. Remove SKIPPED at the beginning and enter the name, base and icao manually.
-Also liveries can be explicitely skipped by using "skip" as name. 
+Also, liveries can be explicitly skipped by using "skip" as name. 
 
 ````
 # Format: path;name;base;icao
@@ -86,7 +98,7 @@ D:\Games\MSFS2020\Community\aircraft-tbm930x\SimObjects\Airplanes\Asobo_TBM930\a
 ## Usage
 matchmaker.exe is used from the command line. So open a terminal and go to 
 the folder where the exe file is.
-Make sure you have a folder config/ with the three config files or use command line arguments 
+Make sure you have a folder config/ with the config files or use command line arguments 
 to define where these files are. 
 
 Run:
@@ -94,7 +106,7 @@ Run:
 matchmaker.exe -dir <path to your msfs community folder>
 ````
 
-The resulting file will be stored in the same folder as the exe with the filename:
+The resulting file will be stored in the same folder as the exe with the filename (or use the -outputFile parameter):
 ````
 MatchMakingRules.vmr
 ````
@@ -113,7 +125,7 @@ Usage of matchmaker.exe:
         path and filename to fix liveries config file (default "..\\config\\fixLiveries.txt")
   -icaoVariationsFile string
         path and filename to icao variations config file (default "..\\config\\icaoVariations.txt")
-  -outPutFile string
+  -outputFile string
         path and filename to output file (default ".\\MatchMakingRules.vmr")
   -showCustom
         shows liveries which are custom by configuration
@@ -126,7 +138,7 @@ Usage of matchmaker.exe:
 
 ## How it works:
 
-When started MatchMaker.exe searches recursively for aircraft.cfg file
+When started MatchMaker.exe searches recursively for aircraft.cfg files in the given folder
 - aircraft.cfg must contain these three data points otherwise it will be skipped:
     - base_container
     - icao_airline
