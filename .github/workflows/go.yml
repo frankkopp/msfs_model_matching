@@ -48,6 +48,7 @@ jobs:
 
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
+        if: github.event_name != 'pull_request'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: latest_build
