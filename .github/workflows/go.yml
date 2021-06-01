@@ -46,23 +46,23 @@ jobs:
           recursive: false
           dest: matchmaker-${{ steps.time.outputs.time }}.zip
 
-      - name: Update Release
-        uses: johnwbyrd/update-release@v1.0.0
-        if: github.event_name != 'pull_request'
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: latest_build
-          release: nightly
-          message: automatic release on push to master
-          files: matchmaker-${{ steps.time.outputs.time }}.zip
+#      - name: Update Release
+#        uses: johnwbyrd/update-release@v1.0.0
+#        if: github.event_name != 'pull_request'
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          tag: latest_build
+#          release: nightly
+#          message: automatic release on push to master
+#          files: matchmaker-${{ steps.time.outputs.time }}.zip
 
-      - name: Deploy Windows release
+      - name: Deploy Latest Build
         uses: WebFreak001/deploy-nightly@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
         with:
-          upload_url: https://uploads.github.com/repos/frankkopp/msfs_model_matching/releases/43890921/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
-          release_id: 43890921 # same as above (id can just be taken out the upload_url, it's used to find old releases)
+          upload_url: https://uploads.github.com/repos/frankkopp/msfs_model_matching/releases/43894997/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
+          release_id: 43894997 # same as above (id can just be taken out the upload_url, it's used to find old releases)
           asset_path: matchmaker-${{ steps.time.outputs.time }}.zip # path to archive to upload
           asset_name: matchmaker-${{ steps.time.outputs.time }}.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
           asset_content_type: application/zip # required by GitHub API
