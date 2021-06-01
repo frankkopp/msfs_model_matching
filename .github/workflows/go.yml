@@ -41,20 +41,16 @@ jobs:
 
       - name: Zipping
         uses: papeloto/action-zip@v1
-        env:
-          NOW: "${{ steps.time.outputs.time }}"
         with:
           files: config/ matchmaker.exe README.md
           recursive: false
-          dest: matchmaker-$NOW.zip
+          dest: matchmaker-${{ steps.time.outputs.time }}.zip
 
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
-        env:
-          NOW: "${{ steps.time.outputs.time }}"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: latest_build
           message: automatic release on push to master
-          files: matchmaker_$NOW.zip
+          files: matchmaker_${{ steps.time.outputs.time }}.zip
 
