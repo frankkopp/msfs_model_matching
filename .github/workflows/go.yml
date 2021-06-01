@@ -56,10 +56,3 @@ jobs:
           message: automatic release on push to master
           files: matchmaker-${{ steps.time.outputs.time }}.zip
 
-      - name: Release
-        uses: fnkr/github-action-ghr@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          #GHR_COMPRESS: zip
-          GHR_PATH: matchmaker-${{ steps.time.outputs.time }}.zip
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
