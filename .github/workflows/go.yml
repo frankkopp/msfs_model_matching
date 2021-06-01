@@ -46,16 +46,6 @@ jobs:
           recursive: false
           dest: matchmaker-${{ steps.time.outputs.time }}.zip
 
-#      - name: Update Release
-#        uses: johnwbyrd/update-release@v1.0.0
-#        if: github.event_name != 'pull_request'
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          tag: latest_build
-#          release: nightly
-#          message: automatic release on push to master
-#          files: matchmaker-${{ steps.time.outputs.time }}.zip
-
       - name: Deploy Latest Build
         uses: WebFreak001/deploy-nightly@v1.1.0
         env:
