@@ -54,5 +54,5 @@ jobs:
           tag: latest_build
           release: nightly
           message: automatic release on push to master
-          files: matchmaker_${{ steps.time.outputs.time }}.zip
+          files: matchmaker-${{ steps.time.outputs.time }}.zip
 
