@@ -3,6 +3,8 @@ name: Go
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
 
@@ -10,6 +12,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 8
+          format: 'YYYY-MM-DD-HH-mm-ss'
 
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -32,16 +41,20 @@ jobs:
 
       - name: Zipping
         uses: papeloto/action-zip@v1
+        env:
+          NOW: "${{ steps.time.outputs.time }}"
         with:
           files: config/ matchmaker.exe README.md
           recursive: false
-          dest: matchmaker.zip
+          dest: matchmaker-$NOW.zip
 
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
+        env:
+          NOW: "${{ steps.time.outputs.time }}"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: latest_build
           message: automatic release on push to master
-          files: matchmaker.zip
+          files: matchmaker_$NOW.zip
 
