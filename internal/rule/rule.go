@@ -25,6 +25,4 @@
  *
  */
 
-package main
-
-// TODO: tests
+package rule

@@ -25,6 +25,30 @@
  *
  */
 
-package main
+package ui
 
-// TODO: tests
+import (
+	"github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/lxn/walk"
+
+	. "github.com/lxn/walk/declarative"
+)
+
+var (
+	RulesTabHandle *walk.TabPage
+	RulesText      *walk.TextEdit
+)
+
+func rulesTab(configuration config.Config) TabPage {
+	return TabPage{
+		AssignTo: &RulesTabHandle,
+		Title:    "Generated Rules",
+		Layout:   VBox{},
+		Children: []Widget{
+			TextEdit{
+				AssignTo: &RulesText,
+				Text:     "No rules generated yet.",
+			},
+		},
+	}
+}

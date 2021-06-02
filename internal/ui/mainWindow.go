@@ -1,166 +1,59 @@
+/*
+ *  VATSIM vPilot MatchMaker
+ *
+ *  MIT License
+ *
+ *  Copyright (c) 2021 Frank Kopp
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ *
+ */
+
 package ui
 
 import (
-	"log"
-
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
 )
 
-// ///////////////////////////////////////////////////////////
-// Public
-// ///////////////////////////////////////////////////////////
+var TabBarHandle *walk.TabWidget
 
 func NewMainWindow(version string, configuration config.Config) *MainWindow {
 
-	// boldFont, _ := walk.NewFont("Segoe UI", 9, walk.FontBold)
-	// goodIcon, _ := walk.Resources.Icon("../img/check.ico")
-	// badIcon, _ := walk.Resources.Icon("../img/stop.ico")
-
-	// var openAction *walk.Action
-
-	icon1, err := walk.NewIconFromFile("../img/check.ico")
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	mw := MainWindow{
-		Title: "vPilot MatchMaker " + version,
-
-		MenuItems: []MenuItem{
-			Menu{
-				Text: "&File",
-				Items: []MenuItem{
-					Action{
-						// AssignTo:    &openAction,
-						Text: "&Open",
-						// Image:       "img/open.png",
-						// OnTriggered: mw.openAction_Triggered,
-					},
-					Separator{},
-					Action{
-						Text: "Exit",
-						// OnTriggered: func() { mw.Close() },
-					},
-				},
-			},
-			Menu{
-				Text: "&Help",
-				Items: []MenuItem{
-					Action{
-						Text: "About",
-						// OnTriggered: mw.aboutAction_Triggered,
-					},
-				},
-			},
-		},
-
-		ToolBar: ToolBar{
-			ButtonStyle: ToolBarButtonImageBeforeText,
-			Items: []MenuItem{
-				Action{
-					Text: "Special",
-					// Image:       "img/system-shutdown.png",
-					// Enabled:     Bind("isSpecialMode && enabledCB.Checked"),
-					// OnTriggered: mw.specialAction_Triggered,
-				},
-			},
-		},
-
-		Size:   Size{800, 600},
+		Title:     "vPilot MatchMaker " + version,
+		MenuItems: NewMenuItem(),
+		// ToolBar: toolbar(),
+		Size:   Size{1400, 800},
 		Layout: VBox{},
-
 		Children: []Widget{
 			TabWidget{
+				AssignTo: &TabBarHandle,
 				Pages: []TabPage{
-					TabPage{
-						Title:  "Configuration",
-						Layout: VBox{},
-						Children: []Widget{
-							Composite{Layout: HBox{},
-								Children: []Widget{
-									TextLabel{Text: "Livery Folder: ", MinSize: Size{Width: 150, Height: 15}},
-									TextLabel{Text: configuration.LiveryDirectory},
-									HSpacer{},
-								},
-							},
-							Composite{Layout: HBox{},
-								Children: []Widget{
-									TextLabel{Text: "Default Types Config: ", MinSize: Size{Width: 150, Height: 15}},
-									TextLabel{Text: configuration.DefaultTypesFile},
-									HSpacer{},
-								},
-							},
-							Composite{Layout: HBox{},
-								Children: []Widget{
-									TextLabel{Text: "Type Variation Config: ", MinSize: Size{Width: 150, Height: 15}},
-									TextLabel{Text: configuration.TypeVariationsFile},
-									HSpacer{},
-								},
-							},
-							Composite{Layout: HBox{},
-								Children: []Widget{
-									TextLabel{Text: "ICAO Variation Config: ", MinSize: Size{Width: 150, Height: 15}},
-									TextLabel{Text: configuration.IcaoVariationsFile},
-									HSpacer{},
-								},
-							},
-							Composite{Layout: HBox{},
-								Children: []Widget{
-									TextLabel{Text: "Custom Data Config: ", MinSize: Size{Width: 150, Height: 15}},
-									TextLabel{Text: configuration.CustomDataFile},
-									HSpacer{},
-								},
-							},
-							Composite{Layout: HBox{},
-								Children: []Widget{
-									TextLabel{Text: "Output File: ", MinSize: Size{Width: 150, Height: 15}},
-									TextLabel{Text: configuration.OutputFile},
-									HSpacer{},
-								},
-							},
-							VSpacer{},
-						},
-					},
-					TabPage{
-						Title: "TAB2",
-					},
+					parseTab(configuration),
+					rulesTab(configuration),
+					configTab(configuration),
 				},
 			},
 		},
-
-		StatusBarItems: []StatusBarItem{
-			StatusBarItem{
-				// AssignTo: &sbi,
-				Icon:  icon1,
-				Text:  "click",
-				Width: 80,
-				// OnClicked: func() {
-				// 	if sbi.Text() == "click" {
-				// 		sbi.SetText("again")
-				// 		sbi.SetIcon(icon2)
-				// 	} else {
-				// 		sbi.SetText("click")
-				// 		sbi.SetIcon(icon1)
-				// 	}
-				// },
-			},
-			StatusBarItem{
-				Text:        "left",
-				ToolTipText: "no tooltip for me",
-			},
-			StatusBarItem{
-				Text: "\tcenter",
-			},
-			StatusBarItem{
-				Text: "\t\tright",
-			},
-			StatusBarItem{
-				Icon:        icon1,
-				ToolTipText: "An icon with a tooltip",
-			},
-		},
+		StatusBarItems: statusbar(),
 	}
 
 	return &mw

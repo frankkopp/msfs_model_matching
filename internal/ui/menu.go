@@ -25,6 +25,38 @@
  *
  */
 
-package main
+package ui
 
-// TODO: tests
+import (
+	. "github.com/lxn/walk/declarative"
+)
+
+func NewMenuItem() []MenuItem {
+	return []MenuItem{
+		Menu{
+			Text: "&File",
+			Items: []MenuItem{
+				Action{
+					// AssignTo:    &openAction,
+					Text: "&Open",
+					// Image:       "img/open.png",
+					// OnTriggered: mw.openAction_Triggered,
+				},
+				Separator{},
+				Action{
+					Text: "Exit",
+					// OnTriggered: func() { mw.Close() },
+				},
+			},
+		},
+		Menu{
+			Text: "&Help",
+			Items: []MenuItem{
+				Action{
+					Text: "About",
+					// OnTriggered: mw.aboutAction_Triggered,
+				},
+			},
+		},
+	}
+}

@@ -25,6 +25,22 @@
  *
  */
 
-package main
+package ui
 
-// TODO: tests
+import (
+	. "github.com/lxn/walk/declarative"
+)
+
+func toolbar() ToolBar {
+	return ToolBar{
+		ButtonStyle: ToolBarButtonTextOnly,
+		Items: []MenuItem{
+			Action{
+				Text: "Toolbar Button 1",
+				// Image:       "img/system-shutdown.png",
+				// Enabled:     Bind("isSpecialMode && enabledCB.Checked"),
+				// OnTriggered: mw.specialAction_Triggered,
+			},
+		},
+	}
+}

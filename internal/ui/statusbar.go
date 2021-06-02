@@ -25,6 +25,42 @@
  *
  */
 
-package main
+package ui
 
-// TODO: tests
+import (
+	"github.com/lxn/walk"
+	. "github.com/lxn/walk/declarative"
+)
+
+var (
+	StatusBar1 *walk.StatusBarItem
+	StatusBar2 *walk.StatusBarItem
+	StatusBar3 *walk.StatusBarItem
+	StatusBar4 *walk.StatusBarItem
+)
+
+func statusbar() []StatusBarItem {
+
+	return []StatusBarItem{
+		StatusBarItem{
+			AssignTo: &StatusBar1,
+			Text:     "No liveries scanned yet.",
+			Width:    160,
+		},
+		StatusBarItem{
+			AssignTo: &StatusBar2,
+			Text:     "",
+			Width:    160,
+		},
+		StatusBarItem{
+			AssignTo: &StatusBar3,
+			Text:     "",
+			Width:    160,
+		},
+		StatusBarItem{
+			AssignTo: &StatusBar4,
+			Text:     "",
+			// Width: 80,
+		},
+	}
+}
