@@ -5,7 +5,7 @@
     <parameters value="-dir=&quot;D:\Games\MSFS2020\Community&quot; -showCustom" />
     <kind value="FILE" />
     <directory value="$PROJECT_DIR$" />
-    <filePath value="$PROJECT_DIR$/cmd/msfs_mm/main.go" />
+    <filePath value="$PROJECT_DIR$/cmd/matchmaker/main.go" />
     <output_directory value="$PROJECT_DIR$/bin" />
     <method v="2" />
   </configuration>
