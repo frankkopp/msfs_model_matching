@@ -28,12 +28,12 @@
 package livery
 
 import (
+	"fmt"
 	"regexp"
-	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
-	"github.com/frankkopp/MatchMaker/internal/util"
 	"github.com/karrick/godirwalk"
+	"gopkg.in/ini.v1"
 )
 
 type Livery struct {
@@ -76,45 +76,38 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 }
 
 // parse the file and try to find the three relevant data points:
-// ICAO = airline code
 // base = base plane model
+// icao = airline code
 // name = title of the variation
-// returns nil if file was not a belonging to a livery or new Livery instance otherwise
+// returns nil if file was invalid or not a livery aircraft.cfg
 func processAircraftCfg(path string) *Livery {
+
+	// this is to catch bad *aircraft.cfg files which cause the ini library to throw a panic
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 
 	var livery *Livery
 
-	lines, _ := util.ReadFile(path)
-
-	var base, icao, title string
-	for _, line := range *lines {
-		if strings.Contains(line, "base_container") {
-			base = getValue(line)
-			continue
-		}
-		if strings.Contains(line, "icao_airline") {
-			icao = strings.ToUpper(getValue(line))
-			continue
-		}
-		// only take the first title - ignore the rest
-		// TODO: could be optimized to look for AI variations as they
-		//  are most likely less resource hungry for model matching
-		if title == "" && strings.Contains(line, "title") {
-			title = getValue(line)
-			continue
-		}
+	cfg, err := ini.Load(path)
+	if err != nil {
+		return nil
 	}
 
 	// Liveries always have a base container. We skip other files
-	if base != "" {
-		livery = NewLivery(path)
-		(*livery).BaseContainer = base
-		(*livery).Title = title
-		(*livery).Icao = icao
-		if title != "" && icao != "" {
-			(*livery).Process = true
-			(*livery).Complete = true
-		}
+	if !cfg.Section("VARIATION").HasKey("base_container") {
+		return nil
+	}
+
+	livery = NewLivery(path)
+	(*livery).BaseContainer = getValue(cfg.Section("VARIATION").Key("base_container").Value())
+	(*livery).Icao = cfg.Section("FLTSIM.0").Key("icao_airline").Value()
+	(*livery).Title = cfg.Section("FLTSIM.0").Key("title").Value()
+	if (*livery).Title != "" && (*livery).Icao != "" {
+		(*livery).Process = true
+		(*livery).Complete = true
 	}
 
 	// returns nil if file was not a belonging to a livery or new Livery instance otherwise
@@ -122,7 +115,7 @@ func processAircraftCfg(path string) *Livery {
 }
 
 // extract the value from the aircraft.cfg line
-var regexValue = regexp.MustCompile(`^.*\s*=\s*"?[.\\/]*(.*?)"?\s*(;.*)?$`)
+var regexValue = regexp.MustCompile(`^[.\\/]*(.*?)$`)
 
 // extract the value from the aircraft.cfg line
 func getValue(line string) string {

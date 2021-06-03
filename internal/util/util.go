@@ -43,7 +43,7 @@ func ReadFile(path string) (*[]string, error) {
 	return &lines, nil
 }
 
-// save a strings.Builder instance to a file
+// SaveToFile save a strings.Builder instance to a file
 func SaveToFile(outPutFile string, output strings.Builder) error {
 	outFile, err := os.Create(outPutFile)
 	if err != nil {
