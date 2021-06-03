@@ -1,3 +1,7 @@
+v0.3 (in progress)
+- Windows UI
+   
+  
 v0.2
 - changed config format - separator : to ; (to be able to include drive letters)
 - added configuration and handling for custom liveries (override or fixing of meta data)

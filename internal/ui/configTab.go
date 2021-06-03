@@ -32,7 +32,7 @@ import (
 	. "github.com/lxn/walk/declarative"
 )
 
-func configTab(configuration config.Config) TabPage {
+func configTab() TabPage {
 	return TabPage{
 		Title:  "Configuration",
 		Layout: VBox{},
@@ -40,42 +40,42 @@ func configTab(configuration config.Config) TabPage {
 			Composite{Layout: HBox{},
 				Children: []Widget{
 					TextLabel{Text: "Livery Folder: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *configuration.LiveryDirectory},
+					TextLabel{Text: *config.Configuration.LiveryDirectory},
 					HSpacer{},
 				},
 			},
 			Composite{Layout: HBox{},
 				Children: []Widget{
 					TextLabel{Text: "Default Types Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *configuration.DefaultTypesFile},
+					TextLabel{Text: *config.Configuration.DefaultTypesFile},
 					HSpacer{},
 				},
 			},
 			Composite{Layout: HBox{},
 				Children: []Widget{
 					TextLabel{Text: "Type Variation Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *configuration.TypeVariationsFile},
+					TextLabel{Text: *config.Configuration.TypeVariationsFile},
 					HSpacer{},
 				},
 			},
 			Composite{Layout: HBox{},
 				Children: []Widget{
 					TextLabel{Text: "ICAO Variation Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *configuration.IcaoVariationsFile},
+					TextLabel{Text: *config.Configuration.IcaoVariationsFile},
 					HSpacer{},
 				},
 			},
 			Composite{Layout: HBox{},
 				Children: []Widget{
 					TextLabel{Text: "Custom Data Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *configuration.CustomDataFile},
+					TextLabel{Text: *config.Configuration.CustomDataFile},
 					HSpacer{},
 				},
 			},
 			Composite{Layout: HBox{},
 				Children: []Widget{
 					TextLabel{Text: "Output File: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *configuration.OutputFile},
+					TextLabel{Text: *config.Configuration.OutputFile},
 					HSpacer{},
 				},
 			},

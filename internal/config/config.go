@@ -31,7 +31,13 @@ const (
 	FileName = "aircraft.cfg"
 )
 
+var (
+	Configuration = Config{}
+)
+
 type Config struct {
+	Version string
+
 	// cmd line options
 	VersionInfo        *bool
 	ShowCustom         *bool

@@ -33,19 +33,17 @@ import (
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
+	"github.com/frankkopp/MatchMaker/internal/rules"
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
 )
 
 var (
-	configuration config.Config
-
 	GenerateButton *walk.PushButton
 )
 
-func parseTab(conf config.Config) TabPage {
-	configuration = conf
+func parseTab() TabPage {
 
 	// boldFont, _ := walk.NewFont("Segoe UI", 9, walk.FontBold)
 	// goodIcon, _ := walk.Resources.Icon("../img/check.ico")
@@ -102,8 +100,10 @@ func parseTab(conf config.Config) TabPage {
 					// fmt.Printf("SelectedIndexes: %v\n", tv.SelectedIndexes())
 				},
 				OnItemActivated: func() {
-					model.items[tv.CurrentIndex()].Process = !model.items[tv.CurrentIndex()].Process
-					model.handleUpdate()
+					if model.items[tv.CurrentIndex()].Complete {
+						model.items[tv.CurrentIndex()].Process = !model.items[tv.CurrentIndex()].Process
+						model.handleUpdate()
+					}
 				},
 			},
 			PushButton{
@@ -136,7 +136,8 @@ func (m *LiveryModel) GenerateRules() {
 }
 
 func (m *LiveryModel) ScanLiveries() {
-	liveries, err := livery.ScanLiveryFolder(*configuration.LiveryDirectory)
+	GenerateButton.SetEnabled(false)
+	liveries, err := livery.ScanLiveryFolder(*config.Configuration.LiveryDirectory)
 	if err != nil {
 		return
 	}
@@ -150,7 +151,9 @@ func (m *LiveryModel) handleUpdate() {
 	m.PublishRowsReset()
 	StatusBar1.SetText(fmt.Sprintf("Number of liveries found: %d", m.RowCount()))
 	StatusBar2.SetText(fmt.Sprintf("Number of liveries queued: %d", m.QueuedCount()))
-	GenerateButton.SetEnabled(m.QueuedCount() > 0)
+	rules.CalculateRules(m.items)
+	StatusBar3.SetText(fmt.Sprintf("Number of rules to be generated: %d", rules.Counter))
+	GenerateButton.SetEnabled(rules.Counter > 0)
 }
 
 func (m *LiveryModel) QueuedCount() int {

@@ -35,10 +35,10 @@ import (
 
 var TabBarHandle *walk.TabWidget
 
-func NewMainWindow(version string, configuration config.Config) *MainWindow {
+func NewMainWindow() *MainWindow {
 
 	mw := MainWindow{
-		Title:     "vPilot MatchMaker " + version,
+		Title:     "vPilot MatchMaker " + config.Configuration.Version,
 		MenuItems: NewMenuItem(),
 		// ToolBar: toolbar(),
 		Size:   Size{1400, 800},
@@ -47,9 +47,9 @@ func NewMainWindow(version string, configuration config.Config) *MainWindow {
 			TabWidget{
 				AssignTo: &TabBarHandle,
 				Pages: []TabPage{
-					parseTab(configuration),
-					rulesTab(configuration),
-					configTab(configuration),
+					parseTab(),
+					rulesTab(),
+					configTab(),
 				},
 			},
 		},

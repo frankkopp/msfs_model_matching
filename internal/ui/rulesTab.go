@@ -28,7 +28,6 @@
 package ui
 
 import (
-	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/lxn/walk"
 
 	. "github.com/lxn/walk/declarative"
@@ -39,7 +38,7 @@ var (
 	RulesText      *walk.TextEdit
 )
 
-func rulesTab(configuration config.Config) TabPage {
+func rulesTab() TabPage {
 	return TabPage{
 		AssignTo: &RulesTabHandle,
 		Title:    "Generated Rules",

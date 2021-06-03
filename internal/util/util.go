@@ -25,4 +25,19 @@
  *
  */
 
-package rule
+package util
+
+import (
+	"io/ioutil"
+	"strings"
+)
+
+// ReadFile reads a complete file into a slice of strings
+func ReadFile(path string) (*[]string, error) {
+	bytes, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	lines := strings.Split(string(bytes), "\n")
+	return &lines, nil
+}

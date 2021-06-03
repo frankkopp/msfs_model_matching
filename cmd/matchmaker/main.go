@@ -44,33 +44,28 @@ const (
 	Version = "dev_v0.3"
 )
 
-var (
-	configuration = config.Config{}
-
-	// coreRules     = map[string]map[string][]string{}
-)
-
 func main() {
 
 	// take care of command line argument
-	configuration.VersionInfo = flag.Bool("version", false, "prints version and exits")
-	configuration.ShowCustom = flag.Bool("showCustom", false, "shows liveries which are custom by configuration")
-	configuration.LiveryDirectory = flag.String("dir", ".", "path where "+config.FileName+" are searched recursively")
-	configuration.DefaultTypesFile = flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
-	configuration.TypeVariationsFile = flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
-	configuration.IcaoVariationsFile = flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
-	configuration.CustomDataFile = flag.String("customDataFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
-	configuration.OutputFile = flag.String("outputFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
+	config.Configuration.Version = Version
+	config.Configuration.VersionInfo = flag.Bool("version", false, "prints version and exits")
+	config.Configuration.ShowCustom = flag.Bool("showCustom", false, "shows liveries which are custom by configuration")
+	config.Configuration.LiveryDirectory = flag.String("dir", ".", "path where "+config.FileName+" are searched recursively")
+	config.Configuration.DefaultTypesFile = flag.String("defaultTypesFile", "..\\config\\defaultTypes.txt", "path and filename to default types config file")
+	config.Configuration.TypeVariationsFile = flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
+	config.Configuration.IcaoVariationsFile = flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
+	config.Configuration.CustomDataFile = flag.String("customDataFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
+	config.Configuration.OutputFile = flag.String("outputFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
 
 	flag.Parse()
 
 	// print version info and exit
-	if *configuration.VersionInfo {
+	if *config.Configuration.VersionInfo {
 		printVersionInfo()
 		return
 	}
 
-	mainWindow := ui.NewMainWindow(Version, configuration)
+	mainWindow := ui.NewMainWindow()
 	_, err := mainWindow.Run()
 	if err != nil {
 		log.Fatal("Could not create main window: " + err.Error())
@@ -129,7 +124,7 @@ func main() {
 // 			fmt.Fprintf(&output, "<!-- NO DEFAULTS -->\n")
 // 			continue
 // 		}
-// 		// create a rule for each plane type variation
+// 		// create a rules for each plane type variation
 // 		for _, typeKey := range typeVariations[baseKey] {
 // 			fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
 // 			// define default liveries for this plane type - might be multiple liveries - vPilot will choose randomly
@@ -154,7 +149,7 @@ func main() {
 // 		sortedBaseKeys := sortBaseKeys(coreRules[icaoKey])
 // 		for _, baseKey := range sortedBaseKeys {
 // 			fmt.Fprintf(&output, "<!-- BASE TYPE: %s -->\n", baseKey)
-// 			// create a rule for each plane type variation
+// 			// create a rules for each plane type variation
 // 			for _, typeKey := range typeVariations[baseKey] {
 // 				fmt.Fprintf(&output, "<ModelMatchRule CallsignPrefix=\"%s\" TypeCode=\"%s\" ModelName=\"", icaoKey, typeKey)
 // 				// define liveries for this airline and plane type - might be multiple liveries - vPilot will choose randomly

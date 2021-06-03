@@ -28,12 +28,11 @@
 package livery
 
 import (
-	"fmt"
-	"io/ioutil"
 	"regexp"
 	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/frankkopp/MatchMaker/internal/util"
 	"github.com/karrick/godirwalk"
 )
 
@@ -85,7 +84,7 @@ func processAircraftCfg(path string) *Livery {
 
 	var livery *Livery
 
-	lines, _ := readFile(path)
+	lines, _ := util.ReadFile(path)
 
 	var base, icao, title string
 	for _, line := range *lines {
@@ -132,15 +131,4 @@ func getValue(line string) string {
 		return ""
 	}
 	return match[1]
-}
-
-// reads a complete file into a slice of strings
-func readFile(path string) (*[]string, error) {
-	bytes, err := ioutil.ReadFile(path)
-	if err != nil {
-		fmt.Printf("%s\n", err)
-		return nil, err
-	}
-	lines := strings.Split(string(bytes), "\n")
-	return &lines, nil
 }
