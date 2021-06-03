@@ -87,10 +87,8 @@ func CalculateRules(liveries []*livery.Livery) error {
 			for _, typeVariation := range TypeVariations[l.BaseContainer] {
 				// add the livery to the rule
 				Rules[icao][typeVariation] = append(Rules[icao][typeVariation], l.Title)
-				// only count each rule once even when adding more liveries
-				if len(Rules[icao][typeVariation]) == 1 {
-					Counter++
-				}
+				// this counts each livery for the same icao and type
+				Counter++
 			}
 		}
 	}

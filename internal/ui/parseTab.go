@@ -44,7 +44,6 @@ import (
 var (
 	LiveryTableView *walk.TableView
 	ScanButton      *walk.PushButton
-	GenerateButton  *walk.PushButton
 )
 
 func parseTab() TabPage {
@@ -62,7 +61,7 @@ func parseTab() TabPage {
 			PushButton{
 				AssignTo:  &ScanButton,
 				Text:      "Scan",
-				OnClicked: model.ScanLiveries,
+				OnClicked: model.ScanLiveriesAction,
 			},
 			TableView{
 				AssignTo:         &LiveryTableView,
@@ -110,12 +109,12 @@ func parseTab() TabPage {
 					}
 				},
 			},
-			PushButton{
-				AssignTo:  &GenerateButton,
-				Text:      "Generate Rules File",
-				Enabled:   false,
-				OnClicked: model.GenerateRules,
-			},
+			// PushButton{
+			// 	AssignTo:  &GenerateButton,
+			// 	Text:      "Generate Rules File",
+			// 	Enabled:   false,
+			// 	OnClicked: model.GenerateRulesAction,
+			// },
 		},
 	}
 }
@@ -133,14 +132,43 @@ func NewLiveryModel() *LiveryModel {
 	return m
 }
 
-func (m *LiveryModel) GenerateRules() {
-	TabBarHandle.SetCurrentIndex(1)
-	StatusBar3.SetText(fmt.Sprintf("Generating %d rules...", rules.Counter))
-	RulesText.SetText("")
+func (m *LiveryModel) ScanLiveriesAction() {
+	ScanButton.SetEnabled(false)
+	LiveryTableView.SetEnabled(false)
+	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", *config.Configuration.LiveryDirectory))
+
+	go m.scanLiveries()
+}
+
+func (m *LiveryModel) scanLiveries() {
+	liveries, err := livery.ScanLiveryFolder(*config.Configuration.LiveryDirectory)
+	if err != nil {
+		// TODO: error msg
+		m.handleUpdate()
+		return
+	}
+	m.items = liveries
+	m.Sort(m.sortColumn, m.sortOrder)
+	m.handleUpdate()
+}
+
+// called every time when there is a change in the list of liveries
+func (m *LiveryModel) handleUpdate() {
+	ScanButton.SetEnabled(false)
+	LiveryTableView.SetEnabled(false)
+	m.PublishRowsReset()
+	StatusBar1.SetText(fmt.Sprintf("Number of liveries found: %d", m.RowCount()))
+	StatusBar2.SetText(fmt.Sprintf("Number of liveries queued: %d", m.QueuedCount()))
+	rules.CalculateRules(m.items)
+	StatusBar3.SetText(fmt.Sprintf("Generating %d mappings...", rules.Counter))
+	StatusBar4.SetText(fmt.Sprint("Generating XML lines..."))
 	go m.buildXML()
 }
 
 func (m *LiveryModel) buildXML() {
+	RulesText.SetText("")
+	numberOfLines := 0
+
 	var output strings.Builder
 	output.Grow(100_000)
 
@@ -188,6 +216,7 @@ func (m *LiveryModel) buildXML() {
 					fmt.Fprintf(&output, "%s", livery)
 				}
 				fmt.Fprintf(&output, "\" />\r\n")
+				numberOfLines++
 			}
 		}
 		fmt.Fprintf(&output, "\r\n")
@@ -195,40 +224,11 @@ func (m *LiveryModel) buildXML() {
 
 	// Footer
 	output.WriteString("\r\n</ModelMatchRuleSet>\r\n")
-
 	RulesText.SetText(output.String())
-	StatusBar3.SetText(fmt.Sprintf("Generated %d rules.", rules.Counter))
-}
-
-func (m *LiveryModel) ScanLiveries() {
-	ScanButton.SetEnabled(false)
-	GenerateButton.SetEnabled(false)
-	LiveryTableView.SetEnabled(false)
-	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", *config.Configuration.LiveryDirectory))
-
-	go m.scanLiveries()
-}
-
-func (m *LiveryModel) scanLiveries() {
-	liveries, err := livery.ScanLiveryFolder(*config.Configuration.LiveryDirectory)
-	if err != nil {
-		return
-	}
-	// Notify TableView and other interested parties about the reset.
-	m.items = liveries
-	m.Sort(m.sortColumn, m.sortOrder)
-	m.handleUpdate()
-}
-
-func (m *LiveryModel) handleUpdate() {
-	m.PublishRowsReset()
-	StatusBar1.SetText(fmt.Sprintf("Number of liveries found: %d", m.RowCount()))
-	StatusBar2.SetText(fmt.Sprintf("Number of liveries queued: %d", m.QueuedCount()))
-	rules.CalculateRules(m.items)
-	StatusBar3.SetText(fmt.Sprintf("Number of rules to be generated: %d", rules.Counter))
+	StatusBar3.SetText(fmt.Sprintf("Generated %d mappings.", rules.Counter))
+	StatusBar4.SetText(fmt.Sprintf("Generated %d rule lines.", numberOfLines))
 	LiveryTableView.SetEnabled(true)
 	ScanButton.SetEnabled(true)
-	GenerateButton.SetEnabled(rules.Counter > 0)
 }
 
 func (m *LiveryModel) QueuedCount() int {
