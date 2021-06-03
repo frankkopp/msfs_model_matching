@@ -29,6 +29,7 @@ package util
 
 import (
 	"io/ioutil"
+	"os"
 	"strings"
 )
 
@@ -40,4 +41,21 @@ func ReadFile(path string) (*[]string, error) {
 	}
 	lines := strings.Split(string(bytes), "\n")
 	return &lines, nil
+}
+
+// save a strings.Builder instance to a file
+func SaveToFile(outPutFile string, output strings.Builder) error {
+	outFile, err := os.Create(outPutFile)
+	if err != nil {
+		return err
+	}
+	_, err = outFile.WriteString(output.String())
+	if err != nil {
+		return err
+	}
+	err = outFile.Close()
+	if err != nil {
+		return err
+	}
+	return nil
 }

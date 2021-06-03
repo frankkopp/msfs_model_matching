@@ -136,7 +136,7 @@ func (m *LiveryModel) ScanLiveriesAction() {
 	ScanButton.SetEnabled(false)
 	LiveryTableView.SetEnabled(false)
 	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", *config.Configuration.LiveryDirectory))
-
+	StatusBar5.SetText(fmt.Sprint(""))
 	go m.scanLiveries()
 }
 
@@ -182,15 +182,18 @@ func (m *LiveryModel) buildXML() {
 		if icaoKey != "default" {
 			continue
 		}
-		for typeKey := range rules.Rules[icaoKey] {
-			fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
-			for i, livery := range rules.Rules[icaoKey][typeKey] {
-				if i != 0 {
-					fmt.Fprint(&output, "//")
+		for _, baseKey := range rules.SortBaseKeys(rules.TypeVariations) {
+			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
+			for _, typeKey := range rules.TypeVariations[baseKey] {
+				fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
+				for i, livery := range rules.Rules[icaoKey][typeKey] {
+					if i != 0 {
+						fmt.Fprint(&output, "//")
+					}
+					fmt.Fprintf(&output, "%s", livery)
 				}
-				fmt.Fprintf(&output, "%s", livery)
+				fmt.Fprintf(&output, "\" />\r\n")
 			}
-			fmt.Fprintf(&output, "\" />\r\n")
 		}
 	}
 	fmt.Fprintf(&output, "\r\n")

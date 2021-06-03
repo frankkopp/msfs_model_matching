@@ -28,8 +28,13 @@
 package ui
 
 import (
-	"github.com/lxn/walk"
+	"fmt"
+	"strings"
 
+	"github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/frankkopp/MatchMaker/internal/util"
+	// "github.com/lxn/walk"
+	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
 )
 
@@ -39,6 +44,8 @@ var (
 )
 
 func rulesTab() TabPage {
+	// monoFont, _ := walk.NewFont("Lucida Sans Typewriter", 9, walk.FontBold)
+
 	return TabPage{
 		AssignTo: &RulesTabHandle,
 		Title:    "Generated Rules",
@@ -49,6 +56,31 @@ func rulesTab() TabPage {
 				Text:     "No rules generated yet.",
 				ReadOnly: true,
 				VScroll:  true,
+				Font: Font{
+					Family:    "Lucida Sans Typewriter",
+					PointSize: 8,
+				},
+			},
+			Composite{
+				Layout: HBox{MarginsZero: true},
+				Children: []Widget{
+					PushButton{
+						Text: "Copy All",
+						OnClicked: func() {
+							walk.Clipboard().SetText(RulesText.Text())
+							StatusBar5.SetText(fmt.Sprint("Copied to Clipboard."))
+						},
+					},
+					PushButton{
+						Text: "Save",
+						OnClicked: func() {
+							var output = strings.Builder{}
+							output.WriteString(RulesText.Text())
+							util.SaveToFile(*config.Configuration.OutputFile, output)
+							StatusBar5.SetText(fmt.Sprintf("Saved to file: %s", *config.Configuration.OutputFile))
+						},
+					},
+				},
 			},
 		},
 	}

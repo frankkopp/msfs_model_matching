@@ -37,6 +37,7 @@ var (
 	StatusBar2 *walk.StatusBarItem
 	StatusBar3 *walk.StatusBarItem
 	StatusBar4 *walk.StatusBarItem
+	StatusBar5 *walk.StatusBarItem
 )
 
 func statusbar() []StatusBarItem {
@@ -59,6 +60,11 @@ func statusbar() []StatusBarItem {
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar4,
+			Text:     "",
+			Width:    220,
+		},
+		StatusBarItem{
+			AssignTo: &StatusBar5,
 			Text:     "",
 			Width:    220,
 		},

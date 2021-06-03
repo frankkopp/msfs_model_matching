@@ -55,7 +55,7 @@ func main() {
 	config.Configuration.TypeVariationsFile = flag.String("typeVariationsFile", "..\\config\\typeVariations.txt", "path and filename to type variations config file")
 	config.Configuration.IcaoVariationsFile = flag.String("icaoVariationsFile", "..\\config\\icaoVariations.txt", "path and filename to icao variations config file")
 	config.Configuration.CustomDataFile = flag.String("customDataFile", "..\\config\\customData.txt", "path and filename to fix liveries config file")
-	config.Configuration.OutputFile = flag.String("outputFile", ".\\MatchMakingRules.vmr", "path and filename to output file")
+	config.Configuration.OutputFile = flag.String("outputFile", ".\\MatchMakingRulesUI.vmr", "path and filename to output file")
 
 	flag.Parse()
 

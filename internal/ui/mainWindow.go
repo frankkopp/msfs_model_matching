@@ -29,6 +29,7 @@ package ui
 
 import (
 	"github.com/frankkopp/MatchMaker/internal/config"
+
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
 )
