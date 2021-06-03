@@ -28,8 +28,10 @@
 package ui
 
 import (
+	"encoding/xml"
 	"fmt"
 	"sort"
+	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
@@ -40,7 +42,9 @@ import (
 )
 
 var (
-	GenerateButton *walk.PushButton
+	LiveryTableView *walk.TableView
+	ScanButton      *walk.PushButton
+	GenerateButton  *walk.PushButton
 )
 
 func parseTab() TabPage {
@@ -50,18 +54,18 @@ func parseTab() TabPage {
 	// badIcon, _ := walk.Resources.Icon("../img/stop.ico")
 
 	model := NewLiveryModel()
-	var tv *walk.TableView
 
 	return TabPage{
 		Title:  "Parse Liveries",
 		Layout: VBox{},
 		Children: []Widget{
 			PushButton{
+				AssignTo:  &ScanButton,
 				Text:      "Scan",
 				OnClicked: model.ScanLiveries,
 			},
 			TableView{
-				AssignTo:         &tv,
+				AssignTo:         &LiveryTableView,
 				AlternatingRowBG: true,
 				CheckBoxes:       false,
 				ColumnsOrderable: true,
@@ -97,11 +101,11 @@ func parseTab() TabPage {
 				},
 				Model: model,
 				OnSelectedIndexesChanged: func() {
-					// fmt.Printf("SelectedIndexes: %v\n", tv.SelectedIndexes())
+					// fmt.Printf("SelectedIndexes: %v\n", LiveryTableView.SelectedIndexes())
 				},
 				OnItemActivated: func() {
-					if model.items[tv.CurrentIndex()].Complete {
-						model.items[tv.CurrentIndex()].Process = !model.items[tv.CurrentIndex()].Process
+					if model.items[LiveryTableView.CurrentIndex()].Complete {
+						model.items[LiveryTableView.CurrentIndex()].Process = !model.items[LiveryTableView.CurrentIndex()].Process
 						model.handleUpdate()
 					}
 				},
@@ -130,13 +134,82 @@ func NewLiveryModel() *LiveryModel {
 }
 
 func (m *LiveryModel) GenerateRules() {
-	StatusBar3.SetText(fmt.Sprintf("Generated rules: %d", m.QueuedCount()))
-	RulesText.SetText(fmt.Sprintf("We would generate at least %d rules here!", m.QueuedCount()))
-	RulesTabHandle.SetFocus()
+	TabBarHandle.SetCurrentIndex(1)
+	StatusBar3.SetText(fmt.Sprintf("Generating %d rules...", rules.Counter))
+	RulesText.SetText("")
+	go m.buildXML()
+}
+
+func (m *LiveryModel) buildXML() {
+	var output strings.Builder
+	output.Grow(100_000)
+
+	// Header
+	output.WriteString(xml.Header)
+	output.WriteString("\r\n\r\n<ModelMatchRuleSet>\r\n\r\n")
+
+	// default rules
+	fmt.Fprintf(&output, "<!-- DEFAULTS -->\r\n")
+	for _, icaoKey := range rules.SortIcaoKeys(rules.Rules) {
+		if icaoKey != "default" {
+			continue
+		}
+		for typeKey := range rules.Rules[icaoKey] {
+			fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
+			for i, livery := range rules.Rules[icaoKey][typeKey] {
+				if i != 0 {
+					fmt.Fprint(&output, "//")
+				}
+				fmt.Fprintf(&output, "%s", livery)
+			}
+			fmt.Fprintf(&output, "\" />\r\n")
+		}
+	}
+	fmt.Fprintf(&output, "\r\n")
+
+	// ICAO based rules
+	fmt.Fprintf(&output, "<!-- PER ICAO RULES -->\r\n")
+	for _, icaoKey := range rules.SortIcaoKeys(rules.Rules) {
+		if icaoKey == "default" {
+			continue
+		}
+		fmt.Fprintf(&output, "<!-- ICAO:  %s -->\r\n", icaoKey)
+		for _, baseKey := range rules.SortBaseKeys(rules.TypeVariations) {
+			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
+			for _, typeKey := range rules.TypeVariations[baseKey] {
+				if len(rules.Rules[icaoKey][typeKey]) == 0 {
+					continue
+				}
+				fmt.Fprintf(&output, "<ModelMatchRule CallsignPrefix=\"%s\" TypeCode=\"%s\" ModelName=\"", icaoKey, typeKey)
+				for i, livery := range rules.Rules[icaoKey][typeKey] {
+					if i != 0 {
+						fmt.Fprint(&output, "//")
+					}
+					fmt.Fprintf(&output, "%s", livery)
+				}
+				fmt.Fprintf(&output, "\" />\r\n")
+			}
+		}
+		fmt.Fprintf(&output, "\r\n")
+	}
+
+	// Footer
+	output.WriteString("\r\n</ModelMatchRuleSet>\r\n")
+
+	RulesText.SetText(output.String())
+	StatusBar3.SetText(fmt.Sprintf("Generated %d rules.", rules.Counter))
 }
 
 func (m *LiveryModel) ScanLiveries() {
+	ScanButton.SetEnabled(false)
 	GenerateButton.SetEnabled(false)
+	LiveryTableView.SetEnabled(false)
+	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", *config.Configuration.LiveryDirectory))
+
+	go m.scanLiveries()
+}
+
+func (m *LiveryModel) scanLiveries() {
 	liveries, err := livery.ScanLiveryFolder(*config.Configuration.LiveryDirectory)
 	if err != nil {
 		return
@@ -153,6 +226,8 @@ func (m *LiveryModel) handleUpdate() {
 	StatusBar2.SetText(fmt.Sprintf("Number of liveries queued: %d", m.QueuedCount()))
 	rules.CalculateRules(m.items)
 	StatusBar3.SetText(fmt.Sprintf("Number of rules to be generated: %d", rules.Counter))
+	LiveryTableView.SetEnabled(true)
+	ScanButton.SetEnabled(true)
 	GenerateButton.SetEnabled(rules.Counter > 0)
 }
 

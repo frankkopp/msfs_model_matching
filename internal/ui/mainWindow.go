@@ -33,11 +33,15 @@ import (
 	. "github.com/lxn/walk/declarative"
 )
 
-var TabBarHandle *walk.TabWidget
+var (
+	MainWindowHandle *walk.MainWindow
+	TabBarHandle     *walk.TabWidget
+)
 
 func NewMainWindow() *MainWindow {
 
 	mw := MainWindow{
+		AssignTo:  &MainWindowHandle,
 		Title:     "vPilot MatchMaker " + config.Configuration.Version,
 		MenuItems: NewMenuItem(),
 		// ToolBar: toolbar(),

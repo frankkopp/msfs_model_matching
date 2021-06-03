@@ -30,6 +30,7 @@ package rules
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
@@ -42,6 +43,10 @@ var (
 
 	// Rules map[ICAO][TypeCode][]liveries
 	Rules = map[string]map[string][]string{}
+
+	DefaultTypes   map[string][]string
+	TypeVariations map[string][]string
+	IcaoVariations map[string][]string
 )
 
 func CalculateRules(liveries []*livery.Livery) error {
@@ -50,17 +55,17 @@ func CalculateRules(liveries []*livery.Livery) error {
 	Rules = map[string]map[string][]string{}
 
 	// read and build config data structures
-	defaultTypes := readConfig(*config.Configuration.DefaultTypesFile)
-	typeVariations := readConfig(*config.Configuration.TypeVariationsFile)
-	icaoVariations := readConfig(*config.Configuration.IcaoVariationsFile)
+	DefaultTypes = readConfig(*config.Configuration.DefaultTypesFile)
+	TypeVariations = readConfig(*config.Configuration.TypeVariationsFile)
+	IcaoVariations = readConfig(*config.Configuration.IcaoVariationsFile)
 	// customData := readConfig(*config.Configuration.CustomDataFile)
 
 	// create default rules for each type variation
 	// add ICAO and all variations to coreRules
 	Rules["default"] = map[string][]string{}
-	for baseContainer := range defaultTypes {
-		for _, typeVariation := range typeVariations[baseContainer] {
-			Rules["default"][typeVariation] = append(Rules["default"][typeVariation], defaultTypes[baseContainer]...)
+	for baseContainer := range DefaultTypes {
+		for _, typeVariation := range TypeVariations[baseContainer] {
+			Rules["default"][typeVariation] = append(Rules["default"][typeVariation], DefaultTypes[baseContainer]...)
 			Counter++
 		}
 	}
@@ -73,13 +78,13 @@ func CalculateRules(liveries []*livery.Livery) error {
 			continue
 		}
 		// lookup if configuration has this base_container,
-		icaoList := findIcaoVariations(l, icaoVariations)
+		icaoList := findIcaoVariations(l, IcaoVariations)
 		// add ICAO and all variations to rules
 		for _, icao := range icaoList {
 			if _, ok := Rules[icao]; !ok {
 				Rules[icao] = map[string][]string{}
 			}
-			for _, typeVariation := range typeVariations[l.BaseContainer] {
+			for _, typeVariation := range TypeVariations[l.BaseContainer] {
 				// add the livery to the rule
 				Rules[icao][typeVariation] = append(Rules[icao][typeVariation], l.Title)
 				// only count each rule once even when adding more liveries
@@ -136,29 +141,28 @@ func readConfig(file string) map[string][]string {
 	return data
 }
 
-//
-// // as go does not support a sorted map iteration we use a slice of all keys and sort it
-// // Could probably be done with generics
-// func sortBaseKeys(m map[string][]string) []string {
-// 	keys := make([]string, len(m))
-// 	i := 0
-// 	for k := range m {
-// 		keys[i] = k
-// 		i++
-// 	}
-// 	sort.Strings(keys)
-// 	return keys
-// }
-//
-// // as go does not support a sorted map iteration we use a slice of all keys and sort it
-// // Could probably be done with generics
-// func sortIcaoKeys(m map[string]map[string][]string) []string {
-// 	keys := make([]string, len(m))
-// 	i := 0
-// 	for k := range m {
-// 		keys[i] = k
-// 		i++
-// 	}
-// 	sort.Strings(keys)
-// 	return keys
-// }
+// SortIcaoKeys as go does not support a sorted map iteration we use a slice of all keys and sort it
+// Could probably be done with generics
+func SortIcaoKeys(m map[string]map[string][]string) []string {
+	keys := make([]string, len(m))
+	i := 0
+	for k := range m {
+		keys[i] = k
+		i++
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+// SortIcaoKeys as go does not support a sorted map iteration we use a slice of all keys and sort it
+// Could probably be done with generics
+func SortBaseKeys(m map[string][]string) []string {
+	keys := make([]string, len(m))
+	i := 0
+	for k := range m {
+		keys[i] = k
+		i++
+	}
+	sort.Strings(keys)
+	return keys
+}

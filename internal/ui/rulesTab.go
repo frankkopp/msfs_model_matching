@@ -47,6 +47,8 @@ func rulesTab() TabPage {
 			TextEdit{
 				AssignTo: &RulesText,
 				Text:     "No rules generated yet.",
+				ReadOnly: true,
+				VScroll:  true,
 			},
 		},
 	}

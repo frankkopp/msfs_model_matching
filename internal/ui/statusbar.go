@@ -45,12 +45,12 @@ func statusbar() []StatusBarItem {
 		StatusBarItem{
 			AssignTo: &StatusBar1,
 			Text:     "No liveries scanned yet.",
-			Width:    180,
+			Width:    300,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar2,
 			Text:     "",
-			Width:    180,
+			Width:    220,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar3,
