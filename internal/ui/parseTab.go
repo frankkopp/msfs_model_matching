@@ -28,7 +28,6 @@
 package ui
 
 import (
-	"encoding/xml"
 	"fmt"
 	"sort"
 	"strings"
@@ -173,8 +172,8 @@ func (m *LiveryModel) buildXML() {
 	output.Grow(100_000)
 
 	// Header
-	output.WriteString(xml.Header)
-	output.WriteString("\r\n\r\n<ModelMatchRuleSet>\r\n\r\n")
+	output.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n")
+	output.WriteString("<ModelMatchRuleSet>\r\n\r\n")
 
 	// default rules
 	fmt.Fprintf(&output, "<!-- DEFAULTS -->\r\n")

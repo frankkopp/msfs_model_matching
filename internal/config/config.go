@@ -27,6 +27,12 @@
 
 package config
 
+import (
+	"errors"
+
+	"gopkg.in/ini.v1"
+)
+
 const (
 	FileName = "aircraft.cfg"
 )
@@ -36,15 +42,41 @@ var (
 )
 
 type Config struct {
-	Version string
+	Version     string
+	IniFileName string
 
 	// cmd line options
-	VersionInfo        *bool
-	ShowCustom         *bool
+	VersionInfo *bool
+
+	// paths
 	LiveryDirectory    *string
 	DefaultTypesFile   *string
 	TypeVariationsFile *string
 	IcaoVariationsFile *string
 	CustomDataFile     *string
 	OutputFile         *string
+}
+
+func (c *Config) SaveIni() error {
+	if c.IniFileName == "" {
+		return errors.New("no ini file path given")
+	}
+	iniFile := ini.Empty()
+
+	section, err := iniFile.NewSection("paths")
+	if err != nil {
+		return err
+	}
+	section.Key("liveryDir").SetValue(*c.LiveryDirectory)
+	section.Key("defaultTypesFile").SetValue(*c.DefaultTypesFile)
+	section.Key("typeVariationsFile").SetValue(*c.TypeVariationsFile)
+	section.Key("icaoVariationsFile").SetValue(*c.IcaoVariationsFile)
+	section.Key("customDataFile").SetValue(*c.CustomDataFile)
+	section.Key("outputFile").SetValue(*c.OutputFile)
+
+	err = iniFile.SaveTo(c.IniFileName)
+	if err != nil {
+		return err
+	}
+	return nil
 }

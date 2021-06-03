@@ -38,6 +38,7 @@ var (
 	StatusBar3 *walk.StatusBarItem
 	StatusBar4 *walk.StatusBarItem
 	StatusBar5 *walk.StatusBarItem
+	StatusBar6 *walk.StatusBarItem
 )
 
 func statusbar() []StatusBarItem {
@@ -46,7 +47,7 @@ func statusbar() []StatusBarItem {
 		StatusBarItem{
 			AssignTo: &StatusBar1,
 			Text:     "No liveries scanned yet.",
-			Width:    300,
+			Width:    220,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar2,
@@ -65,6 +66,11 @@ func statusbar() []StatusBarItem {
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar5,
+			Text:     "",
+			Width:    220,
+		},
+		StatusBarItem{
+			AssignTo: &StatusBar6,
 			Text:     "",
 			Width:    220,
 		},

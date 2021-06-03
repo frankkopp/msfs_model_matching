@@ -42,9 +42,9 @@ var (
 func NewMainWindow() *MainWindow {
 
 	mw := MainWindow{
-		AssignTo:  &MainWindowHandle,
-		Title:     "vPilot MatchMaker " + config.Configuration.Version,
-		MenuItems: NewMenuItem(),
+		AssignTo: &MainWindowHandle,
+		Title:    "vPilot MatchMaker " + config.Configuration.Version,
+		// MenuItems: NewMenuItem(),
 		// ToolBar: toolbar(),
 		Size:   Size{1400, 800},
 		Layout: VBox{},

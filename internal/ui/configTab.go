@@ -28,6 +28,8 @@
 package ui
 
 import (
+	"fmt"
+
 	"github.com/frankkopp/MatchMaker/internal/config"
 	. "github.com/lxn/walk/declarative"
 )
@@ -80,6 +82,25 @@ func configTab() TabPage {
 				},
 			},
 			VSpacer{},
+			Composite{
+				Layout: HBox{MarginsZero: true},
+				Children: []Widget{
+					PushButton{
+						Text: "Load",
+						OnClicked: func() {
+
+						},
+					},
+					PushButton{
+						Text: "Save",
+						OnClicked: func() {
+							// TODO: catch error
+							config.Configuration.SaveIni()
+							StatusBar6.SetText(fmt.Sprintf("Configuration saved to %s", config.Configuration.IniFileName))
+						},
+					},
+				},
+			},
 		},
 	}
 }
