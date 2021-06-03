@@ -28,14 +28,12 @@
 package rules
 
 import (
-	"fmt"
-	"os"
 	"sort"
 	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
-	"github.com/frankkopp/MatchMaker/internal/util"
+	"gopkg.in/ini.v1"
 )
 
 var (
@@ -55,10 +53,10 @@ func CalculateRules(liveries []*livery.Livery) error {
 	Rules = map[string]map[string][]string{}
 
 	// read and build config data structures
-	DefaultTypes = readConfig(*config.Configuration.DefaultTypesFile)
-	TypeVariations = readConfig(*config.Configuration.TypeVariationsFile)
-	IcaoVariations = readConfig(*config.Configuration.IcaoVariationsFile)
-	// customData := readConfig(*config.Configuration.CustomDataFile)
+	DefaultTypes = readConfig(config.Configuration.Ini.Section("defaultTypes"))
+	TypeVariations = readConfig(config.Configuration.Ini.Section("typeVariations"))
+	IcaoVariations = readConfig(config.Configuration.Ini.Section("icaoVariations"))
+	// customData := readConfig(config.Configuration.Ini.Section("customData"))
 
 	// create default rules for each type variation
 	// add ICAO and all variations to coreRules
@@ -114,26 +112,13 @@ func findIcaoVariations(l *livery.Livery, icaoVariations map[string][]string) []
 // Reads a config file with the format:
 // lines of strings separated by";"
 // each line will be mapped in a map with the first entry as map key and the rest entries as list of strings
-func readConfig(file string) map[string][]string {
+func readConfig(section *ini.Section) map[string][]string {
 	data := map[string][]string{}
-
-	lines, err := util.ReadFile(file)
-	if err != nil {
-		fmt.Printf("Could not read config file %s\n", file)
-		fmt.Println("Exiting")
-		os.Exit(1)
-	}
-
-	for _, line := range *lines {
-		line = strings.TrimSpace(line)
-		if len(line) == 0 || line[0] == '#' {
-			continue
-		}
-		tokens := strings.Split(line, ";")
-		modelType := strings.TrimSpace(tokens[0])
-		for _, t := range tokens[1:] {
+	for _, s := range section.Keys() {
+		tokens := strings.Split(s.Value(), ",")
+		for _, t := range tokens {
 			t = strings.TrimSpace(t)
-			data[modelType] = append(data[modelType], t)
+			data[s.Name()] = append(data[s.Name()], t)
 		}
 	}
 	return data

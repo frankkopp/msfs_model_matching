@@ -97,8 +97,8 @@ func processAircraftCfg(path string) *Livery {
 			continue
 		}
 		// only take the first title - ignore the rest
-		// TODO: could be optimized to look for AI variations as they are most likely less resource hungry
-		//  for model matching
+		// TODO: could be optimized to look for AI variations as they
+		//  are most likely less resource hungry for model matching
 		if title == "" && strings.Contains(line, "title") {
 			title = getValue(line)
 			continue

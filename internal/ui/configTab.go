@@ -28,10 +28,16 @@
 package ui
 
 import (
+	"bytes"
 	"fmt"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
+)
+
+var (
+	ConfigIniText *walk.TextEdit
 )
 
 func configTab() TabPage {
@@ -39,64 +45,62 @@ func configTab() TabPage {
 		Title:  "Configuration",
 		Layout: VBox{},
 		Children: []Widget{
-			Composite{Layout: HBox{},
-				Children: []Widget{
-					TextLabel{Text: "Livery Folder: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *config.Configuration.LiveryDirectory},
-					HSpacer{},
+			TextLabel{
+				Text: "The below is a provisional way to edit the configuration. A more structured approach will be implemented in the future.",
+			},
+			TextLabel{
+				Text: "Be very careful as it is not very robust and might destroy your configuration.",
+			},
+			// Composite{Layout: HBox{},
+			// 	Children: []Widget{
+			// 		TextLabel{Text: "Livery Folder: ", MinSize: Size{Width: 150, Height: 15}},
+			// 		TextLabel{Text: config.Configuration.Ini.Section("paths").Key("liveryDir").Value()},
+			// 		HSpacer{},
+			// 	},
+			// },
+			// Composite{Layout: HBox{},
+			// 	Children: []Widget{
+			// 		TextLabel{Text: "Output File: ", MinSize: Size{Width: 150, Height: 15}},
+			// 		TextLabel{Text: config.Configuration.Ini.Section("paths").Key("outputFile").Value()},
+			// 		HSpacer{},
+			// 	},
+			// },
+			TextEdit{
+				AssignTo: &ConfigIniText,
+				Text:     "",
+				ReadOnly: false,
+				VScroll:  true,
+				Font: Font{
+					Family:    "Lucida Sans Typewriter",
+					PointSize: 8,
 				},
 			},
-			Composite{Layout: HBox{},
-				Children: []Widget{
-					TextLabel{Text: "Default Types Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *config.Configuration.DefaultTypesFile},
-					HSpacer{},
-				},
-			},
-			Composite{Layout: HBox{},
-				Children: []Widget{
-					TextLabel{Text: "Type Variation Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *config.Configuration.TypeVariationsFile},
-					HSpacer{},
-				},
-			},
-			Composite{Layout: HBox{},
-				Children: []Widget{
-					TextLabel{Text: "ICAO Variation Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *config.Configuration.IcaoVariationsFile},
-					HSpacer{},
-				},
-			},
-			Composite{Layout: HBox{},
-				Children: []Widget{
-					TextLabel{Text: "Custom Data Config: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *config.Configuration.CustomDataFile},
-					HSpacer{},
-				},
-			},
-			Composite{Layout: HBox{},
-				Children: []Widget{
-					TextLabel{Text: "Output File: ", MinSize: Size{Width: 150, Height: 15}},
-					TextLabel{Text: *config.Configuration.OutputFile},
-					HSpacer{},
-				},
-			},
-			VSpacer{},
 			Composite{
 				Layout: HBox{MarginsZero: true},
 				Children: []Widget{
 					PushButton{
-						Text: "Load",
+						Text: "Load to view",
 						OnClicked: func() {
-
+							var tmp bytes.Buffer
+							config.Configuration.Ini.WriteTo(&tmp)
+							ConfigIniText.SetText(tmp.String())
+							StatusBar6.SetText(fmt.Sprintf("Configuration loaded."))
 						},
 					},
 					PushButton{
-						Text: "Save",
+						Text: "Use",
+						OnClicked: func() {
+							// TODO: catch error
+							config.Configuration.LoadFromView(ConfigIniText.Text())
+							StatusBar6.SetText(fmt.Sprintf("Applied configuration."))
+						},
+					},
+					PushButton{
+						Text: "Save to File",
 						OnClicked: func() {
 							// TODO: catch error
 							config.Configuration.SaveIni()
-							StatusBar6.SetText(fmt.Sprintf("Configuration saved to %s", config.Configuration.IniFileName))
+							StatusBar6.SetText(fmt.Sprintf("Configuration saved to %s", *config.Configuration.IniFileName))
 						},
 					},
 				},

@@ -37,7 +37,6 @@ import (
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/ui"
-	"gopkg.in/ini.v1"
 )
 
 const (
@@ -46,61 +45,34 @@ const (
 )
 
 func main() {
-	config.Configuration.Version = Version
-	config.Configuration.IniFileName = IniFile
-
-	// default values for configuration - will be overwritten by ini or command line
-	liveryDirDefault := "."
-	defaultTypesFileDefault := "..\\config\\defaultTypes.txt"
-	typeVariationsFileDefault := "..\\config\\typeVariations.txt"
-	icaoVariationsFileDefault := "..\\config\\icaoVariations.txt"
-	customDataFileDefault := "..\\config\\customData.txt"
-	outputFileDefault := ".\\MatchMakingRulesUI.vmr"
-
-	cfg, err := ini.Load(config.Configuration.IniFileName)
-	if err != nil {
-		fmt.Printf("No ini file - using command line or defaults: %v", err)
-	} else {
-		if cfg.Section("paths").HasKey("liveryDir") {
-			liveryDirDefault = cfg.Section("paths").Key("liveryDir").String()
-		}
-		if cfg.Section("paths").HasKey("defaultTypesFile") {
-			defaultTypesFileDefault = cfg.Section("paths").Key("defaultTypesFile").String()
-		}
-		if cfg.Section("paths").HasKey("typeVariationsFile") {
-			typeVariationsFileDefault = cfg.Section("paths").Key("typeVariationsFile").String()
-		}
-		if cfg.Section("paths").HasKey("icaoVariationsFile") {
-			icaoVariationsFileDefault = cfg.Section("paths").Key("icaoVariationsFile").String()
-		}
-		if cfg.Section("paths").HasKey("customDataFile") {
-			customDataFileDefault = cfg.Section("paths").Key("customDataFile").String()
-		}
-		if cfg.Section("paths").HasKey("outputFile") {
-			outputFileDefault = cfg.Section("paths").Key("outputFile").String()
-		}
-
-	}
 
 	// take care of command line argument
-	config.Configuration.VersionInfo = flag.Bool("version", false, "prints version and exits")
-	config.Configuration.LiveryDirectory = flag.String("dir", liveryDirDefault, "path where "+config.FileName+" are searched recursively")
-	config.Configuration.DefaultTypesFile = flag.String("defaultTypesFile", defaultTypesFileDefault, "path and filename to default types config file")
-	config.Configuration.TypeVariationsFile = flag.String("typeVariationsFile", typeVariationsFileDefault, "path and filename to type variations config file")
-	config.Configuration.IcaoVariationsFile = flag.String("icaoVariationsFile", icaoVariationsFileDefault, "path and filename to icao variations config file")
-	config.Configuration.CustomDataFile = flag.String("customDataFile", customDataFileDefault, "path and filename to fix liveries config file")
-	config.Configuration.OutputFile = flag.String("outputFile", outputFileDefault, "path and filename to output file")
+	versionInfo := flag.Bool("version", false, "prints version and exits")
+	config.Configuration.IniFileName = flag.String("ini", IniFile, "path to ini file")
+	liveryDirectory := flag.String("dir", "", "path where "+config.FileName+" are searched recursively")
+	outputFile := flag.String("outputFile", "", "path and filename to output file")
 
 	flag.Parse()
 
 	// print version info and exit
-	if *config.Configuration.VersionInfo {
+	if *versionInfo {
 		printVersionInfo()
 		return
 	}
 
+	config.Configuration.Version = Version
+	config.Configuration.LoadIni()
+
+	if *liveryDirectory != "" {
+		config.Configuration.SetLiveryDirectory(*liveryDirectory)
+	}
+
+	if *outputFile != "" {
+		config.Configuration.SetOutputFile(*outputFile)
+	}
+
 	mainWindow := ui.NewMainWindow()
-	_, err = mainWindow.Run()
+	_, err := mainWindow.Run()
 	if err != nil {
 		log.Fatal("Could not create main window: " + err.Error())
 	}

@@ -47,10 +47,6 @@ var (
 
 func parseTab() TabPage {
 
-	// boldFont, _ := walk.NewFont("Segoe UI", 9, walk.FontBold)
-	// goodIcon, _ := walk.Resources.Icon("../img/check.ico")
-	// badIcon, _ := walk.Resources.Icon("../img/stop.ico")
-
 	model := NewLiveryModel()
 
 	return TabPage{
@@ -78,7 +74,6 @@ func parseTab() TabPage {
 				},
 				StyleCell: func(style *walk.CellStyle) {
 					item := model.items[style.Row()]
-
 					switch style.Col() {
 					case 0:
 						if item.Complete {
@@ -95,7 +90,6 @@ func parseTab() TabPage {
 					case 4:
 						// placeholder
 					}
-
 				},
 				Model: model,
 				OnSelectedIndexesChanged: func() {
@@ -108,12 +102,6 @@ func parseTab() TabPage {
 					}
 				},
 			},
-			// PushButton{
-			// 	AssignTo:  &GenerateButton,
-			// 	Text:      "Generate Rules File",
-			// 	Enabled:   false,
-			// 	OnClicked: model.GenerateRulesAction,
-			// },
 		},
 	}
 }
@@ -134,15 +122,15 @@ func NewLiveryModel() *LiveryModel {
 func (m *LiveryModel) ScanLiveriesAction() {
 	ScanButton.SetEnabled(false)
 	LiveryTableView.SetEnabled(false)
-	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", *config.Configuration.LiveryDirectory))
+	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", config.Configuration.Ini.Section("path").Key("liveryDir").Value()))
 	StatusBar5.SetText(fmt.Sprint(""))
 	go m.scanLiveries()
 }
 
 func (m *LiveryModel) scanLiveries() {
-	liveries, err := livery.ScanLiveryFolder(*config.Configuration.LiveryDirectory)
+	liveries, err := livery.ScanLiveryFolder(config.Configuration.Ini.Section("paths").Key("liveryDir").Value())
 	if err != nil {
-		// TODO: error msg
+		// TODO: error handling
 		m.handleUpdate()
 		return
 	}

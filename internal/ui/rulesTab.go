@@ -33,6 +33,7 @@ import (
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/util"
+
 	// "github.com/lxn/walk"
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
@@ -76,8 +77,8 @@ func rulesTab() TabPage {
 						OnClicked: func() {
 							var output = strings.Builder{}
 							output.WriteString(RulesText.Text())
-							util.SaveToFile(*config.Configuration.OutputFile, output)
-							StatusBar5.SetText(fmt.Sprintf("Saved to file: %s", *config.Configuration.OutputFile))
+							util.SaveToFile(config.Configuration.Ini.Section("paths").Key("outputFile").Value(), output)
+							StatusBar5.SetText(fmt.Sprintf("Saved to file: %s", config.Configuration.Ini.Section("paths").Key("outputFile").Value()))
 						},
 					},
 				},
