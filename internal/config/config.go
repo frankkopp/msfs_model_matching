@@ -31,6 +31,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/frankkopp/MatchMaker/internal/customData"
 	"gopkg.in/ini.v1"
 )
 
@@ -39,6 +40,7 @@ const (
 )
 
 var (
+	// Configuration is a pseudo Singleton for config
 	Configuration = Config{}
 )
 
@@ -46,34 +48,44 @@ type Config struct {
 	Version     string
 	IniFileName *string
 
-	// configuration ini sata structure
-	Ini *ini.File
+	Ini    *ini.File
+	Custom *customData.CustomData
 }
 
-func (c *Config) LoadFromView(iniString string) error {
-	tmpIni, err := ini.Load([]byte(iniString))
-	if err != nil {
-		return err
-	}
-	// TODO: validate ini configuration
-	c.Ini = tmpIni
-	return nil
-}
-
+// LoadIni loads configuration from the configured ini file and applies it
 func (c *Config) LoadIni() {
-	tmpIni, err := ini.Load(*c.IniFileName)
+	tmpIni, err := ini.LoadSources(ini.LoadOptions{
+		UnparseableSections: []string{"customData"},
+	}, *c.IniFileName)
 	if err != nil {
 		fmt.Printf("No ini file found. Using default configuration: %v", err)
 		tmpIni = loadDefaults()
 	}
 	// TODO: validate ini configuration
 	c.Ini = tmpIni
+	c.ExtractCustomDataFromIni()
 }
 
+// LoadFromView loads configuration from the configuration view in the UI and applies it
+func (c *Config) LoadFromView(iniString string) error {
+	tmpIni, err := ini.LoadSources(ini.LoadOptions{
+		UnparseableSections: []string{"customData"},
+	}, []byte(iniString))
+	if err != nil {
+		return err
+	}
+	// TODO: validate ini configuration
+	c.Ini = tmpIni
+	c.Custom = customData.NewCustomData(c.Ini.Section("customData").Body())
+	return nil
+}
+
+// SaveIni save the current configuration to the configured ini file
 func (c *Config) SaveIni() error {
 	if *c.IniFileName == "" {
 		return errors.New("no ini file path given")
 	}
+	c.UpdateIniCustomData()
 	err := c.Ini.SaveTo(*c.IniFileName)
 	if err != nil {
 		return err
@@ -81,66 +93,30 @@ func (c *Config) SaveIni() error {
 	return nil
 }
 
+func (c *Config) ExtractCustomDataFromIni() {
+	c.Custom = customData.NewCustomData(c.Ini.Section("customData").Body())
+}
+
+func (c *Config) UpdateIniCustomData() {
+	dataBody := c.Custom.GetDataBody()
+	c.Ini.Section("customData").SetBody(dataBody)
+}
+
 func (c *Config) SetLiveryDirectory(s string) {
-	c.Ini.Section("path").Key("liveryDir").SetValue(s)
+	c.Ini.Section("paths").Key("liveryDir").SetValue(s)
 }
 
 func (c *Config) SetOutputFile(s string) {
-	c.Ini.Section("path").Key("outputFile").SetValue(s)
+	c.Ini.Section("paths").Key("outputFile").SetValue(s)
 }
 
 func loadDefaults() *ini.File {
-	tmpIni, err := ini.Load([]byte(defaultIni))
+	tmpIni, err := ini.LoadSources(ini.LoadOptions{
+		UnparseableSections: []string{"customData"},
+	}, []byte(defaultIni))
 	if err != nil {
 		fmt.Printf("Error in default ini: %v", err)
 		panic(err)
 	}
 	return tmpIni
 }
-
-var defaultIni = `
-[paths]
-liveryDir = .
-outputFile = .\MatchMakingRulesUI.vmr
-
-[defaultTypes]
-Asobo_A320_NEO = Airbus A320 Neo Asobo
-Asobo_B747_8i = Boeing 747-8i Asobo
-Asobo_B787_10 = Boeing 787-10 Asobo
-# Aerosoft_CRJ_700 = CRJ550ER Privat D-ALKI
-Asobo_CJ4 = Cessna CJ4 Citation Asobo
-Asobo_Longitude = Cessna Citation Longitude Asobo
-Asobo_TBM930 = TBM 930 Asobo,TBM 930 Asobo Air Traffic 00,TBM 930 Asobo Air Traffic 01,TBM 930 Asobo Air Traffic 02
-
-[typeVariations]
-# Narrow/Medium Jet 2 Engines
-Asobo_A320_NEO = A19N,A20N,A21N,A318,A319,A320,A321,B732,B733,B734,B735,B736,B737,B738,B739,B73X,B37M,B38M,B39M
-# Wide/Heavy Jet 2 Engines
-Asobo_B787_10 = B78X,B788,B789,B762,B763,B764,B772,B773,B778,B779,B77L,B77W,A306,A30B,A310,A332,A333,A337,A338,A339
-# Wide/Heavy Jet 4 Engines
-Asobo_B747_8i = B741,B742,B743,B744,B748,B74F,A380,A388
-# Small/Light Jet 2 Tail Engines
-Aerosoft_CRJ_700 = CRJ7,CRJX,CRJ5,CRJ9
-# Business Jet 2 Tail Engines
-Asobo_CJ4 = C25C,C25B,C25A,C500,C501,C510,C525,C526
-Asobo_Longitude = C700,C750
-# Turbo Prop
-Asobo_TBM930 = TBM9
-
-[icaoVariations]
-Lufthansa = DLH,LHA,CLH
-BritishAirways = BAW,BA,SHT,CFE
-EasyJet = EZY,EJU,EZS
-TUI = TUI,TOM,TFL,THOM
-Eurowings = EWG,EWE
-Ryanair = RYR,RUK
-DHL = BCS,DHL,DAE,DHK
-Fedex = FDX,FEDEX
-Luxair = LUX,LGL
-WizzAir = WZZ,WUK
-VirginAtlantic = VIR,VOZ
-
-# this section is automatically managed by the UI - edit care
-[customData]
-customRules =
-`

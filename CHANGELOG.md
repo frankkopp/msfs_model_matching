@@ -2,17 +2,17 @@
 - Windows UI
 - DONE  
   - Make configuration savable
+  - Make configuration editable (simple version)
+  - Context click to edit livery custom data (one item)
+  - Add custom data for skipping, ICAO changes, Livery changes, 
 - ToDo:
+  - Context click to edit livery custom data (multiple items)
+  - Save should ask if existing file should be replaced (or create version copies)
+  - Make cmd line run possible - no gui
+  - Make configuration editable via forms
   - Verify configuration at start
   - General: complete UI with menu, toolbar, etc.
-  - Save should ask if existing file should be replaced (or create version copies)
-  - Add custom data for skipping, ICAO changes, Livery changes, 
-    - context click to edit livery custom data
-  - Make configuration editable
-  - Make cmd line run possible - no gui
-  
-
-  
+    
 ## v0.2
 - changed config format - separator : to ; (to be able to include drive letters)
 - added configuration and handling for custom liveries (override or fixing of meta data)

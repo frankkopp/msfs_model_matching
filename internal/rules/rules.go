@@ -137,7 +137,7 @@ func SortIcaoKeys(m map[string]map[string][]string) []string {
 	return keys
 }
 
-// SortIcaoKeys as go does not support a sorted map iteration we use a slice of all keys and sort it
+// SortBaseKeys as go does not support a sorted map iteration we use a slice of all keys and sort it
 // Could probably be done with generics
 func SortBaseKeys(m map[string][]string) []string {
 	keys := make([]string, len(m))

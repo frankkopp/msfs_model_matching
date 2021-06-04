@@ -51,20 +51,6 @@ func configTab() TabPage {
 			TextLabel{
 				Text: "Be very careful as it is not very robust and might destroy your configuration.",
 			},
-			// Composite{Layout: HBox{},
-			// 	Children: []Widget{
-			// 		TextLabel{Text: "Livery Folder: ", MinSize: Size{Width: 150, Height: 15}},
-			// 		TextLabel{Text: config.Configuration.Ini.Section("paths").Key("liveryDir").Value()},
-			// 		HSpacer{},
-			// 	},
-			// },
-			// Composite{Layout: HBox{},
-			// 	Children: []Widget{
-			// 		TextLabel{Text: "Output File: ", MinSize: Size{Width: 150, Height: 15}},
-			// 		TextLabel{Text: config.Configuration.Ini.Section("paths").Key("outputFile").Value()},
-			// 		HSpacer{},
-			// 	},
-			// },
 			TextEdit{
 				AssignTo: &ConfigIniText,
 				Text:     "",
@@ -79,16 +65,11 @@ func configTab() TabPage {
 				Layout: HBox{MarginsZero: true},
 				Children: []Widget{
 					PushButton{
-						Text: "Load to view",
-						OnClicked: func() {
-							var tmp bytes.Buffer
-							config.Configuration.Ini.WriteTo(&tmp)
-							ConfigIniText.SetText(tmp.String())
-							StatusBar6.SetText(fmt.Sprintf("Configuration loaded."))
-						},
+						Text:      "Discard changes",
+						OnClicked: LoadToView,
 					},
 					PushButton{
-						Text: "Use",
+						Text: "Apply changes",
 						OnClicked: func() {
 							// TODO: catch error
 							config.Configuration.LoadFromView(ConfigIniText.Text())
@@ -107,4 +88,12 @@ func configTab() TabPage {
 			},
 		},
 	}
+}
+
+func LoadToView() {
+	var tmp bytes.Buffer
+	config.Configuration.Ini.WriteTo(&tmp)
+	ConfigIniText.SetText(tmp.String())
+	ConfigIniText.SetTextSelection(1, 1)
+	StatusBar6.SetText(fmt.Sprintf("Configuration loaded."))
 }

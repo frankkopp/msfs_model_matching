@@ -69,7 +69,8 @@ func rulesTab() TabPage {
 						Text: "Copy All",
 						OnClicked: func() {
 							walk.Clipboard().SetText(RulesText.Text())
-							StatusBar5.SetText(fmt.Sprint("Copied to Clipboard."))
+							StatusBar5.SetText(fmt.Sprint("Rules copied to Clipboard."))
+							StatusBar5.SetToolTipText(fmt.Sprint("Rules copied to Clipboard."))
 						},
 					},
 					PushButton{
@@ -78,7 +79,7 @@ func rulesTab() TabPage {
 							var output = strings.Builder{}
 							output.WriteString(RulesText.Text())
 							util.SaveToFile(config.Configuration.Ini.Section("paths").Key("outputFile").Value(), output)
-							StatusBar5.SetText(fmt.Sprintf("Saved to file: %s", config.Configuration.Ini.Section("paths").Key("outputFile").Value()))
+							StatusBar5.SetText(fmt.Sprintf("Rules saved to file: %s", config.Configuration.Ini.Section("paths").Key("outputFile").Value()))
 						},
 					},
 				},

@@ -32,6 +32,7 @@ import (
 	"regexp"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/frankkopp/MatchMaker/internal/customData"
 	"github.com/karrick/godirwalk"
 	"gopkg.in/ini.v1"
 )
@@ -55,6 +56,10 @@ func NewLivery(aircraftCfgFile string) *Livery {
 
 // ScanLiveryFolder find all aircraft.cfg files as paths with in the start directory
 func ScanLiveryFolder(filePath string) ([]*Livery, error) {
+	// load custom rules
+	custom := customData.NewCustomData(config.Configuration.Ini.Section("customData").Body())
+
+	// scan liveries
 	var liveries []*Livery
 	err := godirwalk.Walk(filePath, &godirwalk.Options{
 		Callback: func(osPathname string, de *godirwalk.Dirent) error {
@@ -62,7 +67,7 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 				if de.Name() != config.FileName {
 					return godirwalk.SkipThis
 				}
-				livery := processAircraftCfg(osPathname)
+				livery := processAircraftCfg(osPathname, custom)
 				if livery != nil {
 					liveries = append(liveries, livery)
 				}
@@ -80,7 +85,7 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 // icao = airline code
 // name = title of the variation
 // returns nil if file was invalid or not a livery aircraft.cfg
-func processAircraftCfg(path string) *Livery {
+func processAircraftCfg(path string, custom *customData.CustomData) *Livery {
 
 	// this is to catch bad *aircraft.cfg files which cause the ini library to throw a panic
 	defer func() {
@@ -89,8 +94,6 @@ func processAircraftCfg(path string) *Livery {
 		}
 	}()
 
-	var livery *Livery
-
 	cfg, err := ini.Load(path)
 	if err != nil {
 		return nil
@@ -98,16 +101,37 @@ func processAircraftCfg(path string) *Livery {
 
 	// Liveries always have a base container. We skip other files
 	if !cfg.Section("VARIATION").HasKey("base_container") {
+		fmt.Printf("No VARIATION section: %s\n", path)
 		return nil
 	}
 
-	livery = NewLivery(path)
-	(*livery).BaseContainer = getValue(cfg.Section("VARIATION").Key("base_container").Value())
+	baseContainer := getValue(cfg.Section("VARIATION").Key("base_container").Value())
+
+	// check if this base container s part of the configuration
+	if !config.Configuration.Ini.Section("defaultTypes").HasKey(baseContainer) {
+		fmt.Printf("Not part of default types: %s %s\n", baseContainer, path)
+		return nil
+	}
+
+	livery := NewLivery(path)
+	(*livery).BaseContainer = baseContainer
 	(*livery).Icao = cfg.Section("FLTSIM.0").Key("icao_airline").Value()
 	(*livery).Title = cfg.Section("FLTSIM.0").Key("title").Value()
 	if (*livery).Title != "" && (*livery).Icao != "" {
 		(*livery).Process = true
 		(*livery).Complete = true
+	}
+
+	// check for custom data and overwrite livery data if necessary
+	if custom.HasEntry(path) {
+		fmt.Println("CUSTOM for ", path)
+		entry := custom.GetEntry(path)
+		if entry.CustomIcao != "" {
+			(*livery).Icao = entry.CustomIcao
+			(*livery).Complete = true
+			(*livery).Custom = true
+		}
+		(*livery).Process = entry.Process && (*livery).Complete
 	}
 
 	// returns nil if file was not a belonging to a livery or new Livery instance otherwise

@@ -43,11 +43,10 @@ import (
 var (
 	LiveryTableView *walk.TableView
 	ScanButton      *walk.PushButton
+	model           = NewLiveryModel()
 )
 
 func parseTab() TabPage {
-
-	model := NewLiveryModel()
 
 	return TabPage{
 		Title:  "Parse Liveries",
@@ -55,7 +54,7 @@ func parseTab() TabPage {
 		Children: []Widget{
 			PushButton{
 				AssignTo:  &ScanButton,
-				Text:      "Scan",
+				Text:      fmt.Sprintf("Scan: %s", config.Configuration.Ini.Section("paths").Key("liveryDir").Value()),
 				OnClicked: model.ScanLiveriesAction,
 			},
 			TableView{
@@ -63,7 +62,9 @@ func parseTab() TabPage {
 				AlternatingRowBG: true,
 				CheckBoxes:       false,
 				ColumnsOrderable: true,
+				ColumnsSizable:   true,
 				MultiSelection:   true,
+
 				Columns: []TableViewColumn{
 					{Title: "Process", Width: 50, Alignment: AlignCenter},
 					{Title: "Livery Configuration File", Width: 650},
@@ -74,6 +75,9 @@ func parseTab() TabPage {
 				},
 				StyleCell: func(style *walk.CellStyle) {
 					item := model.items[style.Row()]
+					if item.Custom {
+						style.TextColor = walk.RGB(0, 130, 40)
+					}
 					switch style.Col() {
 					case 0:
 						if item.Complete {
@@ -92,18 +96,122 @@ func parseTab() TabPage {
 					}
 				},
 				Model: model,
-				OnSelectedIndexesChanged: func() {
-					// fmt.Printf("SelectedIndexes: %v\n", LiveryTableView.SelectedIndexes())
+				ContextMenuItems: []MenuItem{
+					Action{
+						Text:        "Activate Livery",
+						OnTriggered: OnItemActivatedAction,
+					},
+					Action{
+						Text:        "Deactivate Livery",
+						OnTriggered: OnItemDeactivatedAction,
+					},
+					Action{
+						Text:        "Edit custom",
+						OnTriggered: OnItemEditAction,
+					},
+					Action{
+						Text:        "Remove custom",
+						OnTriggered: OnItemRemoveCustomAction,
+					},
 				},
 				OnItemActivated: func() {
-					if model.items[LiveryTableView.CurrentIndex()].Complete {
-						model.items[LiveryTableView.CurrentIndex()].Process = !model.items[LiveryTableView.CurrentIndex()].Process
-						model.handleUpdate()
+					if model.items[LiveryTableView.CurrentIndex()].Process {
+						OnItemDeactivatedAction()
+					} else {
+						OnItemActivatedAction()
 					}
 				},
 			},
 		},
 	}
+}
+
+func OnItemRemoveCustomAction() {
+	if len(LiveryTableView.SelectedIndexes()) == 0 {
+		return
+	}
+	// we only allow to edit one item
+	first := LiveryTableView.SelectedIndexes()[0]
+	LiveryTableView.SetSelectedIndexes([]int{first})
+
+	// restore list data and remove custom data
+	selectedItem := model.items[first]
+	aircraftCfgFile := selectedItem.AircraftCfgFile
+	if !config.Configuration.Custom.HasEntry(aircraftCfgFile) {
+		return
+	}
+	selectedItem.Icao = config.Configuration.Custom.GetEntry(aircraftCfgFile).OriginalIcao
+	selectedItem.Custom = false
+	if err := config.Configuration.Custom.RemoveEntry(aircraftCfgFile); err != nil {
+		fmt.Printf("Could not remove entry for: %s\n", aircraftCfgFile)
+	}
+	config.Configuration.UpdateIniCustomData()
+}
+
+func OnItemEditAction() {
+	if len(LiveryTableView.SelectedIndexes()) == 0 {
+		return
+	}
+	// we only allow to edit one item
+	first := LiveryTableView.SelectedIndexes()[0]
+	LiveryTableView.SetSelectedIndexes([]int{first})
+
+	if dlg, err := EditDialog(MainWindowHandle, LiveryTableView.SelectedIndexes()); err != nil {
+		fmt.Print(err)
+	} else if dlg == walk.DlgCmdOK {
+		model.handleUpdate()
+	}
+}
+
+func OnItemDeactivatedAction() {
+	customData := config.Configuration.Custom
+
+	for _, i := range LiveryTableView.SelectedIndexes() {
+		item := model.items[i]
+		item.Process = false
+		item.Custom = true
+		if customData.HasEntry(item.AircraftCfgFile) {
+			customData.AddOrChangeEntry(
+				customData.GetEntry(item.AircraftCfgFile).AircraftCfgFile,
+				customData.GetEntry(item.AircraftCfgFile).Process,
+				customData.GetEntry(item.AircraftCfgFile).OriginalIcao,
+				customData.GetEntry(item.AircraftCfgFile).CustomIcao)
+		} else {
+			customData.AddOrChangeEntry(
+				item.AircraftCfgFile,
+				item.Process,
+				item.Icao,
+				"")
+		}
+	}
+	config.Configuration.UpdateIniCustomData()
+	model.handleUpdate()
+}
+
+func OnItemActivatedAction() {
+	customData := config.Configuration.Custom
+	for _, i := range LiveryTableView.SelectedIndexes() {
+		item := model.items[i]
+		if item.Complete {
+			item.Process = true
+			item.Custom = true
+			if customData.HasEntry(item.AircraftCfgFile) {
+				customData.AddOrChangeEntry(
+					customData.GetEntry(item.AircraftCfgFile).AircraftCfgFile,
+					item.Process,
+					customData.GetEntry(item.AircraftCfgFile).OriginalIcao,
+					customData.GetEntry(item.AircraftCfgFile).CustomIcao)
+			} else {
+				customData.AddOrChangeEntry(
+					item.AircraftCfgFile,
+					item.Process,
+					item.Icao,
+					"")
+			}
+			config.Configuration.UpdateIniCustomData()
+		}
+	}
+	model.handleUpdate()
 }
 
 type LiveryModel struct {
@@ -122,7 +230,7 @@ func NewLiveryModel() *LiveryModel {
 func (m *LiveryModel) ScanLiveriesAction() {
 	ScanButton.SetEnabled(false)
 	LiveryTableView.SetEnabled(false)
-	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", config.Configuration.Ini.Section("path").Key("liveryDir").Value()))
+	StatusBar1.SetText(fmt.Sprintf("Scanning %s ...", config.Configuration.Ini.Section("paths").Key("liveryDir").Value()))
 	StatusBar5.SetText(fmt.Sprint(""))
 	go m.scanLiveries()
 }
@@ -152,6 +260,8 @@ func (m *LiveryModel) handleUpdate() {
 	go m.buildXML()
 }
 
+// builds the actual XML from the calculated rules
+// not sure this belongs to this view class?
 func (m *LiveryModel) buildXML() {
 	RulesText.SetText("")
 	numberOfLines := 0

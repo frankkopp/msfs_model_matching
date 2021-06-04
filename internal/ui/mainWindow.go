@@ -28,6 +28,8 @@
 package ui
 
 import (
+	"fmt"
+
 	"github.com/frankkopp/MatchMaker/internal/config"
 
 	"github.com/lxn/walk"
@@ -41,6 +43,10 @@ var (
 
 func NewMainWindow() *MainWindow {
 
+	parseTabPage := parseTab()
+	rulesTabPage := rulesTab()
+	configTabPage := configTab()
+
 	mw := MainWindow{
 		AssignTo: &MainWindowHandle,
 		Title:    "vPilot MatchMaker " + config.Configuration.Version,
@@ -52,9 +58,18 @@ func NewMainWindow() *MainWindow {
 			TabWidget{
 				AssignTo: &TabBarHandle,
 				Pages: []TabPage{
-					parseTab(),
-					rulesTab(),
-					configTab(),
+					parseTabPage,
+					rulesTabPage,
+					configTabPage,
+				},
+				OnCurrentIndexChanged: func() {
+					switch TabBarHandle.CurrentIndex() {
+					case 0:
+						ScanButton.SetText(fmt.Sprintf("Scan: %s", config.Configuration.Ini.Section("paths").Key("liveryDir").Value()))
+					case 1:
+					case 2:
+						LoadToView()
+					}
 				},
 			},
 		},
