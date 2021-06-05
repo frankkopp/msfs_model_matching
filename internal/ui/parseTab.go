@@ -88,10 +88,15 @@ func parseTab() TabPage {
 					case 1:
 						// placeholder
 					case 2:
-						// placeholder
+						// mark base containers which are not configured to be mapped
+						if !config.Configuration.Ini.Section("defaultTypes").HasKey(item.BaseContainer) {
+							style.TextColor = walk.RGB(146, 43, 33)
+						}
 					case 3:
 						// placeholder
 					case 4:
+						// placeholder
+					case 5:
 						// placeholder
 					}
 				},

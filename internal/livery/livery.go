@@ -114,12 +114,6 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 
 	// check if this base container is part of the configuration otherwise skip
 	baseContainer := getBaseName(cfg.Section("VARIATION").Key("base_container").Value())
-	if !config.Configuration.Ini.Section("defaultTypes").HasKey(baseContainer) {
-		if *config.Configuration.Verbose {
-			fmt.Printf("Not part of default types: %s %s\n", baseContainer, path)
-		}
-		return nil
-	}
 
 	// create the Livery instance from the aircraft.cfg data
 	// TODO: possible improvement to also use additional data from this file
