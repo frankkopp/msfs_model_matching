@@ -35,7 +35,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/frankkopp/MatchMaker/internal/config"
+	. "github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/ui"
 )
 
@@ -47,10 +47,10 @@ const (
 func main() {
 
 	// take care of command line argument
-	versionInfo := flag.Bool("version", false, "prints version and exits")
-	config.Configuration.IniFileName = flag.String("ini", IniFile, "path to ini file")
-	liveryDirectory := flag.String("dir", "", "path where "+config.FileName+" are searched recursively")
+	Configuration.IniFileName = flag.String("ini", IniFile, "path to ini file")
+	liveryDirectory := flag.String("dir", "", "path where liveries are searched recursively")
 	outputFile := flag.String("outputFile", "", "path and filename to output file")
+	versionInfo := flag.Bool("version", false, "prints version and exits")
 
 	flag.Parse()
 
@@ -60,17 +60,21 @@ func main() {
 		return
 	}
 
-	config.Configuration.Version = Version
-	config.Configuration.LoadIni()
+	// store version in configuration
+	Configuration.Version = Version
 
+	// load ini file - it loads a default configuration if the ini file is not provided
+	Configuration.LoadIni()
+
+	// overwrite the ini configuration with command line options
 	if *liveryDirectory != "" {
-		config.Configuration.SetLiveryDirectory(*liveryDirectory)
+		Configuration.SetLiveryDirectory(*liveryDirectory)
 	}
-
 	if *outputFile != "" {
-		config.Configuration.SetOutputFile(*outputFile)
+		Configuration.SetOutputFile(*outputFile)
 	}
 
+	// create the main window and open it.
 	mainWindow := ui.NewMainWindow()
 	_, err := mainWindow.Run()
 	if err != nil {

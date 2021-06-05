@@ -25,18 +25,23 @@
  *
  */
 
+// Package livery contains a data structure and functions for representing liveries meta data as
+// read from an "aircraft.cfg" file. It also keep additional data for managing the
+// the rules generation process. E.g. skipping, custom icao, etc.
 package livery
 
 import (
 	"fmt"
-	"regexp"
+	"path/filepath"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
-	"github.com/frankkopp/MatchMaker/internal/customData"
 	"github.com/karrick/godirwalk"
 	"gopkg.in/ini.v1"
 )
 
+// Livery is a data structure for representing liveries meta data as
+// read from an "aircraft.cfg" file. It also keep additional data for managing the
+// the rules generation process. E.g. skipping, custom icao, etc.
 type Livery struct {
 	AircraftCfgFile string
 	BaseContainer   string
@@ -56,9 +61,6 @@ func NewLivery(aircraftCfgFile string) *Livery {
 
 // ScanLiveryFolder find all aircraft.cfg files as paths with in the start directory
 func ScanLiveryFolder(filePath string) ([]*Livery, error) {
-	// load custom rules
-	custom := customData.NewCustomData(config.Configuration.Ini.Section("customData").Body())
-
 	// scan liveries
 	var liveries []*Livery
 	err := godirwalk.Walk(filePath, &godirwalk.Options{
@@ -67,7 +69,7 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 				if de.Name() != config.FileName {
 					return godirwalk.SkipThis
 				}
-				livery := processAircraftCfg(osPathname, custom)
+				livery := processAircraftCfg(osPathname, config.Configuration.Custom)
 				if livery != nil {
 					liveries = append(liveries, livery)
 				}
@@ -85,15 +87,16 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 // icao = airline code
 // name = title of the variation
 // returns nil if file was invalid or not a livery aircraft.cfg
-func processAircraftCfg(path string, custom *customData.CustomData) *Livery {
+func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 
-	// this is to catch bad *aircraft.cfg files which cause the ini library to throw a panic
+	// this is to catch bad aircraft.cfg files which cause the ini library to throw a panic
 	defer func() {
 		if err := recover(); err != nil {
 			fmt.Println(err)
 		}
 	}()
 
+	// load the aircraft.cfg file as if it were a ini file
 	cfg, err := ini.Load(path)
 	if err != nil {
 		return nil
@@ -101,18 +104,21 @@ func processAircraftCfg(path string, custom *customData.CustomData) *Livery {
 
 	// Liveries always have a base container. We skip other files
 	if !cfg.Section("VARIATION").HasKey("base_container") {
-		fmt.Printf("No VARIATION section: %s\n", path)
+		fmt.Printf("Not a livery (No VARIATION section): %s\n", path)
 		return nil
 	}
 
-	baseContainer := getValue(cfg.Section("VARIATION").Key("base_container").Value())
-
-	// check if this base container s part of the configuration
+	// check if this base container is part of the configuration otherwise skip
+	baseContainer := getBaseName(cfg.Section("VARIATION").Key("base_container").Value())
 	if !config.Configuration.Ini.Section("defaultTypes").HasKey(baseContainer) {
 		fmt.Printf("Not part of default types: %s %s\n", baseContainer, path)
 		return nil
 	}
 
+	// create the Livery instance from the aircraft.cfg data
+	// TODO: possible improvement to also use additional data from this file
+	//  as sometimes there are several definitions in one aircraft.cfg file
+	//  E.g. FLTSIM.0, FLTSIM.1, FLTSIM.2, ...
 	livery := NewLivery(path)
 	(*livery).BaseContainer = baseContainer
 	(*livery).Icao = cfg.Section("FLTSIM.0").Key("icao_airline").Value()
@@ -124,13 +130,14 @@ func processAircraftCfg(path string, custom *customData.CustomData) *Livery {
 
 	// check for custom data and overwrite livery data if necessary
 	if custom.HasEntry(path) {
-		fmt.Println("CUSTOM for ", path)
+		fmt.Println("Custom data applied for ", path)
 		entry := custom.GetEntry(path)
 		if entry.CustomIcao != "" {
 			(*livery).Icao = entry.CustomIcao
 			(*livery).Complete = true
 			(*livery).Custom = true
 		}
+		// to be able to be processed the livery data has to be complete e.g. has an ICAO
 		(*livery).Process = entry.Process && (*livery).Complete
 	}
 
@@ -138,14 +145,11 @@ func processAircraftCfg(path string, custom *customData.CustomData) *Livery {
 	return livery
 }
 
-// extract the value from the aircraft.cfg line
-var regexValue = regexp.MustCompile(`^[.\\/]*(.*?)$`)
-
-// extract the value from the aircraft.cfg line
-func getValue(line string) string {
-	match := regexValue.FindStringSubmatch(line)
-	if len(match) <= 1 {
+// extract the base container name from the aircraft.cfg base_container value as this is often a relative path
+func getBaseName(line string) string {
+	filePath := filepath.Base(line)
+	if len(filePath) <= 1 {
 		return ""
 	}
-	return match[1]
+	return filePath
 }

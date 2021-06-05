@@ -25,13 +25,20 @@
  *
  */
 
+// Package config takes care of all configuration data and is accessible as "Singleton"
+// from the whole application. It contains a the ini-file configuration data and
+// the custom-data once it is extracted from the ini structure.
+// It handles loading and saving of the configuration and also provides synchronization
+// functions to keep custom-data and ini-data in sync.
 package config
 
 import (
 	"errors"
 	"fmt"
+	"io"
+	"log"
+	"os"
 
-	"github.com/frankkopp/MatchMaker/internal/customData"
 	"gopkg.in/ini.v1"
 )
 
@@ -47,27 +54,29 @@ var (
 type Config struct {
 	Version     string
 	IniFileName *string
-
-	Ini    *ini.File
-	Custom *customData.CustomData
+	Ini         *ini.File
+	Custom      *CustomData
+	Dirty       bool
 }
 
 // LoadIni loads configuration from the configured ini file and applies it
+// to the given configuration
 func (c *Config) LoadIni() {
 	tmpIni, err := ini.LoadSources(ini.LoadOptions{
 		UnparseableSections: []string{"customData"},
 	}, *c.IniFileName)
 	if err != nil {
-		fmt.Printf("No ini file found. Using default configuration: %v", err)
+		log.Printf("No ini file found. Using default configuration: %v", err)
 		tmpIni = loadDefaults()
 	}
 	// TODO: validate ini configuration
 	c.Ini = tmpIni
 	c.ExtractCustomDataFromIni()
+	c.Dirty = false
 }
 
-// LoadFromView loads configuration from the configuration view in the UI and applies it
-func (c *Config) LoadFromView(iniString string) error {
+// LoadFromString loads configuration from the configuration view in the UI and applies it
+func (c *Config) LoadFromString(iniString string) error {
 	tmpIni, err := ini.LoadSources(ini.LoadOptions{
 		UnparseableSections: []string{"customData"},
 	}, []byte(iniString))
@@ -76,7 +85,8 @@ func (c *Config) LoadFromView(iniString string) error {
 	}
 	// TODO: validate ini configuration
 	c.Ini = tmpIni
-	c.Custom = customData.NewCustomData(c.Ini.Section("customData").Body())
+	c.ExtractCustomDataFromIni()
+	c.Dirty = true
 	return nil
 }
 
@@ -86,30 +96,87 @@ func (c *Config) SaveIni() error {
 		return errors.New("no ini file path given")
 	}
 	c.UpdateIniCustomData()
-	err := c.Ini.SaveTo(*c.IniFileName)
+	err := makeBackup(*c.IniFileName)
 	if err != nil {
+		return err
+	}
+	err = c.Ini.SaveTo(*c.IniFileName)
+	if err != nil {
+		return err
+	}
+	c.Dirty = false
+	return nil
+}
+
+// creates a backup of an existing configuration file
+func makeBackup(s string) error {
+	if _, err := os.Stat(s); err == nil {
+		// exists
+		_, err := copyFile(s, s+".bak")
+		if err != nil {
+			return err
+		}
+	} else if os.IsNotExist(err) {
+		// does *not* exist
+		return nil
+	} else {
 		return err
 	}
 	return nil
 }
 
+func copyFile(src, dst string) (int64, error) {
+	sourceFileStat, err := os.Stat(src)
+	if err != nil {
+		return 0, err
+	}
+	if !sourceFileStat.Mode().IsRegular() {
+		return 0, fmt.Errorf("%s is not a regular file", src)
+	}
+	source, err := os.Open(src)
+	if err != nil {
+		return 0, err
+	}
+	defer source.Close()
+
+	destination, err := os.Create(dst)
+	if err != nil {
+		return 0, err
+	}
+	defer destination.Close()
+	nBytes, err := io.Copy(destination, source)
+	return nBytes, err
+}
+
+// ExtractCustomDataFromIni reads and parses the ini section "customData" and
+// stores it in a separate data structure.
+// It is important to keep this in sync.
 func (c *Config) ExtractCustomDataFromIni() {
-	c.Custom = customData.NewCustomData(c.Ini.Section("customData").Body())
+	c.Custom = newCustomData(c.Ini.Section("customData").Body())
 }
 
+// UpdateIniCustomData writes the separate custom-data data structure in the
+// "customData" section of the ini data structure.
+// It is important to keep this in sync.
 func (c *Config) UpdateIniCustomData() {
-	dataBody := c.Custom.GetDataBody()
-	c.Ini.Section("customData").SetBody(dataBody)
+	c.Ini.Section("customData").SetBody(c.Custom.GetDataBody())
+	c.Dirty = true
 }
 
+// SetLiveryDirectory sets the liveryDir value in the paths sections of the ini
 func (c *Config) SetLiveryDirectory(s string) {
 	c.Ini.Section("paths").Key("liveryDir").SetValue(s)
+	c.Dirty = true
 }
 
+// SetOutputFile sets the outputFile value in the paths sections of the ini
 func (c *Config) SetOutputFile(s string) {
 	c.Ini.Section("paths").Key("outputFile").SetValue(s)
+	c.Dirty = true
 }
 
+// loads default configuration from a hard coded string containing a
+// default ini file structure
 func loadDefaults() *ini.File {
 	tmpIni, err := ini.LoadSources(ini.LoadOptions{
 		UnparseableSections: []string{"customData"},

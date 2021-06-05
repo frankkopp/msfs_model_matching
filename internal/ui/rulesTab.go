@@ -40,20 +40,20 @@ import (
 )
 
 var (
-	RulesTabHandle *walk.TabPage
-	RulesText      *walk.TextEdit
+	rulesTabPage *walk.TabPage
+	rulesText    *walk.TextEdit
 )
 
 func rulesTab() TabPage {
 	// monoFont, _ := walk.NewFont("Lucida Sans Typewriter", 9, walk.FontBold)
 
 	return TabPage{
-		AssignTo: &RulesTabHandle,
+		AssignTo: &rulesTabPage,
 		Title:    "Generated Rules",
 		Layout:   VBox{},
 		Children: []Widget{
 			TextEdit{
-				AssignTo: &RulesText,
+				AssignTo: &rulesText,
 				Text:     "No rules generated yet.",
 				ReadOnly: true,
 				VScroll:  true,
@@ -68,16 +68,15 @@ func rulesTab() TabPage {
 					PushButton{
 						Text: "Copy All",
 						OnClicked: func() {
-							walk.Clipboard().SetText(RulesText.Text())
+							walk.Clipboard().SetText(rulesText.Text())
 							StatusBar5.SetText(fmt.Sprint("Rules copied to Clipboard."))
-							StatusBar5.SetToolTipText(fmt.Sprint("Rules copied to Clipboard."))
 						},
 					},
 					PushButton{
 						Text: "Save",
 						OnClicked: func() {
 							var output = strings.Builder{}
-							output.WriteString(RulesText.Text())
+							output.WriteString(rulesText.Text())
 							util.SaveToFile(config.Configuration.Ini.Section("paths").Key("outputFile").Value(), output)
 							StatusBar5.SetText(fmt.Sprintf("Rules saved to file: %s", config.Configuration.Ini.Section("paths").Key("outputFile").Value()))
 						},

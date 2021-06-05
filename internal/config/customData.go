@@ -25,15 +25,20 @@
  *
  */
 
-package customData
+// Package config customData represents a data structure which allows to overwrite
+// livery data to either complete the data (often ICAO airline code is missing) or
+// to disable liveries for the matching rules calculation
+package config
 
 import (
 	"errors"
 	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 )
 
+// Entry represents custom data for one particular livery
 type Entry struct {
 	AircraftCfgFile string
 	Process         bool
@@ -41,11 +46,16 @@ type Entry struct {
 	OriginalIcao    string
 }
 
+// CustomData holds a map of all entries mapped against their aircraft.cfg file-path
 type CustomData struct {
 	data map[string]*Entry
 }
 
-func NewCustomData(body string) *CustomData {
+// newCustomData creates an instance of CustomData from a given string holding the
+// custom-data data structure
+// The custom-data data structure is a 1 or more lines containing a ,-separated list of
+// <aircraft.cfg-Filepath>,<process [true|false]>,<original icao code>, <custom icao code>
+func newCustomData(body string) *CustomData {
 	newData := &CustomData{}
 	newData.data = map[string]*Entry{}
 
@@ -72,10 +82,14 @@ func NewCustomData(body string) *CustomData {
 	return newData
 }
 
+// NumberOfEntries  returns the number of custom data entries
 func (d CustomData) NumberOfEntries() int {
 	return len(d.data)
 }
 
+// AddOrChangeEntry adds a new entry or changes an existing entry to the custom-data data structure.
+// When entry exists overwrites the complete entry with the given parameters.
+// Updates the ini data structure (section "customData"
 func (d CustomData) AddOrChangeEntry(aircraftCfg string, process bool, originalIcao string, customIcao string) {
 	if aircraftCfg == "" {
 		return
@@ -86,8 +100,36 @@ func (d CustomData) AddOrChangeEntry(aircraftCfg string, process bool, originalI
 		CustomIcao:      customIcao,
 		OriginalIcao:    originalIcao,
 	}
+	Configuration.UpdateIniCustomData()
 }
 
+// SetProcessFlag creates a new custom-data entry or sets the process flag of an existing entry
+func (d CustomData) SetProcessFlag(aircraftCfg string, process bool, icao string) {
+	if d.HasEntry(aircraftCfg) {
+		d.GetEntry(aircraftCfg).Process = process
+	} else {
+		d.AddOrChangeEntry(
+			aircraftCfg,
+			process,
+			icao,
+			"")
+	}
+	Configuration.UpdateIniCustomData()
+}
+
+// RemoveEntry removes an entry from the custom-data data structure.
+// Returns error if entry not found.
+// Updates the ini data structure (section "customData"
+func (d CustomData) RemoveEntry(aircraftCfg string) error {
+	if _, ok := d.data[aircraftCfg]; !ok {
+		return errors.New("entry not found")
+	}
+	delete(d.data, aircraftCfg)
+	Configuration.UpdateIniCustomData()
+	return nil
+}
+
+// HasEntry checks if an entry exists.
 func (d CustomData) HasEntry(aircraftCfg string) bool {
 	if _, ok := d.data[aircraftCfg]; !ok {
 		return false
@@ -95,6 +137,7 @@ func (d CustomData) HasEntry(aircraftCfg string) bool {
 	return true
 }
 
+// GetEntry returns a pointer to the entry if found, nil otherwise.
 func (d CustomData) GetEntry(aircraftCfg string) *Entry {
 	if _, ok := d.data[aircraftCfg]; !ok {
 		return nil
@@ -102,18 +145,25 @@ func (d CustomData) GetEntry(aircraftCfg string) *Entry {
 	return d.data[aircraftCfg]
 }
 
-func (d CustomData) RemoveEntry(aircraftCfg string) error {
-	if _, ok := d.data[aircraftCfg]; !ok {
-		return errors.New("entry not found")
-	}
-	delete(d.data, aircraftCfg)
-	return nil
-}
-
+// GetDataBody returns a string with all custom-data as it would be stored into the ini file.
 func (d CustomData) GetDataBody() string {
 	body := strings.Builder{}
-	for key := range d.data {
+
+	for _, key := range sortKeys(d.data) {
 		fmt.Fprintf(&body, "%s,%t,%s,%s\r\n", key, d.data[key].Process, d.data[key].OriginalIcao, d.data[key].CustomIcao)
 	}
 	return body.String()
+}
+
+// sortKeys as go does not support a sorted map iteration we use a slice of all keys and sort it
+// Could probably be done with generics
+func sortKeys(m map[string]*Entry) []string {
+	keys := make([]string, len(m))
+	i := 0
+	for k := range m {
+		keys[i] = k
+		i++
+	}
+	sort.Strings(keys)
+	return keys
 }

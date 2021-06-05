@@ -49,7 +49,7 @@ Asobo_B787_10 = B78X,B788,B789,B762,B763,B764,B772,B773,B778,B779,B77L,B77W,A306
 # Wide/Heavy Jet 4 Engines
 Asobo_B747_8i = B741,B742,B743,B744,B748,B74F,A380,A388
 # Small/Light Jet 2 Tail Engines
-Aerosoft_CRJ_700 = CRJ7,CRJX,CRJ5,CRJ9
+# Aerosoft_CRJ_700 = CRJ7,CRJX,CRJ5,CRJ9
 # Business Jet 2 Tail Engines
 Asobo_CJ4 = C25C,C25B,C25A,C500,C501,C510,C525,C526
 Asobo_Longitude = C700,C750
@@ -69,7 +69,7 @@ Luxair = LUX,LGL
 WizzAir = WZZ,WUK
 VirginAtlantic = VIR,VOZ
 
-# this section is automatically managed by the UI - edit care
+# this section is automatically managed by the UI - edit with care
 [customData]
-customRules =
+Do not delete this line due to a bug in the ini library,false,,
 `

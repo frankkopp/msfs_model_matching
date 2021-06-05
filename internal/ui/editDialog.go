@@ -113,7 +113,6 @@ func EditDialog(owner walk.Form, indexes []int) (int, error) {
 							if customIcao.Text() != "" {
 								item.Custom = true
 								config.Configuration.Custom.AddOrChangeEntry(item.AircraftCfgFile, processCheck.Checked(), item.Icao, customIcao.Text())
-								config.Configuration.UpdateIniCustomData()
 								item.Complete = true
 								item.Process = processCheck.Checked()
 								item.Icao = customIcao.Text()

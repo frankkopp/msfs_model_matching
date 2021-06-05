@@ -25,6 +25,7 @@
  *
  */
 
+// Package ui implements a user interface based on the walk library (https://github.com/lxn/walk)
 package ui
 
 import (
@@ -37,8 +38,8 @@ import (
 )
 
 var (
-	MainWindowHandle *walk.MainWindow
-	TabBarHandle     *walk.TabWidget
+	mainWindow   *walk.MainWindow
+	tabBarWidget *walk.TabWidget
 )
 
 func NewMainWindow() *MainWindow {
@@ -48,27 +49,30 @@ func NewMainWindow() *MainWindow {
 	configTabPage := configTab()
 
 	mw := MainWindow{
-		AssignTo: &MainWindowHandle,
+		AssignTo: &mainWindow,
 		Title:    "vPilot MatchMaker " + config.Configuration.Version,
 		// MenuItems: NewMenuItem(),
 		// ToolBar: toolbar(),
-		Size:   Size{1400, 800},
+		Size:   Size{Width: 1400, Height: 800},
 		Layout: VBox{},
 		Children: []Widget{
 			TabWidget{
-				AssignTo: &TabBarHandle,
+				AssignTo: &tabBarWidget,
 				Pages: []TabPage{
 					parseTabPage,
 					rulesTabPage,
 					configTabPage,
 				},
+				// update data when viw (tab) is changed
 				OnCurrentIndexChanged: func() {
-					switch TabBarHandle.CurrentIndex() {
+					switch tabBarWidget.CurrentIndex() {
 					case 0:
-						ScanButton.SetText(fmt.Sprintf("Scan: %s", config.Configuration.Ini.Section("paths").Key("liveryDir").Value()))
+						scanButton.SetText(fmt.Sprintf("Scan: %s", config.Configuration.Ini.Section("paths").Key("liveryDir").Value()))
 					case 1:
+						// ignore
 					case 2:
 						LoadToView()
+						checkConfigChange()
 					}
 				},
 			},

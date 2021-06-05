@@ -47,31 +47,31 @@ func statusbar() []StatusBarItem {
 		StatusBarItem{
 			AssignTo: &StatusBar1,
 			Text:     "No liveries scanned yet.",
-			Width:    220,
+			Width:    240,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar2,
-			Text:     "",
-			Width:    220,
+			Text:     "No liveries queued yet.",
+			Width:    180,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar3,
-			Text:     "",
-			Width:    220,
+			Text:     "No mapping calculated yet.",
+			Width:    180,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar4,
-			Text:     "",
-			Width:    220,
+			Text:     "No rules generated yet.",
+			Width:    180,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar5,
-			Text:     "",
-			Width:    220,
+			Text:     "No rules yet",
+			Width:    300,
 		},
 		StatusBarItem{
 			AssignTo: &StatusBar6,
-			Text:     "",
+			Text:     "Configuration loaded.",
 			Width:    220,
 		},
 	}
