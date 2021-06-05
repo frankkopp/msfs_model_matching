@@ -11,11 +11,11 @@
   - configuration dirty logic for status bar
   - Make cmd line run possible - no gui
   - remember window position
+  - https://ini.unknwon.io/docs/howto/work_with_values autoslice
 - ToDo:
   - Verify configuration at start
   - Make configuration editable via forms
   - General: complete UI with menu, toolbar, etc.
-  - https://ini.unknwon.io/docs/howto/work_with_values autoslice
     
 ## v0.2
 - changed config format - separator : to ; (to be able to include drive letters)

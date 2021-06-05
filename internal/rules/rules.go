@@ -126,11 +126,8 @@ func findIcaoVariations(l *livery.Livery, icaoVariations map[string][]string) []
 func readConfig(section *ini.Section) map[string][]string {
 	data := map[string][]string{}
 	for _, s := range section.Keys() {
-		tokens := strings.Split(s.Value(), ",")
-		for _, t := range tokens {
-			t = strings.TrimSpace(t)
-			data[s.Name()] = append(data[s.Name()], t)
-		}
+		tokens := s.Strings(",") // it is possible to use the key object directly to get to the value
+		data[s.Name()] = append(data[s.Name()], tokens...)
 	}
 	return data
 }
