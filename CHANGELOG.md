@@ -1,6 +1,11 @@
-## v0.3 (in progress)
-- Windows UI
+## v1.1 (planned)
+TODO:
+- Make configuration editable via forms
+- General: complete UI with menu, toolbar, etc.
+
+## v1.0 (in progress)
 - DONE  
+  - Windows UI
   - Make configuration savable
   - Make configuration editable (simple version)
   - Context click to edit livery custom data (one item)
@@ -12,10 +17,6 @@
   - Make cmd line run possible - no gui
   - remember window position
   - https://ini.unknwon.io/docs/howto/work_with_values autoslice
-- ToDo:
-  - Verify configuration at start
-  - Make configuration editable via forms
-  - General: complete UI with menu, toolbar, etc.
     
 ## v0.2
 - changed config format - separator : to ; (to be able to include drive letters)

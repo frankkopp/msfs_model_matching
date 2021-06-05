@@ -66,7 +66,8 @@ func NewMainWindow() (*walk.MainWindow, error) {
 				OnCurrentIndexChanged: func() {
 					switch tabBarWidget.CurrentIndex() {
 					case 0:
-						scanButton.SetText(fmt.Sprintf("Scan: %s", config.Configuration.Ini.Section("paths").Key("liveryDir").Value()))
+						scanButton.SetText(fmt.Sprintf("Scan: %s",
+							config.Configuration.Ini.Section("paths").Key("liveryDir").Value()))
 					case 1:
 						// ignore
 					case 2:
@@ -83,26 +84,10 @@ func NewMainWindow() (*walk.MainWindow, error) {
 	}
 
 	// restore previous window state from ini
-	x, err := strconv.Atoi(config.Configuration.Ini.Section("application").Key("PosX").Value())
-	if err != nil {
-		x = 20
-	}
-	y, err := strconv.Atoi(config.Configuration.Ini.Section("application").Key("PosY").Value())
-	if err != nil {
-		y = 20
-	}
-	w, _ := strconv.Atoi(config.Configuration.Ini.Section("application").Key("Width").Value())
-	if err != nil {
-		w = 1400
-	}
-	h, _ := strconv.Atoi(config.Configuration.Ini.Section("application").Key("Height").Value())
-	if err != nil {
-		h = 600
-	}
-	mainWindow.SetX(x)
-	mainWindow.SetY(y)
-	mainWindow.SetWidth(w)
-	mainWindow.SetHeight(h)
+	mainWindow.SetX(config.Configuration.Ini.Section("application").Key("PosX").MustInt(20))
+	mainWindow.SetY(config.Configuration.Ini.Section("application").Key("PosY").MustInt(20))
+	mainWindow.SetWidth(config.Configuration.Ini.Section("application").Key("Width").MustInt(1400))
+	mainWindow.SetHeight(config.Configuration.Ini.Section("application").Key("Height").MustInt(600))
 
 	// store window state to ini when closing window
 	mainWindow.Closing().Attach(func(canceled *bool, reason walk.CloseReason) {
