@@ -149,7 +149,7 @@ func (m *LiveryModel) Value(row, col int) interface{} {
 }
 
 // Sort Called by the TableView to sort the model.
-func (m *LiveryModel) Sort(col int, order walk.SortOrder) {
+func (m *LiveryModel) Sort(col int, order walk.SortOrder) error {
 	m.sortColumn, m.sortOrder = col, order
 
 	sort.SliceStable(m.items, func(i, j int) bool {
@@ -194,8 +194,5 @@ func (m *LiveryModel) Sort(col int, order walk.SortOrder) {
 		panic("unreachable")
 	})
 
-	err := m.SorterBase.Sort(col, order)
-	if err != nil {
-		// ignore
-	}
+	return m.SorterBase.Sort(col, order)
 }
