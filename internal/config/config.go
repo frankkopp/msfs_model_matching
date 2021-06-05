@@ -160,7 +160,8 @@ func (c *Config) ExtractCustomDataFromIni() {
 // "customData" section of the ini data structure.
 // It is important to keep this in sync.
 func (c *Config) UpdateIniCustomData() {
-	c.Ini.Section("customData").SetBody(c.Custom.GetDataBody())
+	dataBody := c.Custom.GetDataBody()
+	c.Ini.Section("customData").SetBody(dataBody + "-- end of customData - do not delete --\r\n")
 	c.Dirty = true
 }
 

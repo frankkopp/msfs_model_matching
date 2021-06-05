@@ -117,8 +117,7 @@ func main() {
 	}
 
 	// create the main window and open it.
-	mainWindow := ui.NewMainWindow()
-	_, err := mainWindow.Run()
+	_, err := ui.NewMainWindow()
 	if err != nil {
 		log.Fatal("Could not create main window: " + err.Error())
 	}

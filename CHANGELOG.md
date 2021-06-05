@@ -10,8 +10,8 @@
   - Save should ask if existing file should be replaced (or create version copies)
   - configuration dirty logic for status bar
   - Make cmd line run possible - no gui
-- ToDo:
   - remember window position
+- ToDo:
   - Verify configuration at start
   - Make configuration editable via forms
   - General: complete UI with menu, toolbar, etc.

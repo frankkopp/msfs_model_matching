@@ -30,9 +30,9 @@ package ui
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
-
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
 )
@@ -42,18 +42,17 @@ var (
 	tabBarWidget *walk.TabWidget
 )
 
-func NewMainWindow() *MainWindow {
+func NewMainWindow() (*walk.MainWindow, error) {
 
 	parseTabPage := parseTab()
 	rulesTabPage := rulesTab()
 	configTabPage := configTab()
 
-	mw := MainWindow{
+	err := MainWindow{
 		AssignTo: &mainWindow,
 		Title:    "vPilot MatchMaker " + config.Configuration.Version,
 		// MenuItems: NewMenuItem(),
 		// ToolBar: toolbar(),
-		Size:   Size{Width: 1400, Height: 800},
 		Layout: VBox{},
 		Children: []Widget{
 			TabWidget{
@@ -78,7 +77,54 @@ func NewMainWindow() *MainWindow {
 			},
 		},
 		StatusBarItems: statusbar(),
+	}.Create()
+	if err != nil {
+		return nil, err
 	}
 
-	return &mw
+	// restore previous window state from ini
+	x, err := strconv.Atoi(config.Configuration.Ini.Section("application").Key("PosX").Value())
+	if err != nil {
+		x = 20
+	}
+	y, err := strconv.Atoi(config.Configuration.Ini.Section("application").Key("PosY").Value())
+	if err != nil {
+		y = 20
+	}
+	w, _ := strconv.Atoi(config.Configuration.Ini.Section("application").Key("Width").Value())
+	if err != nil {
+		w = 1400
+	}
+	h, _ := strconv.Atoi(config.Configuration.Ini.Section("application").Key("Height").Value())
+	if err != nil {
+		h = 600
+	}
+	mainWindow.SetX(x)
+	mainWindow.SetY(y)
+	mainWindow.SetWidth(w)
+	mainWindow.SetHeight(h)
+
+	// store window state to ini when closing window
+	mainWindow.Closing().Attach(func(canceled *bool, reason walk.CloseReason) {
+		fmt.Printf("Saving window state...\n")
+		err := config.Configuration.Ini.Reload()
+		if err != nil {
+			fmt.Printf("Could not reload ini: %s\n", err)
+			return
+		}
+		config.Configuration.Ini.Section("application").Key("PosX").SetValue(strconv.Itoa(mainWindow.X()))
+		config.Configuration.Ini.Section("application").Key("PosY").SetValue(strconv.Itoa(mainWindow.Y()))
+		config.Configuration.Ini.Section("application").Key("Width").SetValue(strconv.Itoa(mainWindow.Width()))
+		config.Configuration.Ini.Section("application").Key("Height").SetValue(strconv.Itoa(mainWindow.Height()))
+		err = config.Configuration.SaveIni()
+		if err != nil {
+			fmt.Printf("Could not save ini: %s\n", err)
+			return
+		}
+		fmt.Println("Done. Exiting.")
+	})
+
+	mainWindow.Run()
+
+	return mainWindow, nil
 }
