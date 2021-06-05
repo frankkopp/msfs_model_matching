@@ -30,7 +30,6 @@ package ui
 import (
 	"fmt"
 	"sort"
-	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
@@ -99,67 +98,11 @@ func (m *LiveryModel) onUpdateList() {
 // builds the actual XML from the calculated rules
 func (m *LiveryModel) buildXML() {
 	rulesText.SetText("")
-	numberOfLines := 0
 
-	var output strings.Builder
-	output.Grow(100_000)
+	output, numberOfLines := rules.GenerateXML()
 
-	// Header
-	output.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n")
-	output.WriteString("<ModelMatchRuleSet>\r\n\r\n")
-
-	// default rules
-	fmt.Fprintf(&output, "<!-- DEFAULTS -->\r\n")
-	for _, icaoKey := range rules.SortIcaoKeys(rules.Rules) {
-		if icaoKey != "default" {
-			continue
-		}
-		for _, baseKey := range rules.SortBaseKeys(rules.TypeVariations) {
-			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
-			for _, typeKey := range rules.TypeVariations[baseKey] {
-				fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
-				for i, livery := range rules.Rules[icaoKey][typeKey] {
-					if i != 0 {
-						fmt.Fprint(&output, "//")
-					}
-					fmt.Fprintf(&output, "%s", livery)
-				}
-				fmt.Fprintf(&output, "\" />\r\n")
-			}
-		}
-	}
-	fmt.Fprintf(&output, "\r\n")
-
-	// ICAO based rules
-	fmt.Fprintf(&output, "<!-- PER ICAO RULES -->\r\n")
-	for _, icaoKey := range rules.SortIcaoKeys(rules.Rules) {
-		if icaoKey == "default" {
-			continue
-		}
-		fmt.Fprintf(&output, "<!-- ICAO:  %s -->\r\n", icaoKey)
-		for _, baseKey := range rules.SortBaseKeys(rules.TypeVariations) {
-			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
-			for _, typeKey := range rules.TypeVariations[baseKey] {
-				if len(rules.Rules[icaoKey][typeKey]) == 0 {
-					continue
-				}
-				fmt.Fprintf(&output, "<ModelMatchRule CallsignPrefix=\"%s\" TypeCode=\"%s\" ModelName=\"", icaoKey, typeKey)
-				for i, livery := range rules.Rules[icaoKey][typeKey] {
-					if i != 0 {
-						fmt.Fprint(&output, "//")
-					}
-					fmt.Fprintf(&output, "%s", livery)
-				}
-				fmt.Fprintf(&output, "\" />\r\n")
-				numberOfLines++
-			}
-		}
-		fmt.Fprintf(&output, "\r\n")
-	}
-
-	// Footer
-	output.WriteString("\r\n</ModelMatchRuleSet>\r\n")
-	rulesText.SetText(output.String())
+	// show in view
+	rulesText.SetText(output)
 	StatusBar3.SetText(fmt.Sprintf("Generated %d mappings.", rules.Counter))
 	StatusBar4.SetText(fmt.Sprintf("Generated %d rule lines.", numberOfLines))
 	StatusBar5.SetText(fmt.Sprint("Rules not copied or saved yet."))

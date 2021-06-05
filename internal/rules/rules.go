@@ -31,6 +31,7 @@
 package rules
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 
@@ -158,4 +159,70 @@ func SortBaseKeys(m map[string][]string) []string {
 	}
 	sort.Strings(keys)
 	return keys
+}
+
+// GenerateXML generates a string with the XML representation of all matching rules.
+// Also returns the number of rules generated.
+func GenerateXML() (string, int) {
+	numberOfLines := 0
+
+	var output strings.Builder
+	output.Grow(100_000)
+
+	// Header
+	output.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n")
+	output.WriteString("<ModelMatchRuleSet>\r\n\r\n")
+
+	// default rules
+	fmt.Fprintf(&output, "<!-- DEFAULTS -->\r\n")
+	for _, icaoKey := range SortIcaoKeys(Rules) {
+		if icaoKey != "default" {
+			continue
+		}
+		for _, baseKey := range SortBaseKeys(TypeVariations) {
+			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
+			for _, typeKey := range TypeVariations[baseKey] {
+				fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
+				for i, livery := range Rules[icaoKey][typeKey] {
+					if i != 0 {
+						fmt.Fprint(&output, "//")
+					}
+					fmt.Fprintf(&output, "%s", livery)
+				}
+				fmt.Fprintf(&output, "\" />\r\n")
+			}
+		}
+	}
+	fmt.Fprintf(&output, "\r\n")
+
+	// ICAO based rules
+	fmt.Fprintf(&output, "<!-- PER ICAO RULES -->\r\n")
+	for _, icaoKey := range SortIcaoKeys(Rules) {
+		if icaoKey == "default" {
+			continue
+		}
+		fmt.Fprintf(&output, "<!-- ICAO:  %s -->\r\n", icaoKey)
+		for _, baseKey := range SortBaseKeys(TypeVariations) {
+			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
+			for _, typeKey := range TypeVariations[baseKey] {
+				if len(Rules[icaoKey][typeKey]) == 0 {
+					continue
+				}
+				fmt.Fprintf(&output, "<ModelMatchRule CallsignPrefix=\"%s\" TypeCode=\"%s\" ModelName=\"", icaoKey, typeKey)
+				for i, livery := range Rules[icaoKey][typeKey] {
+					if i != 0 {
+						fmt.Fprint(&output, "//")
+					}
+					fmt.Fprintf(&output, "%s", livery)
+				}
+				fmt.Fprintf(&output, "\" />\r\n")
+				numberOfLines++
+			}
+		}
+		fmt.Fprintf(&output, "\r\n")
+	}
+
+	// Footer
+	output.WriteString("\r\n</ModelMatchRuleSet>\r\n")
+	return output.String(), numberOfLines
 }

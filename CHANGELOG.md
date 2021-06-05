@@ -9,12 +9,12 @@
   - CleanUp and restructure 
   - Save should ask if existing file should be replaced (or create version copies)
   - configuration dirty logic for status bar
-- ToDo:
   - Make cmd line run possible - no gui
-  - Make configuration editable via forms
-  - Verify configuration at start
-  - General: complete UI with menu, toolbar, etc.
+- ToDo:
   - remember window position
+  - Verify configuration at start
+  - Make configuration editable via forms
+  - General: complete UI with menu, toolbar, etc.
     
 ## v0.2
 - changed config format - separator : to ; (to be able to include drive letters)

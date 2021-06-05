@@ -34,9 +34,13 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"strings"
 
 	. "github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/frankkopp/MatchMaker/internal/livery"
+	"github.com/frankkopp/MatchMaker/internal/rules"
 	"github.com/frankkopp/MatchMaker/internal/ui"
+	"github.com/frankkopp/MatchMaker/internal/util"
 )
 
 const (
@@ -50,6 +54,8 @@ func main() {
 	Configuration.IniFileName = flag.String("ini", IniFile, "path to ini file")
 	liveryDirectory := flag.String("dir", "", "path where liveries are searched recursively")
 	outputFile := flag.String("outputFile", "", "path and filename to output file")
+	noUI := flag.Bool("noUI", false, "does not use ui and starts directly with given configuration")
+	Configuration.Verbose = flag.Bool("verbose", false, "prints additional information to console")
 	versionInfo := flag.Bool("version", false, "prints version and exits")
 
 	flag.Parse()
@@ -72,6 +78,42 @@ func main() {
 	}
 	if *outputFile != "" {
 		Configuration.SetOutputFile(*outputFile)
+	}
+
+	if *noUI {
+		fmt.Printf("vPilot MatchMaker by Frank Kopp %s\n", Version)
+		fmt.Println("======================================================================================")
+
+		fmt.Printf("Searching for liveries in folder %s...\n",
+			Configuration.Ini.Section("paths").Key("liveryDir").Value())
+		liveries, err := livery.ScanLiveryFolder(
+			Configuration.Ini.Section("paths").Key("liveryDir").Value())
+		if err != nil {
+			log.Print(err)
+			return
+		}
+		fmt.Printf("Found %d liveries.\n", len(liveries))
+
+		fmt.Printf("Calculating rules...\n")
+		rules.CalculateRules(liveries)
+		fmt.Printf("Calculated %d rules.\n", rules.Counter)
+
+		// save rules to file
+		outputFile := Configuration.Ini.Section("paths").Key("outputFile").Value()
+		fmt.Printf("Safing vmr file to %s...\n", outputFile)
+		var output = strings.Builder{}
+		xml, number := rules.GenerateXML()
+		output.WriteString(xml)
+		err = util.SaveToFile(outputFile, output)
+		if err != nil {
+			log.Print(err)
+			return
+		}
+		fmt.Printf("Rules file written to %s (%d XML rules).\n", outputFile, number)
+
+		fmt.Printf("DONE\n")
+
+		return
 	}
 
 	// create the main window and open it.

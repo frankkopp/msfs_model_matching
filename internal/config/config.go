@@ -57,6 +57,7 @@ type Config struct {
 	Ini         *ini.File
 	Custom      *CustomData
 	Dirty       bool
+	Verbose     *bool
 }
 
 // LoadIni loads configuration from the configured ini file and applies it

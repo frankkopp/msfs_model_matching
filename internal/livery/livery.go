@@ -32,6 +32,7 @@ package livery
 
 import (
 	"fmt"
+	"log"
 	"path/filepath"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
@@ -92,7 +93,7 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 	// this is to catch bad aircraft.cfg files which cause the ini library to throw a panic
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Println(err)
+			log.Println(err)
 		}
 	}()
 
@@ -104,14 +105,18 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 
 	// Liveries always have a base container. We skip other files
 	if !cfg.Section("VARIATION").HasKey("base_container") {
-		fmt.Printf("Not a livery (No VARIATION section): %s\n", path)
+		if *config.Configuration.Verbose {
+			fmt.Printf("Not a livery (No VARIATION section): %s\n", path)
+		}
 		return nil
 	}
 
 	// check if this base container is part of the configuration otherwise skip
 	baseContainer := getBaseName(cfg.Section("VARIATION").Key("base_container").Value())
 	if !config.Configuration.Ini.Section("defaultTypes").HasKey(baseContainer) {
-		fmt.Printf("Not part of default types: %s %s\n", baseContainer, path)
+		if *config.Configuration.Verbose {
+			fmt.Printf("Not part of default types: %s %s\n", baseContainer, path)
+		}
 		return nil
 	}
 
@@ -130,7 +135,9 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 
 	// check for custom data and overwrite livery data if necessary
 	if custom.HasEntry(path) {
-		fmt.Println("Custom data applied for ", path)
+		if *config.Configuration.Verbose {
+			fmt.Println("Custom data applied for ", path)
+		}
 		entry := custom.GetEntry(path)
 		if entry.CustomIcao != "" {
 			(*livery).Icao = entry.CustomIcao
