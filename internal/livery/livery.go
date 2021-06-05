@@ -34,6 +34,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
+	"regexp"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/karrick/godirwalk"
@@ -126,8 +127,8 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 	//  E.g. FLTSIM.0, FLTSIM.1, FLTSIM.2, ...
 	livery := NewLivery(path)
 	(*livery).BaseContainer = baseContainer
-	(*livery).Icao = cfg.Section("FLTSIM.0").Key("icao_airline").Value()
-	(*livery).Title = cfg.Section("FLTSIM.0").Key("title").Value()
+	(*livery).Title = cleanUp(cfg.Section("FLTSIM.0").Key("title").Value())
+	(*livery).Icao = cleanUp(cfg.Section("FLTSIM.0").Key("icao_airline").Value())
 	if (*livery).Title != "" && (*livery).Icao != "" {
 		(*livery).Process = true
 		(*livery).Complete = true
@@ -150,6 +151,14 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 
 	// returns nil if file was not a belonging to a livery or new Livery instance otherwise
 	return livery
+}
+
+func cleanUp(value string) string {
+	reg, err := regexp.Compile("[\"]+")
+	if err != nil {
+		log.Fatal(err)
+	}
+	return reg.ReplaceAllString(value, "")
 }
 
 // extract the base container name from the aircraft.cfg base_container value as this is often a relative path
