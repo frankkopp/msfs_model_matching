@@ -22,7 +22,7 @@ can be edited within the UI.
 - You can also download example ini- and rules-files from the /examples folder 
 
 If you do not like to download and run an exe file then you can always compile by yourself:
-- Download and install go (v1.15 or newer) here: https://golang.org/dl/
+- Download and install go (v1.16 or newer) here: https://golang.org/dl/
 - Build: go.exe build -o .\matchmaker.exe ./cmd/matchmaker/...
 - Start: .\matchmaker.exe
 
