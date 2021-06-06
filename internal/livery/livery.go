@@ -123,10 +123,8 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 	(*livery).BaseContainer = baseContainer
 	(*livery).Title = cleanUp(cfg.Section("FLTSIM.0").Key("title").Value())
 	(*livery).Icao = cleanUp(cfg.Section("FLTSIM.0").Key("icao_airline").Value())
-	if (*livery).Title != "" && (*livery).Icao != "" {
-		(*livery).Process = true
-		(*livery).Complete = true
-	}
+	(*livery).Complete = (*livery).Title != "" && (*livery).Icao != ""
+	(*livery).Process = (*livery).Complete && config.Configuration.Ini.Section("defaultTypes").HasKey(livery.BaseContainer)
 
 	// check for custom data and overwrite livery data if necessary
 	if custom.HasEntry(path) {
@@ -140,7 +138,7 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 			(*livery).Custom = true
 		}
 		// to be able to be processed the livery data has to be complete e.g. has an ICAO
-		(*livery).Process = entry.Process && (*livery).Complete
+		(*livery).Process = entry.Process && (*livery).Complete && config.Configuration.Ini.Section("defaultTypes").HasKey(livery.BaseContainer)
 	}
 
 	// returns nil if file was not a belonging to a livery or new Livery instance otherwise
