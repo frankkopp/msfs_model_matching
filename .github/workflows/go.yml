@@ -37,13 +37,13 @@ jobs:
         with:
           name: matchmaker
           path: |
-            config/*
+            README.md
             matchmaker.exe
 
       - name: Zipping
         uses: papeloto/action-zip@v1
         with:
-          files: config/ matchmaker.exe README.md
+          files: matchmaker.exe README.md
           recursive: false
           dest: matchmaker.zip
 

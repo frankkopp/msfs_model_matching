@@ -44,7 +44,7 @@ import (
 )
 
 const (
-	Version = "v1.0alpha1"
+	Version = "v1.0beta1"
 	IniFile = "matchmaker.ini"
 )
 
