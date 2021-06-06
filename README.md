@@ -1,4 +1,4 @@
-# MSFS VATSIM vPilot MatchMaker
+# MSFS VATSIM vPilot MatchMaker v1.0 beta 1
 [![Go](https://github.com/frankkopp/msfs_model_matching/actions/workflows/go.yml/badge.svg)](https://github.com/frankkopp/msfs_model_matching/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/frankkopp/msfs_model_matching)](https://goreportcard.com/report/github.com/frankkopp/msfs_model_matching)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/frankkopp/WorkerPool/blob/master/LICENSE)
@@ -12,7 +12,7 @@ can be edited within the UI.
 
 ## Download
 
-- Current Release: https://github.com/frankkopp/msfs_model_matching/releases/tag/v0.2
+- Current Release: https://github.com/frankkopp/msfs_model_matching/releases/download/v1.0beta1
 - Latest build from commits to master: https://github.com/frankkopp/msfs_model_matching/releases/tag/latest
 
 ## Installation
