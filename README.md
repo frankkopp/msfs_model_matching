@@ -21,8 +21,12 @@ can be edited within the UI.
 - When started, the app creates a default ini which can be saved to disk from the UI 
 - You can also download example ini- and rules-files from the /examples folder 
 
-## Configuration
+If you do not like to download and run an exe file then you can always compile by yourself:
+- Download and install go (v1.15) here: https://golang.org/dl/
+- Build: go.exe build -o .\matchmaker.exe ./cmd/matchmaker/...
+- Start: .\matchmaker.exe
 
+## Configuration
 ### matchmaker.ini
 This contains all configuration for the application. It covers several sections:
 - [paths]
@@ -69,14 +73,48 @@ The tabs are:
 - Parse Liveries: 
   - This has a list of all found liveries and there status. Livery metadata can be edited here and 
     liveries can be activated and deactivated.
-    Click on the large Scan button so start the search for liveries in the configured folder. 
-    ![img.png](img/img.png)
-    ![img_1.png](img/img_1.png)
+    
+    Click on the large Scan button so start the search for liveries in the configured folder.
+    
+  - How to read the list:
+    
+    - Process column:
+      - green: livery can be used in rules
+      - livery can't be used (ICAO missing)
+      - check-mark 
+        - when set livery will be used (NOT skipped)
+        - when not set livery will be skipped
+       
+    - Line is green and Custom column has checkmark: there is a custom rule for this Livery
+  
+    - Base Container column:
+      - if this is red the Base Container is not configured to be used. Add a default livery and 
+        mapping to at least one ICAO if you want to use this livery.
+        Of course the plane has to be installed in MSFS - e.g. "Aerosoft_CRJ_700", or others
+        ````
+        [defaultTypes]
+        NEW_PLANE_MODEL = DEFAULT-LIVERY1, DEFAULT-LIVERY2
+        [typeVariations]
+        NEW_PLANE_MODEL = ICAO1, ICAO2
+        ````
+  
+![img.png](img/img.png)
+![img_1.png](img/img_1.png)
+
+- Context menu:
+  - Edit: to edit the metadata of the livery - basically only ICAO codes are editable
+  - Remove: removes any custom rules for the Livery
+  - Activate/Deactivate: use to activate/deactive multiple selected liveries
+    
+![img.png](img.png)
+
 - Generated Rules:
   - This tab show the generated rules for vPilot
     Every time a change to the list is made all rules a (re-)generated with the most current configuration.
   - Rules can then be copied to clipboard or saved to file for direct use by vPilot.
-    ![img_2.png](img/img_2.png)
+  
+  ![img_2.png](img/img_2.png)
+
 - Configuration:
   - This tab shows a simple text editor to edit the ini directly in the UI.
   - Make sure to "Apply changes" when you edit the configuration and also use "Save to File" if you want to make your 
