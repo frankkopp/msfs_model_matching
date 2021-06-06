@@ -12,7 +12,7 @@ can be edited within the UI.
 
 ## Download
 
-- Current Release: https://github.com/frankkopp/msfs_model_matching/releases/download/v1.0beta1
+- Current Release: https://github.com/frankkopp/msfs_model_matching/releases/tag/v1.0beta1
 - Latest build from commits to master: https://github.com/frankkopp/msfs_model_matching/releases/tag/latest
 
 ## Installation
