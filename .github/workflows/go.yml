@@ -1,7 +1,9 @@
 name: Go
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - develop
   pull_request:
     branches: [ master ]
 
@@ -25,7 +27,7 @@ jobs:
           go-version: 1.15
 
       - name: Build
-        run: go build -v -o matchmaker.exe ./...
+        run: go build -x -v -o . ./...
 
 #     - name: Test
 #       run: go test -v ./...
