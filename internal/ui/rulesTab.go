@@ -29,11 +29,9 @@ package ui
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
-	"github.com/frankkopp/MatchMaker/internal/util"
-
+	"github.com/frankkopp/MatchMaker/internal/rules"
 	// "github.com/lxn/walk"
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
@@ -75,9 +73,11 @@ func rulesTab() TabPage {
 					PushButton{
 						Text: "Save",
 						OnClicked: func() {
-							var output = strings.Builder{}
-							output.WriteString(rulesText.Text())
-							util.SaveToFile(config.Configuration.Ini.Section("paths").Key("outputFile").Value(), output)
+							err := rules.SaveRulesToFile()
+							if err != nil {
+								StatusBar5.SetText(fmt.Sprintf("Saving rules to %s failed: %s", config.Configuration.Ini.Section("paths").Key("outputFile").Value(), err))
+								return
+							}
 							StatusBar5.SetText(fmt.Sprintf("Rules saved to file: %s", config.Configuration.Ini.Section("paths").Key("outputFile").Value()))
 						},
 					},
