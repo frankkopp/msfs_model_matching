@@ -72,7 +72,7 @@ matchmaker.exe
 The UI is simple and has three tabs and a statusbar. 
 The tabs are:
 - Parse Liveries: 
-  - This has a list of all found liveries and there status. Livery metadata can be edited here and 
+  - This has a list of all found liveries and their status. Livery metadata can be edited here and 
     liveries can be activated and deactivated.
     
     Click on the large Scan button so start the search for liveries in the configured folder.
