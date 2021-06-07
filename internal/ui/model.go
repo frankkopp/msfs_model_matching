@@ -102,7 +102,7 @@ func (m *LiveryModel) buildXML() {
 	output, numberOfLines := rules.GenerateXML()
 
 	// show in view
-	rulesText.SetText(output)
+	rulesText.SetText(output.String())
 	StatusBar3.SetText(fmt.Sprintf("Generated %d mappings.", rules.Counter))
 	StatusBar4.SetText(fmt.Sprintf("Generated %d rule lines.", numberOfLines))
 	StatusBar5.SetText(fmt.Sprint("Rules not copied or saved yet."))
