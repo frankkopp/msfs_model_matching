@@ -1,5 +1,5 @@
 /*
- *  VATSIM vPilot MatchMaker
+ * MatchMaker - create model matching files for VATSIM vPilot
  *
  *  MIT License
  *
@@ -47,7 +47,7 @@ const (
 )
 
 var (
-	// Configuration is a pseudo Singleton for config
+	// Configuration is a pseudo Singleton for Config
 	Configuration = Config{}
 )
 
@@ -97,7 +97,7 @@ func (c *Config) SaveIni() error {
 		return errors.New("no ini file path given")
 	}
 	c.UpdateIniCustomData()
-	err := makeBackup(*c.IniFileName)
+	err := createBackup(*c.IniFileName)
 	if err != nil {
 		return err
 	}
@@ -110,7 +110,7 @@ func (c *Config) SaveIni() error {
 }
 
 // creates a backup of an existing configuration file
-func makeBackup(s string) error {
+func createBackup(s string) error {
 	if _, err := os.Stat(s); err == nil {
 		// exists
 		_, err := copyFile(s, s+".bak")
@@ -126,6 +126,7 @@ func makeBackup(s string) error {
 	return nil
 }
 
+// helper for creating backup files
 func copyFile(src, dst string) (int64, error) {
 	sourceFileStat, err := os.Stat(src)
 	if err != nil {

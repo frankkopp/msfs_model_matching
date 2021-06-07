@@ -1,5 +1,5 @@
 /*
- *  VATSIM vPilot MatchMaker
+ * MatchMaker - create model matching files for VATSIM vPilot
  *
  *  MIT License
  *
@@ -112,7 +112,6 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 		return nil
 	}
 
-	// check if this base container is part of the configuration otherwise skip
 	baseContainer := getBaseName(cfg.Section("VARIATION").Key("base_container").Value())
 
 	// create the Livery instance from the aircraft.cfg data
@@ -145,6 +144,8 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 	return livery
 }
 
+// some liveries unfortunately have incorrect structures - mostly non closing "
+// these issues will be corrected here
 func cleanUp(value string) string {
 	reg, err := regexp.Compile("[\"]+")
 	if err != nil {

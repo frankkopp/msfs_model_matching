@@ -1,5 +1,5 @@
 /*
- *  VATSIM vPilot MatchMaker
+ * MatchMaker - create model matching files for VATSIM vPilot
  *
  *  MIT License
  *
@@ -80,40 +80,12 @@ func main() {
 		Configuration.SetOutputFile(*outputFile)
 	}
 
+	// Command line processing without any UI
 	if *noUI {
-		fmt.Printf("vPilot MatchMaker by Frank Kopp %s\n", Version)
-		fmt.Println("======================================================================================")
-
-		fmt.Printf("Searching for liveries in folder %s...\n",
-			Configuration.Ini.Section("paths").Key("liveryDir").Value())
-		liveries, err := livery.ScanLiveryFolder(
-			Configuration.Ini.Section("paths").Key("liveryDir").Value())
-		if err != nil {
-			log.Print(err)
-			return
+		if commandLineProcessing() {
+			os.Exit(0)
 		}
-		fmt.Printf("Found %d liveries.\n", len(liveries))
-
-		fmt.Printf("Calculating rules...\n")
-		rules.CalculateRules(liveries)
-		fmt.Printf("Calculated %d rules.\n", rules.Counter)
-
-		// save rules to file
-		outputFile := Configuration.Ini.Section("paths").Key("outputFile").Value()
-		fmt.Printf("Safing vmr file to %s...\n", outputFile)
-		var output = strings.Builder{}
-		xml, number := rules.GenerateXML()
-		output.WriteString(xml)
-		err = util.SaveToFile(outputFile, output)
-		if err != nil {
-			log.Print(err)
-			return
-		}
-		fmt.Printf("Rules file written to %s (%d XML rules).\n", outputFile, number)
-
-		fmt.Printf("DONE\n")
-
-		return
+		os.Exit(1)
 	}
 
 	// create the main window and open it.
@@ -121,6 +93,41 @@ func main() {
 	if err != nil {
 		log.Fatal("Could not create main window: " + err.Error())
 	}
+}
+
+func commandLineProcessing() bool {
+	fmt.Printf("vPilot MatchMaker by Frank Kopp %s\n", Version)
+	fmt.Println("======================================================================================")
+
+	fmt.Printf("Searching for liveries in folder %s...\n",
+		Configuration.Ini.Section("paths").Key("liveryDir").Value())
+	liveries, err := livery.ScanLiveryFolder(
+		Configuration.Ini.Section("paths").Key("liveryDir").Value())
+	if err != nil {
+		log.Print(err)
+		return true
+	}
+	fmt.Printf("Found %d liveries.\n", len(liveries))
+
+	fmt.Printf("Calculating rules...\n")
+	rules.CalculateRules(liveries)
+	fmt.Printf("Calculated %d rules.\n", rules.Counter)
+
+	// save rules to file
+	outputFile := Configuration.Ini.Section("paths").Key("outputFile").Value()
+	fmt.Printf("Safing vmr file to %s...\n", outputFile)
+	var output = strings.Builder{}
+	xml, number := rules.GenerateXML()
+	output.WriteString(xml)
+	err = util.SaveToFile(outputFile, output)
+	if err != nil {
+		log.Print(err)
+		return true
+	}
+	fmt.Printf("Rules file written to %s (%d XML rules).\n", outputFile, number)
+
+	fmt.Printf("DONE\n")
+	return false
 }
 
 func printVersionInfo() {
