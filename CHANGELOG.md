@@ -1,10 +1,4 @@
-## v1.1 (planned)
-TODO:
-- Make configuration editable via forms
-- General: complete UI with menu, toolbar, etc.
-
-## v1.0 (in progress)
-- DONE  
+## v1.0 (beta 1)
   - Windows UI
   - Make configuration savable
   - Make configuration editable (simple version)

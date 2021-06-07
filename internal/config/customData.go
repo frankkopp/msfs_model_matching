@@ -1,5 +1,5 @@
 /*
- *  VATSIM vPilot MatchMaker
+ * MatchMaker - create model matching files for VATSIM vPilot
  *
  *  MIT License
  *
@@ -59,6 +59,8 @@ func newCustomData(body string) *CustomData {
 	newData := &CustomData{}
 	newData.data = map[string]*Entry{}
 
+	// read in the customData body block and split at newline.
+	// then split each line via separator "," and add it to the data structure
 	lines := strings.Split(body, "\n")
 	for _, line := range lines {
 		tokens := strings.Split(line, ",")
