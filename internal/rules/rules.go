@@ -37,14 +37,17 @@ import (
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
+	"github.com/frankkopp/MatchMaker/internal/util"
 	"gopkg.in/ini.v1"
 )
 
 var (
-	Counter = 0
 
 	// Rules map[ICAO][TypeCode][]liveries
 	Rules = map[string]map[string][]string{}
+
+	Counter = 0
+	Dirty   = false
 
 	DefaultTypes   map[string][]string
 	TypeVariations map[string][]string
@@ -103,6 +106,7 @@ func CalculateRules(liveries []*livery.Livery) {
 			}
 		}
 	}
+	Dirty = true
 }
 
 // check if the ICAO has alternative ICAOs which should use the same livery
@@ -160,7 +164,7 @@ func SortBaseKeys(m map[string][]string) []string {
 
 // GenerateXML generates a string with the XML representation of all matching rules.
 // Also returns the number of rules generated.
-func GenerateXML() (string, int) {
+func GenerateXML() (strings.Builder, int) {
 	numberOfLines := 0
 
 	var output strings.Builder
@@ -221,5 +225,15 @@ func GenerateXML() (string, int) {
 
 	// Footer
 	output.WriteString("\r\n</ModelMatchRuleSet>\r\n")
-	return output.String(), numberOfLines
+	return output, numberOfLines
+}
+
+func SaveRulesToFile() error {
+	var output, _ = GenerateXML()
+	err := util.SaveToFile(config.Configuration.Ini.Section("paths").Key("outputFile").Value(), output)
+	if err != nil {
+		return err
+	}
+	Dirty = false
+	return nil
 }

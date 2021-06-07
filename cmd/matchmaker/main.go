@@ -34,13 +34,11 @@ import (
 	"log"
 	"os"
 	"runtime"
-	"strings"
 
 	. "github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
 	"github.com/frankkopp/MatchMaker/internal/rules"
 	"github.com/frankkopp/MatchMaker/internal/ui"
-	"github.com/frankkopp/MatchMaker/internal/util"
 )
 
 const (
@@ -118,11 +116,10 @@ func commandLineProcessing() error {
 	// Step 3: write rules to file as XML
 	outputFile := Configuration.Ini.Section("paths").Key("outputFile").Value()
 	fmt.Printf("Saving vmr file to %s...\n", outputFile)
-	var output = strings.Builder{}
-	xml, number := rules.GenerateXML()
-	output.WriteString(xml)
-	err = util.SaveToFile(outputFile, output)
+	_, number := rules.GenerateXML()
+	err = rules.SaveRulesToFile()
 	if err != nil {
+		fmt.Printf("Failed to save rules to file%s\n", outputFile)
 		return err
 	}
 	fmt.Printf("Rules file written to %s (%d XML rules).\n", outputFile, number)
