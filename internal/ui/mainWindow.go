@@ -91,6 +91,9 @@ func NewMainWindow() (*walk.MainWindow, error) {
 
 	// store window state to ini when closing window
 	mainWindow.Closing().Attach(func(canceled *bool, reason walk.CloseReason) {
+
+		// Prompt user when rules not saved or configuration is nt saved.
+
 		fmt.Printf("Saving window state...\n")
 		err := config.Configuration.Ini.Reload()
 		if err != nil {
