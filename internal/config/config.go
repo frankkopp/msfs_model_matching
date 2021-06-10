@@ -35,10 +35,9 @@ package config
 import (
 	"errors"
 	"fmt"
-	"io"
 	"log"
-	"os"
 
+	"github.com/frankkopp/MatchMaker/internal/util"
 	"gopkg.in/ini.v1"
 )
 
@@ -96,58 +95,17 @@ func (c *Config) SaveIni() error {
 	if *c.IniFileName == "" {
 		return errors.New("no ini file path given")
 	}
-	c.UpdateIniCustomData()
-	err := createBackup(*c.IniFileName)
+	err := util.CreateBackup(*c.IniFileName)
 	if err != nil {
 		return err
 	}
+	c.UpdateIniCustomData()
 	err = c.Ini.SaveTo(*c.IniFileName)
 	if err != nil {
 		return err
 	}
 	c.Dirty = false
 	return nil
-}
-
-// creates a backup of an existing configuration file
-func createBackup(s string) error {
-	if _, err := os.Stat(s); err == nil {
-		// exists
-		_, err := copyFile(s, s+".bak")
-		if err != nil {
-			return err
-		}
-	} else if os.IsNotExist(err) {
-		// does *not* exist
-		return nil
-	} else {
-		return err
-	}
-	return nil
-}
-
-// helper for creating backup files
-func copyFile(src, dst string) (int64, error) {
-	sourceFileStat, err := os.Stat(src)
-	if err != nil {
-		return 0, err
-	}
-	if !sourceFileStat.Mode().IsRegular() {
-		return 0, fmt.Errorf("%s is not a regular file", src)
-	}
-	source, err := os.Open(src)
-	if err != nil {
-		return 0, err
-	}
-	defer source.Close()
-
-	destination, err := os.Create(dst)
-	if err != nil {
-		return 0, err
-	}
-	defer destination.Close()
-	nBytes, err := io.Copy(destination, source)
-	return nBytes, err
 }
 
 // ExtractCustomDataFromIni reads and parses the ini section "customData" and

@@ -229,8 +229,13 @@ func GenerateXML() (strings.Builder, int) {
 }
 
 func SaveRulesToFile() error {
+	outPutFile := config.Configuration.Ini.Section("paths").Key("outputFile").String()
+	err := util.CreateBackup(outPutFile)
+	if err != nil {
+		return err
+	}
 	var output, _ = GenerateXML()
-	err := util.SaveToFile(config.Configuration.Ini.Section("paths").Key("outputFile").Value(), output)
+	err = util.SaveToFile(outPutFile, output)
 	if err != nil {
 		return err
 	}

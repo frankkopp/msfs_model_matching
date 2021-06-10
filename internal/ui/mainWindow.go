@@ -110,6 +110,9 @@ func NewMainWindow() (*walk.MainWindow, error) {
 		}
 
 		// Save window state to ini
+		// For this we reload the ini to not overwrite anything and only change the window state.
+		// If the user has changed the configuration a prompt to save it will come to save it before
+		// this call here.
 		fmt.Printf("Saving window state...\n")
 		err := config.Configuration.Ini.Reload()
 		if err != nil {

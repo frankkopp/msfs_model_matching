@@ -28,6 +28,8 @@
 package util
 
 import (
+	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -58,4 +60,45 @@ func SaveToFile(outPutFile string, output strings.Builder) error {
 		return err
 	}
 	return nil
+}
+
+// CreateBackup creates a backup of an existing file
+func CreateBackup(s string) error {
+	if _, err := os.Stat(s); err == nil {
+		// exists
+		_, err := CopyFile(s, s+".bak")
+		if err != nil {
+			return err
+		}
+	} else if os.IsNotExist(err) {
+		// does *not* exist
+		return nil
+	} else {
+		return err
+	}
+	return nil
+}
+
+// CopyFile helper for creating backup files
+func CopyFile(src, dst string) (int64, error) {
+	sourceFileStat, err := os.Stat(src)
+	if err != nil {
+		return 0, err
+	}
+	if !sourceFileStat.Mode().IsRegular() {
+		return 0, fmt.Errorf("%s is not a regular file", src)
+	}
+	source, err := os.Open(src)
+	if err != nil {
+		return 0, err
+	}
+	defer source.Close()
+
+	destination, err := os.Create(dst)
+	if err != nil {
+		return 0, err
+	}
+	defer destination.Close()
+	nBytes, err := io.Copy(destination, source)
+	return nBytes, err
 }
