@@ -20,7 +20,7 @@ jobs:
           REPO: ${{ github.repository }}
           SHA: ${{ github.sha }}
           REF: ${{ github.ref }}
-          LABEL: "Todo"
+          LABEL: "TODO"
           MIN_WORDS: 3
           MIN_CHARACTERS: 40
           ADD_LIMIT: 1
