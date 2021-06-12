@@ -25,8 +25,8 @@ jobs:
           LABEL: "TODO"
           MIN_WORDS: 3
           MIN_CHARACTERS: 40
-          ADD_LIMIT: 1
-          CLOSE_LIMIT: 1
+          ADD_LIMIT: 0
+          CLOSE_LIMIT: 0
           ROOT: "."
           PROJECT_COLUMN_ID: 14630483
           INCLUDE_PATTERN: "\\.go$"
