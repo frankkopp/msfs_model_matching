@@ -33,13 +33,13 @@ jobs:
 #     - name: Test
 #       run: go test -v ./...
 
-      - name: Uploading files
-        uses: actions/upload-artifact@v2
-        with:
-          name: matchmaker
-          path: |
-            README.md
-            matchmaker.exe
+#      - name: Uploading files
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: matchmaker
+#          path: |
+#            README.md
+#            matchmaker.exe
 
       - name: Zipping
         uses: papeloto/action-zip@v1
