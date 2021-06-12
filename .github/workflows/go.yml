@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - develop
+      - dev_*
   pull_request:
     branches:
       - master
@@ -33,15 +33,16 @@ jobs:
 #     - name: Test
 #       run: go test -v ./...
 
-      - name: Uploading files
-        uses: actions/upload-artifact@v2
-        with:
-          name: matchmaker
-          path: |
-            README.md
-            matchmaker.exe
+#      - name: Uploading files
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: matchmaker
+#          path: |
+#            README.md
+#            matchmaker.exe
 
       - name: Zipping
+        if: github.ref == 'refs/heads/master'
         uses: papeloto/action-zip@v1
         with:
           files: matchmaker.exe README.md
@@ -49,6 +50,7 @@ jobs:
           dest: matchmaker.zip
 
       - name: Deploy Latest Build
+        if: github.ref == 'refs/heads/master'
         uses: WebFreak001/deploy-nightly@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
