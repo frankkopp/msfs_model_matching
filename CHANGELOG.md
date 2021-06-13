@@ -1,4 +1,4 @@
-## v1.0 (beta 1)
+## v1.0
   - Windows UI
   - Make configuration savable
   - Make configuration editable (simple version)
