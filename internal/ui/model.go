@@ -196,3 +196,8 @@ func (m *LiveryModel) Sort(col int, order walk.SortOrder) error {
 
 	return m.SorterBase.Sort(col, order)
 }
+
+func (m *LiveryModel) Clear() {
+	m.items = []*livery.Livery{}
+	m.onUpdateList()
+}

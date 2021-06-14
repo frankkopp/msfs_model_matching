@@ -180,9 +180,15 @@ func GenerateXML() (strings.Builder, int) {
 		if icaoKey != "default" {
 			continue
 		}
-		for _, baseKey := range SortBaseKeys(TypeVariations) {
+		if len(Rules[icaoKey]) == 0 {
+			break
+		}
+		for _, baseKey := range SortBaseKeys(DefaultTypes) { // only iterate over types with default livery
 			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
 			for _, typeKey := range TypeVariations[baseKey] {
+				if len(Rules[icaoKey][typeKey]) == 0 {
+					continue
+				}
 				fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
 				for i, livery := range Rules[icaoKey][typeKey] {
 					if i != 0 {
@@ -199,11 +205,11 @@ func GenerateXML() (strings.Builder, int) {
 	// ICAO based rules
 	fmt.Fprintf(&output, "<!-- PER ICAO RULES -->\r\n")
 	for _, icaoKey := range SortIcaoKeys(Rules) {
-		if icaoKey == "default" {
+		if icaoKey == "default" || len(Rules[icaoKey]) == 0 {
 			continue
 		}
-		fmt.Fprintf(&output, "<!-- ICAO:  %s -->\r\n", icaoKey)
-		for _, baseKey := range SortBaseKeys(TypeVariations) {
+		fmt.Fprintf(&output, "<!-- ICAO: %s -->\r\n", icaoKey)
+		for _, baseKey := range SortBaseKeys(DefaultTypes) { // only iterate over types with default livery
 			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
 			for _, typeKey := range TypeVariations[baseKey] {
 				if len(Rules[icaoKey][typeKey]) == 0 {

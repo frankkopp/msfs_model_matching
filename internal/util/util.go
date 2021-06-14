@@ -62,19 +62,38 @@ func SaveToFile(outPutFile string, output strings.Builder) error {
 	return nil
 }
 
+// IsDir checks if the given path is a directory
+func IsDir(path string) (bool, error) {
+	info, err := os.Stat(path)
+	if err == nil && info.IsDir() {
+		return true, nil
+	}
+	return false, err
+}
+
+// PathExists checks if a given path exists (file or directoy)
+func PathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+
 // CreateBackup creates a backup of an existing file
 func CreateBackup(s string) error {
-	if _, err := os.Stat(s); err == nil {
-		// exists
+	exists, err := PathExists(s)
+	if err != nil {
+		return err
+	}
+	if exists {
 		_, err := CopyFile(s, s+".bak")
 		if err != nil {
 			return err
 		}
-	} else if os.IsNotExist(err) {
-		// does *not* exist
-		return nil
-	} else {
-		return err
 	}
 	return nil
 }
