@@ -132,6 +132,5 @@ func NewMainWindow() (*walk.MainWindow, error) {
 	})
 
 	mainWindow.Run()
-
 	return mainWindow, nil
 }

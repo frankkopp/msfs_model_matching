@@ -55,8 +55,9 @@ type Config struct {
 	IniFileName *string
 	Ini         *ini.File
 	Custom      *CustomData
-	Dirty       bool
 	Verbose     *bool
+	Valid       bool
+	Dirty       bool
 }
 
 // LoadIni loads configuration from the configured ini file and applies it
@@ -69,9 +70,9 @@ func (c *Config) LoadIni() {
 		log.Printf("No ini file found. Using default configuration: %v", err)
 		tmpIni = loadDefaults()
 	}
-	// TODO: validate ini configuration
 	c.Ini = tmpIni
 	c.ExtractCustomDataFromIni()
+	c.Valid = c.validateIniConfig()
 	c.Dirty = false
 }
 
@@ -83,11 +84,32 @@ func (c *Config) LoadFromString(iniString string) error {
 	if err != nil {
 		return err
 	}
-	// TODO: validate ini configuration
 	c.Ini = tmpIni
 	c.ExtractCustomDataFromIni()
+	c.Valid = c.validateIniConfig()
 	c.Dirty = true
 	return nil
+}
+
+// check configuration ini for the minimal settings to run meaningful
+func (c *Config) validateIniConfig() bool {
+	// livery directory
+	if c.Ini.Section("paths").Key("liveryDir").String() == "" {
+		return false
+	}
+	isDir, err := util.IsDir(c.Ini.Section("paths").Key("liveryDir").String())
+	if err != nil || !isDir {
+		return false
+	}
+	// output file
+	if c.Ini.Section("paths").Key("outputFile").String() == "" {
+		return false
+	}
+	isDir, err = util.IsDir(c.Ini.Section("paths").Key("outputFile").String())
+	if err != nil || isDir { // file does not exist or path exists but is directory
+		return false
+	}
+	return true
 }
 
 // SaveIni save the current configuration to the configured ini file

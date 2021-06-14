@@ -55,6 +55,9 @@ func configTab() TabPage {
 			TextLabel{
 				Text: "Be very careful as it is not very robust and might destroy your configuration.",
 			},
+			TextLabel{
+				Text: "If the text is red the configuration is not valid (minimum required configuration).",
+			},
 			TextEdit{
 				AssignTo: &configIniText,
 				Text:     "",
@@ -106,11 +109,14 @@ func applyConfig() {
 		StatusBar6.SetText(fmt.Sprintf("Failed tp ally configuration: %s", err))
 		return
 	}
-	StatusBar6.SetText(fmt.Sprintf("Applied configuration."))
+	// when applying a new configuration we need to rescan to recalculate the rules
+	model.Clear()
+	StatusBar1.SetText(fmt.Sprintf("New configuration. Please Rescan"))
+	StatusBar6.SetText(fmt.Sprintf("Applied configuration. Please Rescan"))
 	apply.SetEnabled(false)
 	discard.SetEnabled(false)
 	go func() {
-		time.Sleep(1 * time.Second)
+		time.Sleep(2 * time.Second)
 		checkConfigChange()
 	}()
 }
@@ -130,6 +136,12 @@ func checkConfigChange() {
 	} else {
 		StatusBar6.SetText(fmt.Sprint("Configuration loaded."))
 	}
+	if config.Configuration.Valid {
+		configIniText.SetTextColor(walk.RGB(0, 0, 0))
+	} else {
+		configIniText.SetTextColor(walk.RGB(255, 0, 0))
+	}
+
 }
 
 // LoadToView loads the current configuration as ini-file text into the text edit view.
