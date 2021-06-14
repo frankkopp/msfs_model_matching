@@ -4,6 +4,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/frankkopp/msfs_model_matching)](https://goreportcard.com/report/github.com/frankkopp/msfs_model_matching)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/frankkopp/WorkerPool/blob/master/LICENSE)
 
+Intended for Microsoft Flight Simulator 2020 and VATSIM vPilot Client.
+
 Automatically generates a vPilot match making file (VMR) for all liveries in the given folder.
 It allows to configure the base-sim-plane-models to be used, the default-liveries to be used 
 and also a list of alternative ICAO codes for airlines which should use the same livery.
@@ -81,7 +83,7 @@ The tabs are:
     
     - Process column:
       - green: livery can be used in rules
-      - livery can't be used (ICAO missing)
+      - red: livery can't be used (ICAO missing)
       - check-mark 
         - when set livery will be used (NOT skipped)
         - when not set livery will be skipped
@@ -90,7 +92,7 @@ The tabs are:
   
     - Base Container column:
       - if this is red the Base Container is not configured to be used. Add a default livery and 
-        mapping to at least one ICAO if you want to use this livery.
+        a mapping to at least one ICAO if you want to use this livery.
         Of course the plane has to be installed in MSFS - e.g. "Aerosoft_CRJ_700", or others
         ````
         [defaultTypes]
@@ -110,8 +112,8 @@ The tabs are:
 ![img.png](img.png)
 
 - Generated Rules:
-  - This tab show the generated rules for vPilot
-    Every time a change to the list is made all rules a (re-)generated with the most current configuration.
+  - This tab show the generated rules for vPilot. Every time a change is made to the list all rules 
+    a (re-)generated with the most current configuration.
   - Rules can then be copied to clipboard or saved to file for direct use by vPilot.
   
   ![img_2.png](img/img_2.png)
