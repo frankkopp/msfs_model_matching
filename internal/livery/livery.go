@@ -35,6 +35,7 @@ import (
 	"log"
 	"path/filepath"
 	"regexp"
+	"strconv"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/karrick/godirwalk"
@@ -71,10 +72,7 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 				if de.Name() != config.FileName {
 					return godirwalk.SkipThis
 				}
-				livery := processAircraftCfg(osPathname, config.Configuration.Custom)
-				if livery != nil {
-					liveries = append(liveries, livery)
-				}
+				liveries = append(liveries, processAircraftCfg(osPathname, config.Configuration.Custom)...)
 			}
 			return nil
 		},
@@ -89,7 +87,7 @@ func ScanLiveryFolder(filePath string) ([]*Livery, error) {
 // icao = airline code
 // name = title of the variation
 // returns nil if file was invalid or not a livery aircraft.cfg
-func processAircraftCfg(path string, custom *config.CustomData) *Livery {
+func processAircraftCfg(path string, custom *config.CustomData) []*Livery {
 
 	// this is to catch bad aircraft.cfg files which cause the ini library to throw a panic
 	defer func() {
@@ -99,49 +97,71 @@ func processAircraftCfg(path string, custom *config.CustomData) *Livery {
 	}()
 
 	// load the aircraft.cfg file as if it were a ini file
-	cfg, err := ini.Load(path)
+	cfg, err := ini.InsensitiveLoad(path)
 	if err != nil {
 		return nil
 	}
 
+	isPlane := cfg.Section("GENERAL").Key("Category").String() == "airplane"
+	isVariation := cfg.Section("VARIATION").HasKey("base_container")
+
 	// Liveries always have a base container. We skip other files
-	if !cfg.Section("VARIATION").HasKey("base_container") {
+	if !isPlane && !isVariation {
 		if *config.Configuration.Verbose {
-			fmt.Printf("Not a livery (No VARIATION section): %s\n", path)
+			fmt.Printf("Not a plane or livery: %s\n", path)
 		}
 		return nil
 	}
 
-	baseContainer := getBaseName(cfg.Section("VARIATION").Key("base_container").Value())
+	var baseContainer string
+	if isVariation {
+		baseContainer = getBaseName(cfg.Section("VARIATION").Key("base_container").Value())
+		// fmt.Printf("BASE %s\n", baseContainer)
+	} else { // is plane
+		baseContainer = filepath.Base(filepath.Dir(path))
+		// fmt.Printf("PLANE %s\n", baseContainer)
+	}
 
-	// create the Livery instance from the aircraft.cfg data
-	// TODO: possible improvement to also use additional data from this file
-	//  as sometimes there are several definitions in one aircraft.cfg file
-	//  E.g. FLTSIM.0, FLTSIM.1, FLTSIM.2, ...
-	livery := NewLivery(path)
-	(*livery).BaseContainer = baseContainer
-	(*livery).Title = cleanUp(cfg.Section("FLTSIM.0").Key("title").Value())
-	(*livery).Icao = cleanUp(cfg.Section("FLTSIM.0").Key("icao_airline").Value())
-	(*livery).Complete = (*livery).Title != "" && (*livery).Icao != ""
-	(*livery).Process = (*livery).Complete && config.Configuration.Ini.Section("defaultTypes").HasKey(livery.BaseContainer)
+	var liveries []*Livery
+	for index := 0; cfg.Section("FLTSIM." + strconv.Itoa(index)).HasKey("title"); index++ {
+		// fmt.Printf("FLTSIM %d: %s\n", index, cfg.Section("FLTSIM."+strconv.Itoa(index)).Key("title").String())
 
-	// check for custom data and overwrite livery data if necessary
-	if custom.HasEntry(path) {
-		if *config.Configuration.Verbose {
-			fmt.Println("Custom data applied for ", path)
+		// generate a unique key from path and index
+		variationKey := getVariationKey(path, index)
+
+		// create the Livery instance from the aircraft.cfg data
+		livery := NewLivery(variationKey)
+		livery.BaseContainer = baseContainer
+		livery.Title = cleanUp(cfg.Section("FLTSIM." + strconv.Itoa(index)).Key("title").String())
+		livery.Icao = cleanUp(cfg.Section("FLTSIM." + strconv.Itoa(index)).Key("icao_airline").String())
+		livery.Complete = livery.Title != "" && livery.Icao != ""
+		livery.Process = livery.Complete && config.Configuration.Ini.Section("defaultTypes").HasKey(livery.BaseContainer)
+
+		// check for custom data and overwrite livery data if necessary
+		if custom.HasEntry(variationKey) {
+			if *config.Configuration.Verbose {
+				fmt.Println("Custom data applied for ", variationKey)
+			}
+			entry := custom.GetEntry(variationKey)
+			if entry.CustomIcao != "" {
+				livery.Icao = entry.CustomIcao
+				livery.Complete = true
+				livery.Custom = true
+			}
+			// to be able to be processed the livery data has to be complete e.g. has an ICAO
+			livery.Process = entry.Process && livery.Complete && config.Configuration.Ini.Section("defaultTypes").HasKey(livery.BaseContainer)
 		}
-		entry := custom.GetEntry(path)
-		if entry.CustomIcao != "" {
-			(*livery).Icao = entry.CustomIcao
-			(*livery).Complete = true
-			(*livery).Custom = true
-		}
-		// to be able to be processed the livery data has to be complete e.g. has an ICAO
-		(*livery).Process = entry.Process && (*livery).Complete && config.Configuration.Ini.Section("defaultTypes").HasKey(livery.BaseContainer)
+
+		// add to list
+		liveries = append(liveries, livery)
 	}
 
 	// returns nil if file was not a belonging to a livery or new Livery instance otherwise
-	return livery
+	return liveries
+}
+
+func getVariationKey(path string, index int) string {
+	return path + ":" + strconv.Itoa(index)
 }
 
 // some liveries unfortunately have incorrect structures - mostly non closing "

@@ -36,6 +36,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/frankkopp/MatchMaker/internal/util"
 	"gopkg.in/ini.v1"
@@ -143,6 +144,48 @@ func (c *Config) ExtractCustomDataFromIni() {
 func (c *Config) UpdateIniCustomData() {
 	dataBody := c.Custom.GetDataBody()
 	c.Ini.Section("customData").SetBody(dataBody + "-- end of customData - do not delete --\r\n")
+	c.Dirty = true
+}
+
+func (c *Config) IsDefaultLivery(base string, title string) bool {
+	if c.Ini.Section("defaultTypes").HasKey(base) {
+		for _, t := range c.Ini.Section("defaultTypes").Key(base).Strings(",") {
+			if t == title {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func (c *Config) AddLiveryToDefault(base string, title string) {
+	sep := ""
+	if c.Ini.Section("defaultTypes").Key(base).String() != "" {
+		sep = ","
+	}
+	c.Ini.Section("defaultTypes").Key(base).SetValue(c.Ini.Section("defaultTypes").Key(base).String() + sep + title)
+	c.Dirty = true
+}
+
+func (c *Config) RemoveLiveryFromDefault(base string, title string) {
+	fmt.Printf("Remove from default %s: %s\n", base, title)
+	if c.Ini.Section("defaultTypes").HasKey(base) {
+		sb := strings.Builder{}
+		for i, t := range c.Ini.Section("defaultTypes").Key(base).Strings(",") {
+			if t == title {
+				continue
+			}
+			if i != 0 {
+				sb.WriteString(",")
+			}
+			sb.WriteString(t)
+		}
+		if sb.Len() == 0 {
+			c.Ini.Section("defaultTypes").DeleteKey(base)
+		} else {
+			c.Ini.Section("defaultTypes").Key(base).SetValue(sb.String())
+		}
+	}
 	c.Dirty = true
 }
 

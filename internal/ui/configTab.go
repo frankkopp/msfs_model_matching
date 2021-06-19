@@ -63,6 +63,7 @@ func configTab() TabPage {
 				Text:     "",
 				ReadOnly: false,
 				VScroll:  true,
+				HScroll:  true,
 				Font: Font{
 					Family:    "Lucida Sans Typewriter",
 					PointSize: 8,

@@ -73,10 +73,7 @@ func parseTab() TabPage {
 				},
 				StyleCell: func(style *walk.CellStyle) {
 					item := model.items[style.Row()]
-					// style row
-					if item.Custom {
-						style.TextColor = walk.RGB(0, 130, 40)
-					}
+
 					// style individual cell
 					switch style.Col() {
 					case 0:
@@ -86,14 +83,20 @@ func parseTab() TabPage {
 							style.BackgroundColor = walk.RGB(204, 102, 102)
 						}
 					case 1:
-						// placeholder
+						// style row
+						if item.Custom {
+							style.TextColor = walk.RGB(0, 130, 40)
+						}
 					case 2:
 						// mark base containers which are not configured to be mapped
 						if !config.Configuration.Ini.Section("defaultTypes").HasKey(item.BaseContainer) {
 							style.TextColor = walk.RGB(146, 43, 33)
 						}
 					case 3:
-						// placeholder
+						if config.Configuration.IsDefaultLivery(item.BaseContainer, item.Title) {
+							style.TextColor = walk.RGB(0, 0, 255)
+						}
+
 					case 4:
 						// placeholder
 					case 5:
@@ -118,6 +121,14 @@ func parseTab() TabPage {
 						Text:        "Deactivate Livery",
 						OnTriggered: OnItemDeactivatedAction,
 					},
+					Action{
+						Text:        "Add to Default",
+						OnTriggered: OnItemAddDefaultAction,
+					},
+					Action{
+						Text:        "Remove from Default",
+						OnTriggered: OnItemRemoveDefaultAction,
+					},
 				},
 				OnItemActivated: func() {
 					if model.items[liveryTableView.CurrentIndex()].Process {
@@ -129,6 +140,34 @@ func parseTab() TabPage {
 			},
 		},
 	}
+}
+
+func OnItemAddDefaultAction() {
+	if len(liveryTableView.SelectedIndexes()) == 0 {
+		return
+	}
+	for _, i := range liveryTableView.SelectedIndexes() {
+		item := model.items[i]
+		if config.Configuration.IsDefaultLivery(item.BaseContainer, item.Title) {
+			continue
+		}
+		config.Configuration.AddLiveryToDefault(item.BaseContainer, item.Title)
+	}
+	model.onUpdateList()
+}
+
+func OnItemRemoveDefaultAction() {
+	if len(liveryTableView.SelectedIndexes()) == 0 {
+		return
+	}
+	for _, i := range liveryTableView.SelectedIndexes() {
+		item := model.items[i]
+		if !config.Configuration.IsDefaultLivery(item.BaseContainer, item.Title) {
+			continue
+		}
+		config.Configuration.RemoveLiveryFromDefault(item.BaseContainer, item.Title)
+	}
+	model.onUpdateList()
 }
 
 func OnItemRemoveCustomAction() {

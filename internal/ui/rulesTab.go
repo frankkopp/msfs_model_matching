@@ -55,6 +55,7 @@ func rulesTab() TabPage {
 				Text:     "No rules generated yet.",
 				ReadOnly: true,
 				VScroll:  true,
+				HScroll:  true,
 				Font: Font{
 					Family:    "Lucida Sans Typewriter",
 					PointSize: 8,
