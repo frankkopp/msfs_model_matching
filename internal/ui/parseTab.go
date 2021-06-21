@@ -56,54 +56,52 @@ func parseTab() TabPage {
 				OnClicked: model.ScanLiveriesAction,
 			},
 			TableView{
-				AssignTo:         &liveryTableView,
-				AlternatingRowBG: true,
-				CheckBoxes:       false,
-				ColumnsOrderable: true,
-				ColumnsSizable:   true,
-				MultiSelection:   true,
+				AssignTo:            &liveryTableView,
+				AlternatingRowBG:    true,
+				CheckBoxes:          false,
+				ColumnsOrderable:    true,
+				ColumnsSizable:      true,
+				MultiSelection:      true,
+				LastColumnStretched: true,
 
+				Model: model,
 				Columns: []TableViewColumn{
-					{Title: "Process", Width: 50, Alignment: AlignCenter},
-					{Title: "Livery Configuration File", Width: 650},
-					{Title: "Base Container", Width: 200},
-					{Title: "Title", Width: 200},
+					{Title: "Include", Width: 50, Alignment: AlignCenter},
+					{Title: "Custom", Width: 50, Alignment: AlignCenter},
 					{Title: "ICAO", Width: 50},
-					{Title: "Custom", Width: 50},
+					{Title: "Title (blue=default livery)", Width: 240},
+					{Title: "Base Container (red=no default type)", Width: 220},
+					{Title: "Livery Configuration File (green=custom configured", Width: 650},
 				},
 				StyleCell: func(style *walk.CellStyle) {
 					item := model.items[style.Row()]
 
 					// style individual cell
 					switch style.Col() {
-					case 0:
+					case 0: // process
 						if item.Complete {
 							style.BackgroundColor = walk.RGB(162, 202, 112)
 						} else {
 							style.BackgroundColor = walk.RGB(204, 102, 102)
 						}
-					case 1:
-						// style row
-						if item.Custom {
-							style.TextColor = walk.RGB(0, 130, 40)
+					case 1: // Custom
+					case 2: // ICAO
+					case 3: // Title
+						if config.Configuration.IsDefaultLivery(item.BaseContainer, item.Title) {
+							style.TextColor = walk.RGB(0, 0, 255)
 						}
-					case 2:
+					case 4: // Base Container
 						// mark base containers which are not configured to be mapped
 						if !config.Configuration.Ini.Section("defaultTypes").HasKey(item.BaseContainer) {
 							style.TextColor = walk.RGB(146, 43, 33)
 						}
-					case 3:
-						if config.Configuration.IsDefaultLivery(item.BaseContainer, item.Title) {
-							style.TextColor = walk.RGB(0, 0, 255)
+					case 5: // Config File
+						if item.Custom {
+							style.TextColor = walk.RGB(0, 130, 40)
 						}
-
-					case 4:
-						// placeholder
-					case 5:
-						// placeholder
 					}
 				},
-				Model: model,
+
 				ContextMenuItems: []MenuItem{
 					Action{
 						Text:        "Edit custom",

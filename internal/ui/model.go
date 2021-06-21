@@ -135,15 +135,15 @@ func (m *LiveryModel) Value(row, col int) interface{} {
 	case 0:
 		return item.Process
 	case 1:
-		return item.AircraftCfgFile
+		return item.Custom
 	case 2:
-		return item.BaseContainer
+		return item.Icao
 	case 3:
 		return item.Title
 	case 4:
-		return item.Icao
+		return item.BaseContainer
 	case 5:
-		return item.Custom
+		return item.AircraftCfgFile
 	}
 	panic("unexpected col")
 }
@@ -181,15 +181,15 @@ func (m *LiveryModel) Sort(col int, order walk.SortOrder) error {
 			}
 			return compare(aS > bS)
 		case 1:
-			return compare(a.AircraftCfgFile < b.AircraftCfgFile)
+			return compare(a.Custom)
 		case 2:
-			return compare(a.BaseContainer < b.BaseContainer)
+			return compare(a.Icao < b.Icao)
 		case 3:
 			return compare(a.Title < b.Title)
 		case 4:
-			return compare(a.Icao < b.Icao)
+			return compare(a.BaseContainer < b.BaseContainer)
 		case 5:
-			return compare(a.Custom)
+			return compare(a.AircraftCfgFile < b.AircraftCfgFile)
 		}
 		panic("unreachable")
 	})
