@@ -28,6 +28,8 @@
 package util
 
 import (
+	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -58,4 +60,64 @@ func SaveToFile(outPutFile string, output strings.Builder) error {
 		return err
 	}
 	return nil
+}
+
+// IsDir checks if the given path is a directory
+func IsDir(path string) (bool, error) {
+	info, err := os.Stat(path)
+	if err == nil && info.IsDir() {
+		return true, nil
+	}
+	return false, err
+}
+
+// PathExists checks if a given path exists (file or directoy)
+func PathExists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+
+// CreateBackup creates a backup of an existing file
+func CreateBackup(s string) error {
+	exists, err := PathExists(s)
+	if err != nil {
+		return err
+	}
+	if exists {
+		_, err := CopyFile(s, s+".bak")
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// CopyFile helper for creating backup files
+func CopyFile(src, dst string) (int64, error) {
+	sourceFileStat, err := os.Stat(src)
+	if err != nil {
+		return 0, err
+	}
+	if !sourceFileStat.Mode().IsRegular() {
+		return 0, fmt.Errorf("%s is not a regular file", src)
+	}
+	source, err := os.Open(src)
+	if err != nil {
+		return 0, err
+	}
+	defer source.Close()
+
+	destination, err := os.Create(dst)
+	if err != nil {
+		return 0, err
+	}
+	defer destination.Close()
+	nBytes, err := io.Copy(destination, source)
+	return nBytes, err
 }

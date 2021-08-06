@@ -30,9 +30,11 @@ package ui
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 
 	"github.com/frankkopp/MatchMaker/internal/config"
+	"github.com/frankkopp/MatchMaker/internal/rules"
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
 )
@@ -91,6 +93,26 @@ func NewMainWindow() (*walk.MainWindow, error) {
 
 	// store window state to ini when closing window
 	mainWindow.Closing().Attach(func(canceled *bool, reason walk.CloseReason) {
+		// Prompt user when rules not saved or configuration is not saved.
+		if config.Configuration.Dirty || rules.Dirty {
+			dlg, err := SaveDialog(mainWindow)
+			if err != nil {
+				log.Print(err)
+			}
+			switch dlg {
+			case walk.DlgCmdCancel:
+				*canceled = true
+			case walk.DlgCmdYes:
+				fmt.Printf("Configuration/Rules saved.\n")
+			case walk.DlgCmdNo:
+				fmt.Printf("Configuration/Rules not saved.\n")
+			}
+		}
+
+		// Save window state to ini
+		// For this we reload the ini to not overwrite anything and only change the window state.
+		// If the user has changed the configuration a prompt to save it will come to save it before
+		// this call here.
 		fmt.Printf("Saving window state...\n")
 		err := config.Configuration.Ini.Reload()
 		if err != nil {
@@ -110,6 +132,5 @@ func NewMainWindow() (*walk.MainWindow, error) {
 	})
 
 	mainWindow.Run()
-
 	return mainWindow, nil
 }

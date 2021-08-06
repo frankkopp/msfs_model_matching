@@ -35,10 +35,10 @@ package config
 import (
 	"errors"
 	"fmt"
-	"io"
 	"log"
-	"os"
+	"strings"
 
+	"github.com/frankkopp/MatchMaker/internal/util"
 	"gopkg.in/ini.v1"
 )
 
@@ -56,8 +56,9 @@ type Config struct {
 	IniFileName *string
 	Ini         *ini.File
 	Custom      *CustomData
-	Dirty       bool
 	Verbose     *bool
+	Valid       bool
+	Dirty       bool
 }
 
 // LoadIni loads configuration from the configured ini file and applies it
@@ -70,9 +71,9 @@ func (c *Config) LoadIni() {
 		log.Printf("No ini file found. Using default configuration: %v", err)
 		tmpIni = loadDefaults()
 	}
-	// TODO: validate ini configuration
 	c.Ini = tmpIni
 	c.ExtractCustomDataFromIni()
+	c.Valid = c.validateIniConfig()
 	c.Dirty = false
 }
 
@@ -84,11 +85,32 @@ func (c *Config) LoadFromString(iniString string) error {
 	if err != nil {
 		return err
 	}
-	// TODO: validate ini configuration
 	c.Ini = tmpIni
 	c.ExtractCustomDataFromIni()
+	c.Valid = c.validateIniConfig()
 	c.Dirty = true
 	return nil
+}
+
+// check configuration ini for the minimal settings to run meaningful
+func (c *Config) validateIniConfig() bool {
+	// livery directory
+	if c.Ini.Section("paths").Key("liveryDir").String() == "" {
+		return false
+	}
+	isDir, err := util.IsDir(c.Ini.Section("paths").Key("liveryDir").String())
+	if err != nil || !isDir {
+		return false
+	}
+	// output file
+	if c.Ini.Section("paths").Key("outputFile").String() == "" {
+		return false
+	}
+	isDir, err = util.IsDir(c.Ini.Section("paths").Key("outputFile").String())
+	if err != nil || isDir { // file does not exist or path exists but is directory
+		return false
+	}
+	return true
 }
 
 // SaveIni save the current configuration to the configured ini file
@@ -96,58 +118,17 @@ func (c *Config) SaveIni() error {
 	if *c.IniFileName == "" {
 		return errors.New("no ini file path given")
 	}
-	c.UpdateIniCustomData()
-	err := createBackup(*c.IniFileName)
+	err := util.CreateBackup(*c.IniFileName)
 	if err != nil {
 		return err
 	}
+	c.UpdateIniCustomData()
 	err = c.Ini.SaveTo(*c.IniFileName)
 	if err != nil {
 		return err
 	}
 	c.Dirty = false
 	return nil
-}
-
-// creates a backup of an existing configuration file
-func createBackup(s string) error {
-	if _, err := os.Stat(s); err == nil {
-		// exists
-		_, err := copyFile(s, s+".bak")
-		if err != nil {
-			return err
-		}
-	} else if os.IsNotExist(err) {
-		// does *not* exist
-		return nil
-	} else {
-		return err
-	}
-	return nil
-}
-
-// helper for creating backup files
-func copyFile(src, dst string) (int64, error) {
-	sourceFileStat, err := os.Stat(src)
-	if err != nil {
-		return 0, err
-	}
-	if !sourceFileStat.Mode().IsRegular() {
-		return 0, fmt.Errorf("%s is not a regular file", src)
-	}
-	source, err := os.Open(src)
-	if err != nil {
-		return 0, err
-	}
-	defer source.Close()
-
-	destination, err := os.Create(dst)
-	if err != nil {
-		return 0, err
-	}
-	defer destination.Close()
-	nBytes, err := io.Copy(destination, source)
-	return nBytes, err
 }
 
 // ExtractCustomDataFromIni reads and parses the ini section "customData" and
@@ -163,6 +144,48 @@ func (c *Config) ExtractCustomDataFromIni() {
 func (c *Config) UpdateIniCustomData() {
 	dataBody := c.Custom.GetDataBody()
 	c.Ini.Section("customData").SetBody(dataBody + "-- end of customData - do not delete --\r\n")
+	c.Dirty = true
+}
+
+func (c *Config) IsDefaultLivery(base string, title string) bool {
+	if c.Ini.Section("defaultTypes").HasKey(base) {
+		for _, t := range c.Ini.Section("defaultTypes").Key(base).Strings(",") {
+			if t == title {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func (c *Config) AddLiveryToDefault(base string, title string) {
+	sep := ""
+	if c.Ini.Section("defaultTypes").Key(base).String() != "" {
+		sep = ","
+	}
+	c.Ini.Section("defaultTypes").Key(base).SetValue(c.Ini.Section("defaultTypes").Key(base).String() + sep + title)
+	c.Dirty = true
+}
+
+func (c *Config) RemoveLiveryFromDefault(base string, title string) {
+	fmt.Printf("Remove from default %s: %s\n", base, title)
+	if c.Ini.Section("defaultTypes").HasKey(base) {
+		sb := strings.Builder{}
+		for i, t := range c.Ini.Section("defaultTypes").Key(base).Strings(",") {
+			if t == title {
+				continue
+			}
+			if i != 0 {
+				sb.WriteString(",")
+			}
+			sb.WriteString(t)
+		}
+		if sb.Len() == 0 {
+			c.Ini.Section("defaultTypes").DeleteKey(base)
+		} else {
+			c.Ini.Section("defaultTypes").Key(base).SetValue(sb.String())
+		}
+	}
 	c.Dirty = true
 }
 

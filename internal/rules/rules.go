@@ -37,14 +37,17 @@ import (
 
 	"github.com/frankkopp/MatchMaker/internal/config"
 	"github.com/frankkopp/MatchMaker/internal/livery"
+	"github.com/frankkopp/MatchMaker/internal/util"
 	"gopkg.in/ini.v1"
 )
 
 var (
-	Counter = 0
 
 	// Rules map[ICAO][TypeCode][]liveries
 	Rules = map[string]map[string][]string{}
+
+	Counter = 0
+	Dirty   = false
 
 	DefaultTypes   map[string][]string
 	TypeVariations map[string][]string
@@ -103,6 +106,7 @@ func CalculateRules(liveries []*livery.Livery) {
 			}
 		}
 	}
+	Dirty = true
 }
 
 // check if the ICAO has alternative ICAOs which should use the same livery
@@ -160,7 +164,7 @@ func SortBaseKeys(m map[string][]string) []string {
 
 // GenerateXML generates a string with the XML representation of all matching rules.
 // Also returns the number of rules generated.
-func GenerateXML() (string, int) {
+func GenerateXML() (strings.Builder, int) {
 	numberOfLines := 0
 
 	var output strings.Builder
@@ -176,9 +180,15 @@ func GenerateXML() (string, int) {
 		if icaoKey != "default" {
 			continue
 		}
-		for _, baseKey := range SortBaseKeys(TypeVariations) {
+		if len(Rules[icaoKey]) == 0 {
+			break
+		}
+		for _, baseKey := range SortBaseKeys(DefaultTypes) { // only iterate over types with default livery
 			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
 			for _, typeKey := range TypeVariations[baseKey] {
+				if len(Rules[icaoKey][typeKey]) == 0 {
+					continue
+				}
 				fmt.Fprintf(&output, "<ModelMatchRule TypeCode=\"%s\" ModelName=\"", typeKey)
 				for i, livery := range Rules[icaoKey][typeKey] {
 					if i != 0 {
@@ -195,11 +205,11 @@ func GenerateXML() (string, int) {
 	// ICAO based rules
 	fmt.Fprintf(&output, "<!-- PER ICAO RULES -->\r\n")
 	for _, icaoKey := range SortIcaoKeys(Rules) {
-		if icaoKey == "default" {
+		if icaoKey == "default" || len(Rules[icaoKey]) == 0 {
 			continue
 		}
-		fmt.Fprintf(&output, "<!-- ICAO:  %s -->\r\n", icaoKey)
-		for _, baseKey := range SortBaseKeys(TypeVariations) {
+		fmt.Fprintf(&output, "<!-- ICAO: %s -->\r\n", icaoKey)
+		for _, baseKey := range SortBaseKeys(DefaultTypes) { // only iterate over types with default livery
 			fmt.Fprintf(&output, "<!-- BASE: %s -->\r\n", baseKey)
 			for _, typeKey := range TypeVariations[baseKey] {
 				if len(Rules[icaoKey][typeKey]) == 0 {
@@ -221,5 +231,20 @@ func GenerateXML() (string, int) {
 
 	// Footer
 	output.WriteString("\r\n</ModelMatchRuleSet>\r\n")
-	return output.String(), numberOfLines
+	return output, numberOfLines
+}
+
+func SaveRulesToFile() error {
+	outPutFile := config.Configuration.Ini.Section("paths").Key("outputFile").String()
+	err := util.CreateBackup(outPutFile)
+	if err != nil {
+		return err
+	}
+	var output, _ = GenerateXML()
+	err = util.SaveToFile(outPutFile, output)
+	if err != nil {
+		return err
+	}
+	Dirty = false
+	return nil
 }
