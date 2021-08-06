@@ -1,4 +1,5 @@
-## v1.1 (in progress)
+## v1.1 
+- Planes are recognized as well, not only pure liveries
 - Prompt user to save configuration and/or rules on window close
 - Create backup when saving rules file
 
